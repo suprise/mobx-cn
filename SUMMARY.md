@@ -1,8 +1,7 @@
 # Summary
 
 * [Mobx-cn](README.md)
-* [简介](mobx/README.md)
-  * [Getting started](mobx/getting_started.md)
+* [简介](introduction/README.md)
   * [Introduction](mobx/introduction.md)
   * [Core concepts](mobx/core_concepts.md)
   * [MobX: Simple and scalable](mobx/mobx_simple_and_scalable.md)
