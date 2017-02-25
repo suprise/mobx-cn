@@ -1,5 +1,6 @@
 # Summary
 
 * [Mobx中文文档](README.md)
-* [简介](introduction/README.md)
-  * [Mobx的要点](introduction/gist.md)
+* [1. 简介](introduction/README.md)
+  * [1.1 Mobx的要点](introduction/gist.md)
+  * [1.2 概念 & 原则](introduction/concepts.md)
