@@ -199,42 +199,39 @@ store.todos[0].finished = true;
 
 ## 再聊聊简单与可扩展性（Simple and scalable） 
 
-MobX is one of the least obtrusive libraries you can use for state management. That makes the `MobX` approach not just simple, but very scalable as well:
+Mobx是上手成本最小的状态管理库之一，以下几点措施保证 `MobX` 不仅仅简单，还具有很好的可扩展性。
 
-### Using classes and real references {#using-classes-and-real-references}
+### 支持类（Class）和引用 {#using-classes-and-real-references}
 
-With MobX you don&#039;t need to normalize your data. This makes the library very suitable for very complex domain models (At Mendix for example ~500 different domain classes in a single application).
+使用Mobx，你不需要重构你的数据结构，这使得这个库适用于拥有非常复杂领域模型的情况。在Mendix这一个应用中，有大概500个不同的类。
 
-### Referential integrity is guaranteed {#referential-integrity-is-guaranteed}
+### 参照完整性是有保障的（Referential integrity is guaranteed）
 
-Since data doesn&#039;t need to be normalized, and MobX automatically tracks the relations between state and derivations, you get referential integrity for free. Rendering something that is accessed through three levels of indirection?
+因为数据不需要重构，Mobx会自动追踪状态和衍生状态之间的关系，可以获得很好的参照完整性。你有没有遇到过这样一种情况，为了渲染一些东西，需要经过3个层级的、方向不明的复杂状态传递？
 
-No problem, MobX will track them and re-render whenever one of the references changes. As a result staleness bugs are a thing of the past. As a programmer you might forget that changing some data might influence a seemingly unrelated component in a corner case. MobX won&#039;t forget.
+没有关系，Mobx会追踪他们并且重渲染，当其中的任何一个引用发生变化的时候。也许在某个边际情况中，你改变某个数据会影响一个看上去不相关的组件，但Mobx不会出现。
 
-### Simpler actions are easier to maintain {#simpler-actions-are-easier-to-maintain}
 
-As demonstrated above, modifying state when using MobX is very straightforward. You simply write down your intentions. MobX will take care of the rest.
+### 更加容易维护的简单行为 
 
-### Fine grained observability is efficient {#fine-grained-observability-is-efficient}
+就像上面的示例，使用Mobx时改变状态是非常直观的，你只需要写下你的意图，Mobx会处理剩下的。
 
-MobX builds a graph of all the derivations in your application to find the least number of re-computations that is needed to prevent staleness. &quot;Derive everything&quot; might sound expensive, MobX builds a virtual derivation graph to minimize the number of recomputations needed to keep derivations in sync with the state.
+### 合适地切分观察能力会变得非常高效（Fine grained observability is efficient）
 
-In fact, when testing MobX at Mendix we found out that using this library to track the relations in our code is often a lot more efficient than pushing changes through our application by using handwritten events or &quot;smart&quot; selector based container components.
+Mobx构建了一个关于你的应用的衍生关系图，并以成本最低的方式重新计算。响应任何事情，听起来非常昂贵，但Mobx构建了一个虚拟的响应关系图以最小化计算成本，并且保持衍生关系与状态同步。
 
-The simple reason is that MobX will establish far more fine grained &#039;listeners&#039; on your data than you would do as a programmer.
+实际上，当在Mendix这个应用中进行测试时，我们发现当改变发生时，使用这个库区追踪关系，使得我们的代码非常高效。
+最简单的原因是，Mobx构建了一种非常高效的数据监听机制，比你这个程序员做得更好。
 
-Secondly MobX sees the causality between derivations so it can order them in such a way that no derivation has to run twice or introduces a glitch.
+因为Mobx可以非常清晰地了解各个变化之间的关系，所以可以控制其不会重复变化或引入故障。
 
-How that works? See this [in-depth explanation of MobX](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254).
+它是怎么做到的？看这里 [in-depth explanation of MobX](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254).
 
-### Easy interoperability {#easy-interoperability}
+### 高度可集成性
 
-MobX works with plain javascript structures. Due to its unobtrusiveness it works with most javascript libraries out of the box, without needing MobX specific library flavors.
-
-So you can simply keep using your existing router, data fetching and utility libraries like `react-router`, `director`, `superagent`, `lodash` etc.
-
-For the same reason you can use it out of the box both server- and client side, in isomorphic applications and with react-native.
-
-The result of this is that you often need to learn fewer new concepts when using MobX in comparison to other state management solutions.
+Mobx 基于普通的javascript结构，使得非常容易和其他库进行集成。
+你可以简单地保留你的路由库、数据获取库、工具库，例如 `react-router`, `director`, `superagent`, `lodash` 等等。
+基于同样的理由，你可以用于服务端或客户端当中。
+所以上手成本很低，你完全不需要像其他状态管理库一样学习很多新概念。
 
 <center>![](https://www.mendix.com/styleguide/img/logo-mendix.png) __MobX is proudly used in mission critical systems at [Mendix](https://www.mendix.com)__</center>
