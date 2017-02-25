@@ -1,7 +1,7 @@
 # Summary
 
 * [Mobx-cn](README.md)
-* [MobX](mobx/README.md)
+* [简介](mobx/README.md)
   * [Getting started](mobx/getting_started.md)
   * [Introduction](mobx/introduction.md)
   * [Core concepts](mobx/core_concepts.md)
@@ -13,3 +13,4 @@
   * [Bower support](mobx/bower_support.md)
   * [MobX was formerly known as Mobservable.](mobx/mobx_was_formerly_known_as_mobservable.md)
   * [Donating](mobx/donating.md)
+
