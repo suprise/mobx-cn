@@ -1,3 +1,5 @@
 # Mobx-cn {#mobx-cn}
 
-This file serves as your book&#039;s preface, a great place to describe your book&#039;s content and ideas.
+Mobx的中文文档。
+因为工作繁忙，慢慢填坑，承诺至少每周更新一个章节。(欢迎一起贡献，请联系yiaolia@gmail.com)
+水平有限，欢迎指出。

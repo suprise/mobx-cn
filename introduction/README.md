@@ -30,8 +30,11 @@ Mobx 是一个让状态管理（state management）变得简单、具有高扩�
 
 Mobx的思想非常简单：
 
+```
 _任何事情都源于应用的状态,并且这一过程应该是自动的_
+
 _Anything that can be derived from the application state, should be derived. Automatically._
+```
 
 包括UI、数据变更、与服务器通信等等
 
@@ -168,8 +171,12 @@ autorun(() => {
 
 为什么当`unfinishedTodoCount`每次发生改变时，都会打印出一条新的记录？
 答案是：
+```
 _Mobx中，在已被标记的函数执行过程中，如果任一已被观察的属性被引用时，这个被观察的属性会触发响应_
+
 _MobX reacts to any existing observable property that is read during the execution of a tracked function._
+
+```
 
 为了深入地解释Mobx如何检测被观察对象，及什么时候会触发响应，请看[understanding what MobX reacts to](https://github.com/mobxjs/mobx/blob/gh-pages/docs/best/react.md)
 
@@ -234,4 +241,42 @@ Mobx 基于普通的javascript结构，使得非常容易和其他库进行集�
 基于同样的理由，你可以用于服务端或客户端当中。
 所以上手成本很低，你完全不需要像其他状态管理库一样学习很多新概念。
 
-<center>![](https://www.mendix.com/styleguide/img/logo-mendix.png) __MobX is proudly used in mission critical systems at [Mendix](https://www.mendix.com)__</center>
+![](https://www.mendix.com/styleguide/img/logo-mendix.png) 
+__MobX is proudly used in mission critical systems at [Mendix](https://www.mendix.com)__
+
+## 致谢 
+
+Mobx 的响应式编程思想受到MVVM框架的启发，例如MeteorJS tracker, knockout 和 Vue.js等，但Mobx使得透明函数响应式编程（TFRP）的发展更进一步，并提供了一种独立的实现。它实现的TFRP具有鲁棒性、同步、可预见性、高效等特性。
+
+对[Mendix](https://github.com/mendix)致以成吨的感谢，为了支持Mobx的维护，尤其是在一个真实的、复杂的、高性能要求的应用中证明了Mobx的思想。
+
+最后，荣誉属于那些相信、尝试、验证甚至[贡献](https://github.com/mobxjs/mobx/blob/master/sponsors.md)Mobx的人们。
+
+## 更多资源和文档 
+
+*   [MobX 主页](http://mobxjs.github.io/mobx/faq/blogs.html)
+*   [API 一览](http://mobxjs.github.io/mobx/refguide/api.html)
+*   [Tutorials, Blogs &amp; Videos](http://mobxjs.github.io/mobx/faq/blogs.html)
+*   [Boilerplates](http://mobxjs.github.io/mobx/faq/boilerplates.html)
+*   [相关项目](http://mobxjs.github.io/mobx/faq/related.html)
+
+
+## 如何贡献
+
+* 放轻松，先实现个小目标，提一个小pull request。如果新增一些特性或者大的改动，请先在Github的issue中大家一起来讨论。
+* 使用 `npm test` 测试基本用例，使用`npm run coverage` 测试用例的代码覆盖率，使用 `npm run perf` 进行性能测试。
+
+
+## Bower 支持 {#bower-support}
+
+通过以下方式安装 `bower install https://unpkg.com/mobx/bower.zip`
+然后使用 `lib/mobx.umd.js` 或者 `lib/mobx.umd.min.js`
+
+## 捐赠
+
+Mobx是否是你项目成功的关键因素？欢迎点击[捐赠按钮](https://mobxjs.github.io/mobx/donate.html)分享你的成功！
+Mobx在很长一段发展的过程中保持了免费，对于任何回报我都万分感谢 :-）。如果留下你的名字，你会被加入[贡献者](https://github.com/mobxjs/mobx/blob/master/sponsors.md)的列表当中~:-）
+
+也欢迎给翻译者捐赠，用于抚慰因为翻译被冷落的女朋友。
+支付宝（Alipay）：
+![](//img.alicdn.com/tps/TB1Eo2DPFXXXXccaXXXXXXXXXXX-600-900.jpg_400x400.jpg)
