@@ -56,7 +56,7 @@ Mobx只有很少的核心概念，可以通过下面这些在线demo进行尝试
 (or [without ES6 and JSX](https://jsfiddle.net/rubyred/55oc981v/)).
 
 ### 可观察的状态（observable state）
-Mobx 给已有的数据结构增加了可观察的能力（如对象、数组、类实例等）。你只需要很简单地使用[@observable](http://mobxjs.github.io/mobx/refguide/observable-decorator.html) 装饰你的类属性即可。
+Mobx 给已有的数据结构增加了可观察的能力（如对象、数组、类实例等）。你只需要很简单地使用[@observable](http://mobxjs.github.io/mobx/refguide/observable-decorator.html) 装饰你的类属性（property）即可。
 
 ```
 class Todo {
@@ -225,7 +225,7 @@ Mobx是上手成本最小的状态管理库之一，以下几点措施保证 `Mo
 
 ### 合适地切分观察能力会变得非常高效（Fine grained observability is efficient）
 
-Mobx构建了一个关于你的应用的衍生关系图，并以成本最低的方式重新计算。响应任何事情，听起来非常昂贵，但Mobx构建了一个虚拟的响应关系图以最小化计算成本，并且保持衍生关系与状态同步。
+Mobx构建了一个关于你的应用的衍生关系图，并以成本最低的方式重新计算。响应任何事情，听起来非常昂贵，但mobx构建了一个虚拟的响应关系图以最小化计算成本，并且保持衍生关系与状态同步。
 
 实际上，当在Mendix这个应用中进行测试时，我们发现当改变发生时，使用这个库区追踪关系，使得我们的代码非常高效。
 最简单的原因是，Mobx构建了一种非常高效的数据监听机制，比你这个程序员做得更好。
