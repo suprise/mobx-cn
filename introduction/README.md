@@ -25,13 +25,13 @@
 *   More tutorials, blogs and videos can be found on the [MobX homepage](http://mobxjs.github.io/mobx/faq/blogs.html)
 
 
-## 介绍 
+## 概述 
 Mobx 是一个让状态管理（state management）变得简单、具有高扩展性的库，以对开发者透明的函数响应式编程方式，并且这个库经过了严格的测试。
 
 Mobx的思想非常简单：
 
 ```
-_任何事情都源于应用的状态,并且这一过程应该是自动的_
+_任何部分都源于应用的状态,并且这一过程应该是自动的_
 
 _Anything that can be derived from the application state, should be derived. Automatically._
 ```
@@ -41,12 +41,12 @@ _Anything that can be derived from the application state, should be derived. Aut
 ![MobX unidirectional flow](https://mobx.js.org/docs/flow.png)
 
 React和Mobx 一起使用具有强大的联动效果。
-React渲染应用的状态，通过一套将状态传递到已渲染的组件树中的机制。
+React提供一个把应用程序的状态渲染成组件树的机制。
 Mobx则提供了存储和更新应用状态的机制。
 
 React和Mobx都提供了非常优秀、独特的方式以解决应用开发中遇到的共同问题。
-React提供了优异的Virtual DOM的处理机制以减少DOM操作成本。
-Mobx则提供了优化将应用状态同步到React组件内的机制，通过使用了一种响应式的state依赖图，该依赖图严格只在需要的时候更新，并且不会出现代码腐化。
+React提供了优异的虚拟DOM的处理机制以减少DOM操作成本。
+Mobx则提供了优化将应用状态同步到React组件内的机制，通过使用了一种响应式的状态依赖图，该依赖图严格只在需要的时候更新，并且不会出现代码腐化。
 
 
 ## 核心概念 
@@ -69,7 +69,7 @@ class Todo {
 
 使用 `observable` 就像将对象中的属性转变成Excel中的单元格，但不同的是，这些值并不仅限于初级类型，也可作用于引用、对象、数组等类型。你甚至可以[定义你自己的](http://mobxjs.github.io/mobx/refguide/extending.html) 可观察数据结构。
 
-### 幕间: 在 ES5, ES6 and ES.next 环境中使用Mobx
+### 幕间: 在 ES5/ES6/ES.next 环境中使用Mobx
 
 如果 `@` 对你来说像一个外星生物，不要害怕，这是ES下一代的装饰器预发。对于它的使用完全是可选的。看这个[文档](http://mobxjs.github.io/mobx/best/decorators.html) 来获取更多的信息，来决定使用或者完全不使用它们。对于ES下一代的特性，如装饰器，仅仅是锦上添花的事情。
 
