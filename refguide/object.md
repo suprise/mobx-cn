@@ -1,8 +1,6 @@
 ## Observable Objects
 
-If a plain JavaScript object is passed to `observable` all properties inside will be copied into a clone and made observable.
-(A plain object is an object that wasn't created using a constructor function / but has `Object` as its prototype, or no prototype at all.)
-`observable` is by default applied recursively, so if one of the encoutered values is an object or array, that value will be passed through `observable` as well.
+如果一个纯 JavaScript 对象传递给`observable`，其包含的所有的属性都将被观察（纯对象就是不通过构造函数创造的对象）。默认情况下，`observable`是递归调用的，所以如果遇到一个值是对象或数组的情况，它的值也会传递给`observable`。
 
 ```javascript
 import {observable, autorun, action} from "mobx";
@@ -35,23 +33,20 @@ person.setAge(21);
 // etc
 ```
 
-Some things to keep in mind when making objects observable:
+在使一个对象可观察时需要注意一些事情：
 
-* When passing objects through `observable`, only the properties that exist at the time of making the object observable will be observable.
-Properties that are added to the object at a later time won't become observable, unless [`extendObservable`](extend-observable.md) is used.
-* Only plain objects will be made observable. For non-plain objects it is considered the responsibility of the constructor to initialize the observable properties.
-Either use the [`@observable`](observable.md) annotation or the [`extendObservable`](extend-observable.md) function.
-* Property getters will be automatically turned into derived properties, just like [`@computed`](computed-decorator) would do.
-* `observable` is applied recursively to a whole object graph automatically. Both on instantiation and to any new values that will be assigned to observable properties in the future. Observable will not recurse into non-plain objects.
-* These defaults are fine in 95% of the cases, but for more fine-grained on how and which properties should be made observable, see the [modifiers](modifiers.md) section.
+* 当通过使用`observable`传递对象时，在使对象变得可观察时，只有当时存在的属性才会被观察。后续在添加到对象中的属性是不会被观察的，除非使用[`extendObservable`](extend-observable.md)
+* 只有纯对象才能被观察。对于非纯对象，其构造函数负责初始化其可被观察的属性。使用[`@observable`](observable.md)装饰或 [`extendObservable`](extend-observable.md)函数。
+* getters 属性将会自动转换为衍生属性，就像[`@computed`](computed-decorator)做的事是一样的。
+* `observable`自动的被递归应用于整个对象结构，在实例化和任何将来会被分配给可观察属性的新值。Observable 不会递归到非纯对象里。
+* 默认情况下，95%的情况都可以运行良好，但是对于哪些属性应该细粒度地被观察，请参阅 [modifiers](modifiers.md) 章节。
 
 # `observable.object(props)` & `observable.shallowObject(props)`
 
-`observable(object)` is just a shorthand for `observable.object(props)`.
-All properties are by default made deep observable.
-[modifiers](modifiers.md) can be used to override this behavior for individual properties.
-`shallowObject(props)` can be used to make the properties only shallow observables. That is, the reference to the value is observabled, but the value itself won't be made observable automatically.
+`observable(object)` 只是`observable.object(props)`的一个缩略写法。所有的属性都会被深度转换为可观察的。
+[modifiers](modifiers.md) 可以重写这一行为。
+`shallowObject(props)` 用于确保属性只是浅观察的。意思是引用属性是可观察的，但引用属性对应的值的内容并不是可观察的。
 
-## Name argument
+## Name 参数
 
-Both `observable.object` and `observable.shallowObject` take a second parameter which is used as debug name in for example `spy` or the MobX dev tools.
+`observable.object` and `observable.shallowObject` 都获取第二个参数作为debug name，给开发工具使用。

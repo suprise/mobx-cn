@@ -1,38 +1,35 @@
 # Observable Maps
 
-## `observable.map(values)`
+`observable(asMap(values?, modifier?))` （和`map(values?, modifier?)`）创建一个具有动态键值的可观察Map。如果你不想要对特定的条目更改做出响应，而只是在添加和删除条目时使得这一行为可观察，maps是非常有用的。ES6 map可以使用对象、 数组或者字符串作为初始值。
+而Mobx Map 和 ES6 的maps不同，其只接受字符串作为键。
 
-`observable.map(values?)` creates a dynamic keyed observable map.
-Observable maps are very useful if you don't want to react just to the change of a specific entry, but also to the addition or removal of entries.
-Optionally takes an object, entries array or string keyed [ES6 map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) with initial values.
-Unlike ES6 maps, only strings are accepted as keys.
+以下的方式是根据[ES6 Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)规范提供的：
 
-The following methods are exposed according to the [ES6 Map spec](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map):
+* `has(key)` 返回这个map是否含有提供的key。要注意key本身实际上是可被观察的。
+* `set(key, value)` 设置提供的`key`的值。即使提供的key不存在，其在map中会被添加。
+* `delete(key)` 在map中删除提供的key值
+* `get(key)` 返回提供的key的值(可能为`undefined`)，可以通过`has`确认你是否可以调用`get`。
+* `keys()` 返回map中的所有key，插入的顺序也是被保留的。
+* `entries()` 返回一个包含对于map中每个键/值对的映射数组`[key, value]`(有插入顺序)的数组。
+* `forEach(callback: (value, key, map) => void, thisArg?)`。对map中的任何一个键/值对进行调用回调。
+* `clear()` 移除map中所有条目。
+* `size` 返回map中的条目数量。
 
-* `has(key)` Returns whether this map has an entry the provided key. Note that the presence of a key is an observable fact in itself.
-* `set(key, value)`. Sets the given `key` to `value`. The provided key will be added to the map if it didn't exist yet.
-* `delete(key)`. Deletes the given key and its value from the map.
-* `get(key)`. Returns the value at the given key (or `undefined`).
-* `keys()`. Returns all keys present in this map. The insertion order is preserved.
-* `values()`. Returns all values present in this map. Insertion order is preserved.
-* `entries()`. Returns an (insertion ordered) array that for each key/value pair in the map contains an array `[key, value]`.
-* `forEach(callback:(value, key, map) => void, thisArg?)`. Invokes the given callback for each key / value pair in the map.
-* `clear()`. Removes all entries from this map.
-* `size`. Returns the amount of entries in this map.
+下面的方法不是 ES6 支持的，但是在MobX中是非常有用的：
 
-The following functions are not in the ES6 spec but are available in MobX:
-* `toJS()`. Returns a shallow plain object representation of this map. (For a deep copy use `mobx.toJS(map)`).
+* `toJS()` 返回该map的一个浅拷贝简单对象(对于深拷贝请使用`mobx.toJS(map))。
+* `intercept(interceptor)` 注册一个在应用于map中任何改变之前会被触发的拦截器。请参阅[observe & intercept](observe.md)。
+* `observe(listener, fireImmdidately)` 注册一个当map中任何改变时被触发的监听者，类似[Object.observe](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)的触发事件。详情请参阅[observe & intercept](observe.md)。
+* `merge(object | map)` 复制提供的对象中的所有条目到这个map中。
+* `replace(values)`. 使用`values` 替换当前map的整个内容. 只是`.clear().merge(values)`的缩略方式。
 
-* `intercept(interceptor)`. Registers an interceptor that will be triggered before any changes are applied to the map. See [observe & intercept](observe.md).
-* `observe(listener, fireImmediately?)`. Registers a listener that fires upon each change in this map, similarly to the events that are emitted for [Object.observe](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe). See [observe & intercept](observe.md) for more details.
-* `merge(values)`. Copies all entries from the provided object into this map. `values` can be a plain object, array of entries or string-keyed ES6 Map.
-* `replace(values)`. Replaces the entire contents of this map with the provided values. Short hand for `.clear().merge(values)`
 
 ## `observable.shallowMap(values)`
 
-Any values assigned to an observable map will be default passed through [`observable`](observable.md) to make them observable.
-Create a shallow map to disable this behavior and store are values as-is. See also [modifiers](modifiers.md) for more details on this mechanism.
 
-## Name argument
+所有传给[`observable`](observable.md)的map中的值（主要是对象）都会被转变为可观察的。创建一个浅对象以禁止这种行为，请查阅[modifiers](modifiers.md)获取关于这一机制的更多细节。
 
-Both `observable.map` and `observable.shallowMap` take a second parameter which is used as debug name in for example `spy` or the MobX dev tools.
+## Name 参数
+
+`observable.map` and `observable.shallowMap` 都获取第二个参数作为debug name，给开发工具使用。
+
