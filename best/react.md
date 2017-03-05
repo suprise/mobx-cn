@@ -1,23 +1,26 @@
-# What does MobX react to?
+# 什么情况下Mobx才会响应（react）？
 
-MobX usually reacts to exactly the things you expect it to.
-Which means that in 90% of your use cases mobx "just works".
-However, at some point you will encounter a case where it might not do what you expected.
-At that point it is invaluable to understand how MobX determines what to react to.
+（之所以先翻译这个，是因为暂时需要先了解这些坑）
+
+Mobx通常会像你所想的那样响应，可以说90%的情况下你所使用的mobx都可以顺利工作。
+然而，在一些情况下你回到遇到不符合你期望的案例，在那种情况下，值得深入理解Mobx是如何检测它需要如何响应。
+
+>在可追踪函数执行过程中，如果任一 **已被观察** 的_属性（property）_被**使用（read）**时，这个被观察的属性会触发响应_
 
 > MobX reacts to any _existing_ **observable** _property_ that is read during the execution of a tracked function.
 
-* _"reading"_ is dereferencing an object's property, which can be done through "dotting into" it (eg. `user.name`) or using the bracket notation (eg. `user['name']`).
-* _"trackable functions"_ are the expression of `computed`, the `render()` method of an observer component, and the functions that are passed as the first param to `when`, `reaction` and `autorun`.
-* _"during"_ means that only those observables that are being read while the function is executing are tracked. It doesn't matter whether these values are used directly or indirectly by the tracked function.
+* _"使用"_ 是对对象属性的解引用。可以通过点引用的方式（如 `user.name`）或者中括号的使用方式（如 `user['name']`）
+* _"可追踪的函数"_ 是对一些函数的表述：如`computed`；如一个观察者组件的renderf方法；或者是传给`when`, `reaction` 和 `autorun` 三个函数的第一个参数
+* _"在XX的执行过程中"_ 意味着被观察对象只有在函数的执行过程中被使用。至于直接使用或是间接使用，都不是问题。
 
-In other words, MobX will not react to:
- * Values that are obtained from observables, but outside a tracked function
- * Observables that are read in an asynchronously invoked code block
+换句话说，以下情况Mobx不会响应：
+* 值虽然是通过被观察者获取的，这一过程却不在追踪函数中。
+* 被观察者在一个异步的代码段中被使用
 
-## MobX tracks property access, not values
 
-To elaborate on the above rules with an example, suppose that you have the following observable data structure (`observable` applies itself recursively by default, so all fields in this example are observable):
+## Mobx追踪的是属性，而不是属性对应的值
+
+为了更加清晰地用例子阐明上述规则，假设你有如下一个可观察的数据结构（可观察作用于一个对象时默认是递归的，所以这个例子中的所有字段都是可观察的）
 
 ```javascript
 let message = observable({
@@ -31,17 +34,16 @@ let message = observable({
 })
 ```
 
-In memory that looks as follows. The green boxes indicate _observable_ properties. Note that the _values_ themselves are not observable!
+在内存中这个过程看起来如下图，绿方块代表可观察的属性。注意值本身不是可观察的
 
 ![MobX reacts to changing references](../images/observed-refs.png)
 
-Now what MobX basically does is recording which _arrows_ you use in your function. After that, it will re-run whenever one of this _arrows_ changes; when they start to refer to something else.
 
-## Examples
+## 例子
 
-Lets show that with a bunch of examples (based on the `message` variable defined above):
+让我们来看看一些例子（基于上述定义的 `message`变量）
 
-#### Correct: dereference inside the tracked function
+#### 正确: 在被追踪函数中解引用
 
 ```javascript
 autorun(() => {
@@ -50,9 +52,10 @@ autorun(() => {
 message.title = "Bar"
 ```
 
+这会像预期的那样进行响应，`.title` 在autorun中被解引用。然后在后续被改变，所以这个改变是可以被检测到的。
 This will react as expected, the `.title` property was dereferenced by the autorun, and changed afterwards, so this change is detected.
 
-You can verify what MobX will track by calling `whyRun()` inside the tracked function. In the case of the above function it will output the following:
+你可以验证Mobx会通过在被追踪函数内部调用 `whyRun()`函数进行追踪，在这个例子中该函数会输出如下
 
 ```javascript
 autorun(() => {
@@ -67,7 +70,7 @@ WhyRun? reaction 'Autorun@1':
     ObservableObject@1.title
 ```
 
-#### Incorrect: changing a non-observable reference
+#### 不正确: 改变一个不是可观察的引用
 
 ```javascript
 autorun(() => {
@@ -76,11 +79,12 @@ autorun(() => {
 message = observable({ title: "Bar" })
 ```
 
-This will **not** react. `message` was changed, but `message` is not an observable, just a variable which _refers to_ an observable,
-but the variable (reference) itself is not observable.
+这**不会**响应，`message`改变了，但 `message` 并不是可观察的，只是一个引用，指向一个可观察的对象，但这个引用本身不是可观察的。
+
+（译者按：这是说，改变message中如title之类的属性，是会响应的，但重新给message赋一个新对象，则不会进行响应）
 
 
-#### Incorrect: dereference outside a tracked function
+#### 不正确：在被追踪函数之外解引用
 
 ```javascript
 var title = message.title;
@@ -90,10 +94,9 @@ autorun(() => {
 message.title = "Bar"
 ```
 
-This will **not** react. `message.title` was dereferenced outside the `autorun`, and just contains the value of `message.title` at the  moment of dereferencing (the string `"Foo"`).
-`title` is not an observable so `autorun` will never react.
+这**不会**响应，`message.title` 在 `autorun` 之外被解引用了，而被传进来的只是 `message.title` 的值，`title`本身不是可观察的，所以 `autorun` 不会响应
 
-#### Correct: dereference inside the tracked function
+#### 正确: 在被追踪函数之内解引用
 
 ```javascript
 autorun(() => {
@@ -103,9 +106,9 @@ message.author.name = "Sara";
 message.author = { name: "John" };
 ```
 
-This will react to both changes. Both `author` and `author.name` are dotted into, allowing MobX to track these references.
+两次改变都会正常响应。`author` 和 `author.name` 都用的是点调用的方式，允许Mobx去追踪它们的引用。
 
-#### Incorrect: store a local reference to an observable object without tracking
+#### 不正确: 将可观察的对象通过新生命变量进行引用，将不会有追踪 
 
 ```javascript
 const author = message.author;
@@ -116,11 +119,10 @@ message.author.name = "Sara";
 message.author = { name: "John" };
 ```
 
-The first change will be picked up, `message.author` and `author` are the same object, and the `.name` property is dereferenced in the autorun.
-However the second change will **not** be picked up, the `message.author` relation is not tracked by the `autorun`. Autorun is still using the "old" `author`.
+第一个改变会发生，`message.author` 和 `author` 指向同一个对象，并且`.name` 是在autorun中解引用
+但第二个改变不会发生，`message.author`这个关系在 `autorun` 没被追踪，Autorun始终使用的是『旧』的 `author`
 
-#### Correct: access array properties in tracked function
-
+#### 正确: 在追踪函数中调用数组的属性
 
 ```javascript
 autorun(() => {
@@ -129,11 +131,13 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
+这会如预期一样响应。`.length` 计数是一个属性，注意会对array中的每一个变化进行响应。Array不是通过其中的每一个元素或属性进行追踪，可是整体追踪。
+
 This will react as expected. `.length` counts towards a property.
 Note that this will react to *any* change in the array.
 Arrays are not tracked per index / property (like observable objects and maps) but as a whole.
 
-#### Incorrect: access out-of-bounds indices in tracked function
+#### 不正确: 在追踪函数中调用越界索引
 
 ```javascript
 autorun(() => {
@@ -142,11 +146,10 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
-This will react with the above sample data, array indexers count as property access. But **only** if the provided `index < length`.
-MobX will not track not-yet-existing indices or object properties (except when using maps).
-So always guard your array index based access with a `.length` check.
+如果用的是之前的数据，上述这个例子会响应，数组索引（index）被作为属性一样调用，但是只在 `index < length` 的情况下才会生效。
+Mobx 不会追踪一个还不存在的属性（除非使用maps），所以确保你使用的数组引用小于该数组的长度。 
 
-#### Correct: access array functions in tracked function
+#### 正确: 在追踪函数中调用数组相关函数
 
 ```javascript
 autorun(() => {
@@ -155,7 +158,7 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
-This will react as expected. All array functions that do not mutate the array are tracked automatically.
+这会如预期一样响应。所有不会改变数组的数组相关函数都会被自动追踪
 
 ---
 
@@ -166,9 +169,10 @@ autorun(() => {
 message.likes[2] = "Jennifer";
 ```
 
+这会如预期一样响应。所有的数组索引都会被检测，但只在 `index < length`的情况下
 This will react as expected. All array index assignments are detected, but only if `index <= length`.
 
-#### Incorrect: "use" an observable but without accessing any of its properties
+#### 不正确: "使用" 一个可观察对象，但并不调用任何它的属性
 
 ```javascript
 autorun(() => {
@@ -177,10 +181,10 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
-This will **not** react. Simply because the `likes` array itself is not being used by the `autorun`, only the reference to the array.
-So in contrast, `messages.likes = ["Jennifer"]` would be picked up; that statement does not modify the array, but the `likes` property itself.
+这不会响应。因为`likes` 这个数组本身并没有被`autorun` 使用，只是放了个引用在这里。
+对照来看，写成`messages.likes = ["Jennifer"]` 这样就会响应，因为改变的不是数组的内容，而是`likes`属性本身
 
-#### Incorrect: using non-observable object properties
+#### 不正确: 使用未被观察的对象属性
 
 
 ```javascript
@@ -190,8 +194,9 @@ autorun(() => {
 message.postDate = new Date()
 ```
 
-This will **not** react. MobX can only track observable properties.
+这不会响应。Mobx只追踪可观察属性
 
+#### 不正确: 使用可观察对象中不存在的属性
 #### Incorrect: using not yet existing observable object properties
 
 ```javascript
@@ -203,10 +208,10 @@ extendObservable(message, {
 })
 ```
 
-This will **not** react. MobX will not react to observable properties that did not exist when tracking started.
-If the two statements are swapped, or if any other observable causes the `autorun` to re-run, the `autorun` will start tracking the `postDate` as well.
+这也不会响应。因为当追踪开始时，被追踪的属性还不存在。
+但如果是其他可观察对象触发这个`autorun` 重新执行（re-run），则 `autorun` 会重新开始很好地追踪 `postDate` 属性。
 
-#### Correct: using not yet existing map entries
+#### 正确: 使用不存在的Map字段（entry）
 
 ```javascript
 const twitterUrls = observable(asMap({
@@ -219,13 +224,16 @@ autorun(() => {
 twitterUrls.set("Sara", "twitter.com/horsejs")
 ```
 
+这会响应，因为可观察Map支持观察不存在的字段。
+注意一开始会打印出 `undefined`
+你可以使用 `twitterUrls.has("Sara")` 先确认字段的存在。所以如果需要使用一个动态的字段集合，建议使用可观察Map
 This **will** react. Observable maps support observing entries that may not exist.
 Note that this will initially print `undefined`.
 You can check for the existence of an entry first by using `twitterUrls.has("Sara")`.
 So for dynamically keyed collections, always use observable maps.
 
 
-## MobX only tracks synchronously accessed data
+## MobX 只追踪同步调用的数据
 
 ```javascript
 function upperCaseAuthorName(author) {
@@ -237,9 +245,9 @@ autorun(() => {
 })
 message.author.name = "Chesterton"
 ```
-This will react. Even though `author.name` is not dereferenced by the thunk passed to `autorun` itself,
-MobX will still track the dereferencing that happens in `upperCaseAuthorName`,
-because it happens _during_ the execution of the autorun.
+
+这会如预期一样响应。即使 `author.name` 并没有在 `autorun` 中解引用。
+Mobx始终会追踪`upperCaseAuthorName` 中发生的一切解引用，因为这一切都是在autorun的**执行过程中**发生。
 
 ----
 
@@ -253,9 +261,8 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
-This will **not** react, during the execution of the `autorun` no observables where accessed, only during the `setTimeout`.
-In general this is quite obvious and rarely causes issues.
-The notable caveat here is passing renderable callbacks to React components, take for example the following example:
+这不会响应。因为在 `autorun` 的执行过程中没有可观察者被使用，而是在 `setTimeout` 中使用。
+值得警告的是，传递一个渲染回调函数给React组件的情况下，如下面这个例子：
 
 ```javascript
 const MyComponent = observer(({ message }) =>
@@ -266,10 +273,7 @@ const MyComponent = observer(({ message }) =>
 
 message.title = "Bar"
 ```
-
-At first glance everything might seem ok here, except that the `<div>` is actually not rendered by `MyComponent` (which has a tracked rendering), but by `SomeContainer`.
-So to make sure that the title of `SomeContainer` correctly reacts to a new `message.title`, `SomeContainer` should be an `observer` as well.
-If `SomeContainer` comes from an external lib, you can also fix this by wrapping the `div` in its own stateless `observer` based component, and instantiating that one in the callback:
+初步看起来好像没什么问题，除了`<div>`没有通过`MyComponent`实际渲染出来（`MyComponent`的渲染过程是已经被追踪的），而是通过`SomeContainer` 来渲染 。所以确保`SomeContainer`的title正确地响应了一个`message.title`的新值，`SomeContainer`也被当做了一个`observer`。如果`SomeContainer`来源于一个外部库，你可以通过在自己的无状态`observer`组件内包裹一层`div`，并且在回调中实例化来修正这个问题。如以下示例：
 
 ```javascript
 const MyComponent = observer(({ message }) =>
@@ -285,9 +289,9 @@ const TitleRenderer = observer(({ message }) =>
 message.title = "Bar"
 ```
 
-## Avoid caching observables in local fields
+## 避免将可观察者缓存在本地变量中
 
-A common mistake is to store local variables that dereference observables, and then expect components to react. For example:
+一个常见的错误是将引用的可观察者缓存在本地变量中。例如：
 
 ```javascript
 @observer class MyComponent extends React.component {
@@ -303,22 +307,21 @@ A common mistake is to store local variables that dereference observables, and t
 }
 ```
 
-This component will react to changes in the `author`'s name, but it won't react to changing the `.author` of the `message` itself! Because that dereferencing happened outside `render()`,
-which is the only tracked function of an `observer` component.
-Note that even marking the `author` component field as `@observable` field does not solve this; that field is still assigned only once.
-This can simply be solved by doing the dereferencing inside `render()`, or by introducing a computed property on the component instance:
+当改变`author` 的`name`时，这个组件的确会正确地响应，但改变`author`自身的时候，则不会正确地响应。因为解引用发生在`render()` 这个`observer`组件唯一的追踪方法之外。
+注意即使你将组件自身的`author` 设置为 `@observable`，也不能解决这个问题，因为这个属性只被初始化了一次。
+可以通过简单地解决这个问题：将解引用放在`render()`内；或者引入一个计算值
+
 
 ```javascript
 @observer class MyComponent extends React.component {
     @computed get author() {
         return this.props.message.author
     }
-// ...
 ```
 
-## How multiple components will render
+## 当多组件的情况下会如何渲染
 
-Suppose that we use the following components are used to render our above `message` object.
+假设我们使用如下组件，以渲染我们的 `message`对象
 
 ```javascript
 const Message = observer(({ message }) =>
@@ -342,17 +345,21 @@ const Likes = observer(({ likes }) =>
 )
 ```
 
-| change | re-rendering component |
+| 变化 | 重渲染的组件 |
 | --- | --- |
 | `message.title = "Bar"` | `Message` |
 | `message.author.name = "Susan"` | `Author` (`.author` is dereferenced in `Message`, but didn't change)* |
 | `message.author = { name: "Susan"}` | `Message`, `Author` |
 | `message.likes[0] = "Michel"` | `Likes` |
 
-Notes:
-1. \* If the `Author` component was invoked like: `<Author author={ message.author.name} />`. Then `Message` would be the dereferencing component and react to changes to `message.author.name`. Nonetheless `<Author>` would rerender as well, because it receives a new value. So performance wise it is best to dereference as late as possible.
-2. \** If likes where objects instead of strings, and if they were rendered by their own `Like` component, the `Likes` component would not rerender for changes happening inside a specific like.
 
-## TL;DR
+注意：
+1. \* 如果`Author`组件被唤起时使用的是`<Author author={ message.author.name} />` 这样的方式。则`Message`会成为解引用组件，并响应`message.author.name`的变化。
+尽管如此，`<Author>` 仍然会正常地渲染，因为它接受了一个新值。但为了性能的考虑，我们应该尽可能晚地解引用。
+2、 \** 如果 likes不是一个字符串而是一个对象，并且他们被自己的`Like`组件所渲染，则其中具体的某个like发生改变时，`Likes`不会触发重渲染。
 
+
+## 总而言之（TL;DR）
+
+>在可追踪函数执行过程中，如果任一 **已被观察** 的_属性（property）_被**使用（read）**时，这个被观察的属性会触发响应_
 > MobX reacts to any an _existing_ **observable** _property_ that is read during the execution of a tracked function.

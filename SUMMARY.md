@@ -1,30 +1,30 @@
 # MobX
 
-* Introduction to MobX
-  * [Why MobX?](README.md)
-  * [The Gist of MobX](intro/overview.md)
-  * [Concepts & Principles](intro/concepts.md)
-* [API overview](refguide/api.md)
+* Mobx简介
+  * [为什么使用MobX?](fp.md)
+  * [核心思想](intro/overview.md)
+  * [概念 & 原则](intro/concepts.md)
+* [API 概述](refguide/api.md)
   * [observable](refguide/observable.md)
   * [@observable](refguide/observable-decorator.md)
   * [(@)computed](refguide/computed-decorator.md)
   * [autorun](refguide/autorun.md)
   * [(@)observer](refguide/observer-component.md)
   * [action](refguide/action.md)
-* Observable Types
+* 可观察类型
   * [objects](refguide/object.md)
   * [arrays](refguide/array.md)
   * [maps](refguide/map.md)
   * [boxed values](refguide/boxed.md)
-* [Understanding what MobX reacts to](best/react.md)
-* [How to (not) use decorators](best/decorators.md)
-* Resources
+* [理解如何响应](best/react.md)
+* [如何使用装饰器](best/decorators.md)
+* 相关资源
   * [Tutorials, videos and blogs](faq/blogs.md)
   * [Related Projects](faq/related.md)
   * [Examples projects](faq/examples.md)
   * [Boilerplates](faq/boilerplates.md)
   * [Frequently Asked Questions](faq/faq.md)
-* Tips & Tricks
+* 提示 & 技巧
   * [Common Pitfalls & Best Practices](best/pitfalls.md)
   * [Defining data stores](best/store.md)
   * [Writing (async) actions](best/actions.md)
@@ -32,7 +32,7 @@
   * [DevTools](best/devtools.md)
   * [ES5 / ES6 / TypeScript syntax](best/syntax.md)
   * [Stateless Components and Hot Module Reloading](best/stateless-HMR.md)
-* Utility functions
+* 工具方法
   * [autorunAsync](refguide/autorun-async.md)
   * [Atom & Reaction](refguide/extending.md)
   * [createTransformer](refguide/create-transformer.md)
@@ -47,4 +47,4 @@
   * [transaction](refguide/transaction.md)
   * [untracked](refguide/untracked.md)
   * [when](refguide/when.md)
-* [Donate](donating.md)
+* [捐赠](donating.md)

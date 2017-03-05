@@ -1,12 +1,12 @@
-# The gist of MobX
+# Mobx的要点
 
-So far it all might sound a bit fancy, but making an app reactive using MobX boils down to just these three steps:
+虽然听起来可能很魔幻，但使一个APP变成可响应的只需要3步：
 
-## 1. Define your state and make it observable
+## 1. 定义你的状态并且使其可观察
 
-Store state in any data structure you like; objects, array, classes.
-Cyclic data structures, references, it doesn't matter.
-Just make sure that all properties that you want to change over time are marked by `mobx` to make them observable.
+在任何你喜欢的数据结构中存储状态，对象、数组、类、循环引用的数据结构、引用，都可以。
+只需要确保那些你希望随时改变的属性被标记，以使其可观察
+
 
 ```javascript
 import {observable} from 'mobx';
@@ -16,15 +16,12 @@ var appState = observable({
 });
 ```
 
-## 2. Create a view that responds to changes in the State
+## 2. 创建一个View响应状态的变化
 
-We didn't make our `appState` observable for nothing;
-you can now create views that automatically update whenever relevant data in the `appState` changes.
-MobX will find the minimal way to update your views.
-This single fact saves you tons of boilerplate and is [wickedly efficient](https://mendix.com/tech-blog/making-react-reactive-pursuit-high-performing-easily-maintainable-react-apps/).
+你现在可以创建一个视图（View），只要`appState` 中的数据发生变化，这个视图可以自动更新。Mobx会找到成本最小的方式更新你的视图。
+这个简单的方法节省了你成吨的脚手架，并且[非常有效~](https://mendix.com/tech-blog/making-react-reactive-pursuit-high-performing-easily-maintainable-react-apps/).
 
-Generally speaking any function can become a reactive view that observes its data, and MobX can be applied in any ES5 conformant JavaScript environment.
-But here is an (ES6) example of a view in the form of a React component.
+通常来说，任何函数都可以变成一个观察关联数据的可响应的视图。Mobx可以用于ES5的环境，但这里也有一个ES6的例子。
 
 ```javascript
 import {observer} from 'mobx-react';
@@ -45,20 +42,17 @@ class TimerView extends React.Component {
 React.render(<TimerView appState={appState} />, document.body);
 ```
 
-(For the implementation of `resetTimer` function see the next section)
+(`resetTimer` 方法的实现见下一部分)
 
-## 3. Modify the State
+## 3. 改变状态
 
-The third thing to do is to modify the state.
-That is what your app is all about after all.
-Unlike many other frameworks, MobX doesn't dictate how you do this.
-There are best practices, but the key thing to remember is:
-***MobX helps you do things in a simple straightforward way***.
+第三件要做的事情就是改变状态。这是你的应用只要要做的全部事情。与其他框架不同，Mobx并不限制你的方法。
+这里有很多最佳实践，但请记住这个关键点，
+***Mobx帮助你用最简单直观的方式去做事***
 
-The following code will alter your data every second, and the UI will update automatically when needed.
-No explicit relations are defined in either the controller functions that _change_ the state or in the views that should _update_.
-Decorating your _state_ and _views_ with `observable` is enough for MobX to detect all relationships.
-Here are two examples of changing the state:
+下面这个代码会改变你的数据每秒钟，并且UI会在需要的时候自动更新
+你不需要定义控制器（controller）函数去改变状态，或者让视图变得需要更新，Mobx会自动检测所有的关系。
+这是改变状态的两个例子：
 
 ```javascript
 appState.resetTimer = action(function reset() {
@@ -70,8 +64,8 @@ setInterval(action(function tick() {
 }), 1000);
 ```
 
-The `action` wrapper is only needed when using MobX in strict mode (by default off).
-It is recommended to use action though as it will help you to better structure applications and expresses the intention of a function to modify state.
-Also it automatically applies transactions for optimal performance.
+使用`action` 包裹函数，只有在严格模式下才需要（默认是关闭状态）
+但推荐使用action，因为它会帮助你更好地构建你的应用、并且表达你的意图——你的这个行数是用于改变状态的。
+并且会自动应用事务行为（transaction）以优化性能。
 
-Feel free to try this example on [JSFiddle](http://jsfiddle.net/mweststrate/wgbe4guu/) or by cloning the [MobX boilerplate project](https://github.com/mobxjs/mobx-react-boilerplate)
+可以尝试这个例子[JSFiddle](http://jsfiddle.net/mweststrate/wgbe4guu/)，或者clone [MobX boilerplate project](https://github.com/mobxjs/mobx-react-boilerplate)

@@ -1,12 +1,14 @@
-# MobX Api Reference
+# MobX Api 参考
 
-Applies to MobX 3 and higher. For MobX 2, the old documentation is still available on [github](https://github.com/mobxjs/mobx/blob/7c9e7c86e0c6ead141bb0539d33143d0e1f576dd/docs/refguide/api.md).
 
-# Core API
+这篇文档适用于Mobx3或者更高版本。如果你还使用Mobx的话，老版本的[文档](https://github.com/mobxjs/mobx/blob/7c9e7c86e0c6ead141bb0539d33143d0e1f576dd/docs/refguide/api.md)仍然是可用的。
 
-_The most important MobX api's. Understanding `observable`, `computed`, `reactions` and `actions` is enough to master MobX and use it in your applications!_
+# 核心 API
 
-## Creating observables
+_这是最重要的Mobx API。仅仅理解`observable`, `computed`, `reactions`和`actions`就足够让你掌握Mobx并且在应用中使用它!_
+
+
+## 创建 observables
 
 
 ### `observable(value)`
@@ -14,94 +16,102 @@ Usage:
 * `observable(value)`
 * `@observable classProperty = value`
 
-Observable values can be JS primitives, references, plain objects, class instances, arrays and maps.
-`observable(value)` is a convenience overload, that always tries to create the best matching observable types.
-You can also directly create the desired observable type, see below.
 
-The following conversion rules are applied, but can be fine-tuned by using *modifiers*. See below.
+Observable的值可以是JS元数据，引用，纯对象，类实例，数组和maps。
+`observable(value)` 是一个方便而又强大的方法，他会尽可能地用最合适的可观察类型来创建Observable。
 
-1. If *value* is an instance of an [ES6 Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map): a new [Observable Map](map.md) will be returned. Observable maps are very useful if you don't want to react just to the change of a specific entry, but also to the addition or removal of entries.
-1. If *value* is an array, a new [Observable Array](array.md) will be returned.
-1. If *value* is an object *without* prototype, the object will be cloned and all its current properties will be made observable. See [Observable Object](object.md)
-1. If *value* is an object *with* a prototype, a JavaScript primitive or function, a [Boxed Observable](boxed.md) will be returned. MobX will not make objects with a prototype automatically observable; as that is the responsibility of its constructor function. Use `extendObservable` in the constructor, or `@observable` in its class definition instead.
+有如下转换规则，但是它们可以使用装饰符微调，我们往下看。
 
-These rules might seem complicated at first sight, but you will notice that in practice they are very intuitive to work with.
-Some notes:
-* To create dynamically keyed objects always use maps! Only initially existing properties on an object will be made observable, although new ones can be added using `extendObservable`.
-* To use the `@observable` decorator, make sure that [decorators are enabled](http://mobxjs.github.io/mobx/refguide/observable-decorator.html) in your transpiler (babel or typescript).
-* By default making a data structure observable is *infective*; that means that `observable` is applied automatically to any value that is contained by the data structure, or will be contained by the data structure in the future. This behavior can be changed by using *modifiers* or *shallow*.
+1. 如果`value`是[ES6 Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) 的一个实例。将会返回一个新的[Observable Map](map.md)。当你想指定一个特定条目改变时不触发响应,而是在增加或者删除时响应，Observable maps是非常有用的一种方式。
+2. 如果`value`是一个数组，将会返回一个新的[Observable Array](array.md)。
+3. 如果`value`是一个_无_原型的对象，这个对象会被复制，并且当前含有的所有属性都会被观察。详见[Observable Object](object.md)。
+4. 如果`value`是_包含_原型，JS初始类型或者函数，将会返回一个[Boxed Observable](boxed.md)。MobX不会自动的观察一个包含原型的对象，因为这是它的构造函数的责任。在构造函数中使用`extendObservable`，或者试用`@observable`修饰符在其类定义的时候取代。
+
+
+
+这些规则第一眼看上去很复杂，但是在实际使用中，你会发现它们运作起来是非常直观的。
+
+一些注意事项：
+
+* 为了创建一个包含动态属性的对象，请永远使用maps！对象中只有初始化时存在的属性是可观察的，虽然可以使用`extendObservable` 来新增属性。
+* 如果使用`@overvable`装饰器，要确保在你的编译器（babel 或 typescript）中[启用装饰器语法](http://mobxjs.github.io/mobx/refguide/observable-decorator.html)
+* 创建一个可观察的数据结构是具有*传染性*的。那意味着`observable`会自动将数据结构中所有的值一同转变为`observable`。这个行为可以通过 *modifiers* 或者 *shallow* 改变。
+
 
 [&laquo;`observable`&raquo;](observable.md)  &mdash;  [&laquo;`@observable`&raquo;](observable-decorator.md)
 
-### `@observable property =  value`
 
-`observable` can also be used as property decorator. It requires [decorators to be enabled](../best/decorators.md) and is syntactic
-sugar for `extendObservable(this, { property: value })`.
 
-[&laquo;`details`&raquo;](observable-decorator.md)
 
-### `observable.box(value)` & `observable.shallowBox(value)`
+### 用法：`@observable property =  value`
 
-Creates an observable _box_ that stores an observable reference to a value. Use `get()` to get the current value of the box, and `set()` to update it.
-This is the foundation on which all other observables are built, but in practice you will use it rarely.
-Normal boxes will automatically try to turn any new value into an observable if it isn't already. Use `shallowBox` to disable this behavior.
+`observable` 可以用作一个属性的装饰器. 这需要使[装饰器可用](../best/decorators.md) 这也是一个`extendObservable(this, { property: value })`的语法糖.
 
-[&laquo;`details`&raquo;](boxed.md)
+[&laquo;`详情`&raquo;](observable-decorator.md)
 
-### `observable.object(value)` & `observable.shallowObject(value)`
+### 用法：`observable.box(value)` & `observable.shallowBox(value)`
 
-Creates a clone of the provided object and makes all its properties observable.
-By default any values in those properties will be made observable as well, but when using `shallowObject` only the properties will be made into observable
-references, but the values will be untouched. (This holds also for any values assigned in the future)
+这个方法创建一个存储了可观察的_box_，这个box是一个可观察引用。请使用`get()`获取当前这个box的值，使用`set()`去更新这个值。
+这是其他可观察对象构建的基础。但在实际使用中，你只有很少的情况会用到。
+普通box会自动将任何新的值转换为可观察的，可以使用`shallowBox`来禁止这种行为
 
-[&laquo;`details`&raquo;](object.md)
+[&laquo;`详情`&raquo;](boxed.md)
 
-### `observable.array(value)` & `observable.shallowArray(value)`
+### 用法：`observable.object(value)` & `observable.shallowObject(value)`
 
-Creates a new observable array based on the provided value. Use `shallowArray` if the values in the array should not be turned into observables.
+克隆一个对象，并且将其所有属性都转为可观察的。
+默认所有属性的值都会转化为可观察的，但是如果使用了`shallowObject`，这只有这个属性自身会变为可观察的，但属性的值不会受到干扰。
 
-[&laquo;`details`&raquo;](array.md)
+[&laquo;`详情`&raquo;](object.md)
 
-### `observable.map(value)` & `observable.shallowMap(value)`
+### 用法：`observable.array(value)` & `observable.shallowArray(value)`
 
-Creates a new observable map based on the provided value. Use `shallowMap` if the values in the array should not be turned into observables.
-Use `map` whenever you want to create a dynamically keyed collections and the addition / removal of keys needs to be observed.
-Note that only string keys are supported.
+创建一个新的可观察数组。如果数组中的值不想变为可观察的，请使用`shallowArray`。
 
-[&laquo;`details`&raquo;](map.md)
+[&laquo;`详情`&raquo;](array.md)
 
-### `extendObservable` & `extendShallowObservable`
-Usage: `extendObservable(target, ...propertyMaps)`. For each key/value pair in each `propertyMap` a (new) observable property will be introduced on the target object.
-This can be used in constructor functions to introduce observable properties without using decorators.
-If a value of the `propertyMap` is a getter function, a *computed* property will be introduced.
+### 用法：`observable.map(value)` & `observable.shallowMap(value)`
 
-Use `extendShallowObservable` if the new properties should not be infective (that is; newly assigned values should not be turned into observables automatically).
-Note that `extendObservable` enhances existing objects, unlike `observable.object` which creates a new object.
+创建一个新的可观察map。如果map中的值不想变为可观察的，请使用`shallowMap`。
+注意map只支持字符串类型的key。
 
-[&laquo;details&raquo;](extend-observable.md)
+[&laquo;`详情`&raquo;](map.md)
 
-### Modifiers
+### 用法：`extendObservable` & `extendShallowObservable`
 
-Modifiers can be used decorator or in combination with `extendObservable` and `observable.object` to change the autoconversion rules for specific properties.
+### `extendObservable`
 
-The following modifiers are available:
+用法: `extendObservable(target, propertyMap)`
+对于`propertyMap`中的任何一个键/值对，目标对象上将会被引入一个新的`observable`属性。我们可以使用它在`constructor`构造函数引入`observable`属性，取代装饰器。
+如果`propertyMap`中的值为无参函数时，会被当做是一个计算属性。
 
-* `observable.deep`: This is the default modifier, used by any observable. It converts any assigned, non-primitive value into an observable if it isn't one yet.
-* `observable.ref`: Disables automatic observable conversion, just creates an observable reference instead.
-* `observable.shallow`: Can only used in combination with collections. Turns any assigned collection into an collection, which is shallowly observable (instead of deep). In other words; the values inside the collection won't become observables automatically.
-* `computed`: Creates a derived property, see [`computed`](computed-decorator.md)
-* `action`: Creates an action, see [`action`](action.md)
+如果新的属性不需要被传染（新加入的属性的值也会被转化成可观察的）
+注意：`extendObservable`改变已有的对象，而不是像`observable.object`创建一个新对象。
 
-Modifiers can be used as decorator:
+[&laquo;详情&raquo;](extend-observable.md)
 
+### 改变规则（Modifiers）
+
+Modifiers可以使用装饰器的用法，也可以组合`extendObservable` 和 `observable.object`，以改变特定属性的自动转化规则。
+
+以下modifiers 可用：
+
+* `observable.deep`：默认的改变规则。将任何非原始类型的值转变为可观察的。
+* `observable.ref`：禁用自动的可观察转换，只创建一个可观察的引用。
+* `observable.shallow`：只可用于集合（collections）。集合中每个元素不会自动转变为可观察的。
+* `computed`：创建一个计算属性。看[`computed`](computed-decorator.md)
+* `action`：创建一个行为。看[`action`](action.md)
+
+Modifiers可以使用装饰器的用法：
 ```javascript
 class TaskStore {
     @observable.shallow tasks = []
 }
 ```
 
-Or as property modifier in combination with `observable.object` / `observable.extendObservable`.
-Note that modifiers always 'stick' to the property. So they will remain in effect even if a new value is assigned.
+或者使用ES5的语法。
+
+注意：modifiers的作用会一直和属性绑定，即使属性的值改变了。
 
 ```javascript
 const taskStore = observable({
@@ -109,35 +119,33 @@ const taskStore = observable({
 })
 ```
 
-[&laquo;details&raquo;](modifiers.md)
+[&laquo;详情&raquo;](modifiers.md)
 
 
-## Computed values
+## 计算属性（Computed values）
 
-Usage:
+用法:
 * `computed(() => expression)`
 * `computed(() => expression, (newValue) => void)`
 * `computed(() => expression, options)`
 * `@computed get classProperty() { return expression; }`
 * `@computed.struct get classProperty() { return expression; }`
 
-Creates a computed property. The `expression` should not have side effects but return a value.
-The expression will automatically be re-evaluated if any observables it uses changes, but only if it is in use by some *reaction*.
+创建一个计算属性。`expression` 不应该有任何副作用，而仅仅是返回一个值。当这个`expression`依赖的可观察属性变化时，这个表达式会重新计算。
 
-[&laquo;details&raquo;](computed-decorator.md)
+[&laquo;详情&raquo;](computed-decorator.md)
 
-## Actions
+## 行为（Actions）
 
-Any application has actions. Actions are anything that modify the state.
+任何应用都有行为。任何改变状态的代码都称为行为。
+使用Mobx可以使你的代码更加清晰，Action会使你的代码结构更优。
+建议在任何改变状态或具有副作用的函数上使用。
+当结合调试工具使用时，`action` 也会提供有用的debug信息。
+注意：当严格模式开启时。使用`action`是强制的。
 
-With MobX you can make it explicit in your code where your actions live by marking them.
-Actions helps you to structure your code better.
-It is advised to use them on any function that modifies observables or has side effects.
-`action` also provides useful debugging information in combination with the devtools.
-Note: using `action` is mandatory when *strict mode* is enabled, see `useStrict`.
-[&laquo;details&raquo;](action.md)
+[&laquo;详情&raquo;](action.md)
 
-Usage:
+用法:
 * `action(fn)`
 * `action(name, fn)`
 * `@action classMethod`
@@ -145,22 +153,22 @@ Usage:
 * `@action boundClassMethod = (args) => { body }`
 * `@action(name) boundClassMethod = (args) => { body }`
 
-For one-time-actions `runInAction(name?, fn, scope?)` can be used, which is sugar for `action(name, fn, scope)()`.
+对于一次性行为，可以使用 `runInAction(name?, fn, scope?)`，这是 `action(name, fn, scope)()`的语法糖。
 
-## Reactions & Derivations
+## 响应 & 衍生
 
-*Computed values* are **values** that react automatically to state changes.
-*Reactions* are **side effects** that react automatically to state changes.
-Reactions _can_ be used to ensure that a certain side effect (mainly I/O) is automatically executed when relevant state changes, like logging, network requests etc.
-The most commonly used reaction is the `observer` decorator for React components (see below).
+*计算值（Computed values）*是当状态变化时会自动响应。
+*Reactions*是当状态变化时会自动执行的副作用。
+`Reaction`可用于确保在相关状态改变（如状态改变，日志记录，网络请求等）时自动的执行某些副作用(主要是`I/O`操作)。最常用的响应是`React`组件的`observer`装饰器（见下文）。
+
 
 ### `observer`
-Can be used as higher order component around a React component.
-The component will then automatically re-render if any of the observables used in the `render` function of the component has changed.
-Note that `observer` is provided by the `"mobx-react"` package and not by `"mobx"` itself.
-[&laquo;details&raquo;](observer-component.md)
 
-Usage:
+可以作用在React组件周围的高阶组件。然后在组件的`render`函数中使用的任何被observable的变量变化时，组件就自动的重新渲染。**注意`observer`由`mobx-react`包提供，而不是由`mobx`本身提供的**。
+
+[&laquo;详情&raquo;](observer-component.md)
+
+用法:
 * `observer(React.createClass({ ... }))`
 * `observer((props, context) => ReactElement)`
 * `observer(class MyComponent extends React.Component { ... })`
@@ -168,61 +176,55 @@ Usage:
 
 
 ### `autorun`
-Usage: `autorun(debugname?, () => { sideEffect })`. Autorun runs the provided `sideEffect` and tracks which observable state is accessed while running the side effect.
-Whenever one of the used observables is changed in the future, the same sideEffect will be run again.
-Returns a disposer function to cancel the side effect. [&laquo;details&raquo;](autorun.md)
+用法: `autorun(debugname?, () => { sideEffect })`. 
+用法：`autorun(debugname?, () => { sideEffect })`，`Autorun`会运行提供的`sideEffect`并且会跟踪副作用运行时使用的被观察的状态。任何一个使用的被观察的变量变化时，`sideEffect`都会被重新运行。其返回一个处理器函数以取消副作用。
+。[&laquo;详情&raquo;](autorun.md)
 
 ### `when`
-Usage: `when(debugname?, () => condition, () => { sideEffect })`.
-The condition expression will react automatically to any observables it uses.
-As soon as the expression returns true the sideEffect function will be invoked, but only once.
-`when` returns a disposer to prematurely cancel the whole thing. [&laquo;details&raquo;](when.md)
+用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察的变量变化时会自动执行。一旦表达式返回true，`sideEffect`函数将被调用，但只调用一次。`when`会返回一个处理器函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
 
 ### `autorunAsync`
-Usage: `autorunAsync(debugname?, () => { sideEffect }, delay)`. Similar to `autorun`, but the sideEffect will be delayed and debounced with the given `delay`.
+用法：`autorunAsync(debugname?, () => { sideEffect }, delay)`。和`autorun`相似，但是`sideEffect`将被延迟执行以达到去抖目的。
 [&laquo;details&raquo;](autorun-async.md)
 
 ### `reaction`
-Usage: `reaction(debugname?, () => data, data => { sideEffect }, fireImmediately = false, delay = 0)`.
-A variation on `autorun` that gives more fine-grained control on which observables that will be tracked.
-It takes two function, the first one is tracked and returns data that is used as input for the second one, the side effect.
-Unlike `autorun` the side effect won't be run initially, and any observables that are accessed while executing the side effect will not be tracked.
-The side effect can be debounced, just like `autorunAsync`. [&laquo;details&raquo;](reaction.md)
+用法: `reaction(debugname?, () => data, data => { sideEffect }, fireImmediately = false, delay = 0)`.
+`autorun`的一个变种，给予了更多的可控制性。
+需要传递两个函数，第一个函数追踪状态变化，并返回第二个函数（副作用函数）所使用的数据。
+与`autorun`不同，副作用不会立刻执行，并且在执行副作用函数过程中，任何被改变的可观察变量都不会被追踪和响应。
+副作用可以去抖，就像 `autorunAsync` 一样。[&laquo;详情&raquo;](reaction.md)
 
 ### `expr`
-Usage: `expr(() => someExpression)`. Just a shorthand for `computed(() => someExpression).get()`.
-`expr` is useful in some rare cases to optimize another computed function or reaction.
-In general it is simpler and better to just split the function in multiple smaller computed's to achieve the same effect.
-[&laquo;details&raquo;](expr.md)
+用法: `expr(() => someExpression)`. 只是 `computed(() => someExpression).get()`的快捷方式.
+在一些特殊的情况下，为了充分优化计算属性和`reaction`，`expr` 非常有用。
+
+[&laquo;详情&raquo;](expr.md)
 
 ### `onReactionError`
 
-Usage: `extras.onReactionError(handler: (error: any, derivation) => void)`
+用法: `extras.onReactionError(handler: (error: any, derivation) => void)`
 
-This method attaches a global error listener, which is invoked for every error that is thrown from a _reaction_.
-This can be used for monitoring or test purposes.
+这个方法绑定了一个全局错误监听器。当任何_reaction_中的错误触发时，都会抛出错误。这个特性主要用于监控和测试。
 
 ------
 
-# Utilities
+# 工具方法（Utilities）
 
-_Here are some utilities that might make working with observable objects or computed values more convenient.
-More, less trivial utilities can be found in the * [mobx-utils](https://github.com/mobxjs/mobx-utils) package._
+这里可能有一些工具，使得使用被观察对象和计算属性更加方便。参见[mobx-utils](https://github.com/mobxjs/mobx-utils)
 
 ### `Provider` (`mobx-react` package)
 
-Can be used to pass stores to child components using React's context mechanism. See the [`mobx-react` docs](https://github.com/mobxjs/mobx-react#provider-experimental).
+可以通过React的上下文机制，将store传给子组件。[`mobx-react` docs](https://github.com/mobxjs/mobx-react#provider-experimental).
 
 ### `inject` (`mobx-react` package)
-
-Higher order component and counterpart of `Provider`. Can be used to pick stores from React's context and pass it as props to the target component. Usage:
+与`Provider` 结合使用的部分。用于将store中的部分状体，通过上下文的形式注入给子组件，用法如下：
 * `inject("store1", "store2")(observer(MyComponent))`
 * `@inject("store1", "store2") @observer MyComponent`
 * `@inject((stores, props, context) => props) @observer MyComponent`
 * `@observer(["store1", "store2"]) MyComponent` is a shorthand for the the `@inject() @observer` combo.
 
 ### `toJS`
-Usage: `toJS(observableDataStructure)`. Converts observable data structures back to plain javascript objects, ignoring computed values. [&laquo;details&raquo;](tojson.md)
+用法: `toJS(observableDataStructure)`. 将数据结构转成简单的JS形式。[&laquo;详情&raquo;](tojson.md)
 
 ### `isObservable`
 Usage: `isObservable(thing, property?)`. Returns true if the given thing, or the `property` of the given thing is observable.
@@ -243,19 +245,18 @@ Usage: `isAction(func)`. Returns true if the given function is wrapped / decorat
 Usage: `isComputed(thing, property?)`. Returns true if the giving thing is a boxed computed value, or if the designated property is a computed value.
 
 ### `createTransformer`
-Usage: `createTransformer(transformation: A => B, onCleanup?): A = B`.
-Can be used to make functions that transforms one value into another value reactive and memoized.
-It behaves similar to computed and can be used for advanced patterns like very efficient array maps, map reduce or computed values that are not part of an object.
-[&laquo;details&raquo;](create-transformer.md)
+用法: `createTransformer(transformation: A => B, onCleanup?): A = B`.
+可以用于创建一个函数，将一个值转换为另一个可以响应和缓存的值。它和计算属性类似，但是可以用于跟进一步的模式，更加高效地处理数组或是不是对象一部分的计算属性。
+[&laquo;详情&raquo;](create-transformer.md)
 
 ### `intercept`
-Usage: `intercept(object, property?, interceptor)`.
-Api that can be used to intercept changes before they are applied to an observable api. Useful for validation, normalization or cancellation.
+用法: `intercept(object, property?, interceptor)`.
+用于拦截可观察变量的变化。用于验证、格式化和取消。
 [&laquo;details&raquo;](observe.md)
 
 ### `observe`
 Usage: `observe(object, property?, listener, fireImmediately = false)`
-Low-level api that can be used to observe a single observable value.
+观察对象的底层接口
 [&laquo;details&raquo;](observe.md)
 
 ### `useStrict`
@@ -267,7 +268,9 @@ See also `extras.allowStateChanges`.
 
 
 
-# Development utilities
+# 开发工具（Development utilities）
+
+_属于高阶用法，暂不翻译，各位大牛自取_
 
 _The following api's might come in handy if you want to build cool tools on top of MobX or if you want to inspect the internal state of MobX_
 
@@ -327,42 +330,25 @@ The `mobx-react` package exposes the following additional api's that are used by
 * `renderReporter.on(callback)`: callback will be invoked on each rendering of an `observer` enabled React component, with timing information etc
 * `componentByNodeRegistery`: ES6 WeakMap that maps from DOMNode to a `observer` based React component instance
 
-# Internal functions
+# 内部函数（Internal functions）
 
-_The following methods are all used internally by MobX, and might come in handy in rare cases. But usually MobX offers more declarative alternatives to tackle the same problem. They might come in handy though if you try to extend MobX_
+_下面这些方法都是Mobx内部使用的，并且可能可以用于处理一些特殊情况。但通常Mobx会提供更加语义化的方式去解决这些问题_
 
 ### `transaction`
-Usage: `transaction(() => { block })`.
-Deprecated, use actions or `runInAction` instead.
-Low-level api that can be used to batch state changes.
-State changes made inside the block won't cause any computations or reactions to run until the end of the block is reached.
-Nonetheless inspecting a computed value inside a transaction block will still return a consistent value.
-It is recommended to use `action` instead, which uses `transaction` internally.
-[&laquo;details&raquo;](transaction.md)
+用法: `transaction(() => { block })`.
+Deprecated。
 
 ### `untracked`
 Usage: `untracked(() => { block })`.
-Low-level api that might be useful inside reactions and computations.
-Any observables accessed in the `block` won't cause the reaction / compuations to be recomputed automatically.
-However it is recommended to use `action` instead, which uses `untracked` internally.
-[&laquo;details&raquo;](untracked.md)
+底层函数，用于包裹不希望触发响应的代码。
+[&laquo;详情&raquo;](untracked.md)
 
 ### `Atom`
-Utility class that can be used to create your own observable data structures and hook them up to MobX.
-Used internally by all observable data types.
-[&laquo;details&raquo;](extending.md)
+工具类，可用于创建你自己的可观察对象，并挂载在Mobx上。内部被所有可观察类型使用。
+[&laquo;详情&raquo;](extending.md)
 
 ### `Reaction`
+工具类，用于创建你独特的响应方法并将其挂载在Mobx上。内部被`autorun`, `reaction`所使用
 Utility class that can be used to create your own reactions and hook them up to MobX.
 Used internally by `autorun`, `reaction` (function) etc.
-[&laquo;details&raquo;](extending.md)
-
-### `extras.allowStateChanges`
-Usage: `allowStateChanges(allowStateChanges, () => { block })`.
-Can be used to (dis)allow state changes in a certain function.
-Used internally by `action` to allow changes, and by `computed` and `observer` to disallow state changes.
-
-### `extras.resetGlobalState`
-Usage: `resetGlobalState()`.
-Resets MobX internal global state. MobX by defaults fails fast if an exception occurs inside a computation or reaction and refuses to run them again.
-This function resets MobX to the zero state. Existing `spy` listeners and the current value of strictMode will be preserved though.
+[&laquo;详情&raquo;](extending.md)
