@@ -50,4 +50,3 @@ age.set(-5)  // Shows alert box
 ```
 
 一个全局的错误处理方法可以通过`extras.onReactionError(handler)`进行设置。这对于测试和监控非常有用。
-A global onError handler can be set as well through `extras.onReactionError(handler)`. This can be useful in tests or for monitoring.
