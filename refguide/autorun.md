@@ -1,17 +1,12 @@
 # Autorun
 
-`mobx.autorun` can be used in those cases where you want to create a reactive function that will never have observers itself.
-This is usually the case when you need to bridge from reactive to imperative code, for example for logging, persistence or UI-updating code.
-When `autorun` is used, the provided function will always be triggered once immediately and then again each time one of its dependencies changes.
-In contrast, `computed(function)` creates functions that only re-evaluate if it has
-observers on its own, otherwise its value is considered to be irrelevant.
-As a rule of thumb: use `autorun` if you have a function that should run automatically but that doesn't result in a new value.
-Use `computed` for everything else. Autoruns are about initiating _effects_, not about producing new values.
-If a string is passed as first argument to `autorun`, it will be used as debug name.
+`mobx.autorun` 用于你希望创建一个响应函数，而这个响应函数本身并不是观察者。 
+这也是一个桥接命令式编程和响应式编程的常见场景。例如记录日志、持久化和UI更新。
+一个简短的规则：如果你想使用一个自动运行函数，且并不想产生一个新值时，使用 `autorun`
+如果`autorun`的第一个参数是一个字符串，则它会被当做一个debug name。
 
-The function passed to autorun will receive one argument when invoked, the current reaction (autorun), which can be used to dispose the autorun during execution.
 
-Just like the [`@observer` decorator/function](./observer-component.md), `autorun` will only observe data that is used during the execution of the provided function.
+与 [`@observer` 装饰器/函数](./observer-component.md)类似, `autorun` 只会观察依赖的相关数据
 
 ```javascript
 var numbers = observable([1,2,3]);
@@ -27,15 +22,13 @@ numbers.push(5);
 // won't print anything, nor is `sum` re-evaluated
 ```
 
-## Error handling
+## 错误处理
 
-Exceptions thrown in autorun and all other types reactions are catched and logged to the console, but not propagated back to the original causing code.
-This is to make sure that a reaction in one exception does not prevent the scheduled execution of other, possibly unrelated, reactions.
-This also allows reactions to recover from exceptions; throwing an exception does not break the tracking done by MobX,
-so as subsequent run of a reaction might complete normally again if the cause for the exception is removed.
+任何autorun 或者其他类型的响应行为所抛出的错误，都会被捕捉并在控制台打印出来。但不会追踪到原本的触发代码，这是为了确保一个响应行为的异常，不会阻止其他很可能不相关的响应行为的继续运行。
 
-It is possible to override the default logging behavior of Reactions by calling the `onError` handler on the disposer of the reaction.
-Example:
+可以重写原本的记录行为，通过调用`onError`传入一个错误处理。
+
+例如:
 
 ```javascript
 const age = observable(10)
@@ -56,4 +49,5 @@ dispose.onError(e => {
 age.set(-5)  // Shows alert box
 ```
 
+一个全局的错误处理方法可以通过`extras.onReactionError(handler)`进行设置。这对于测试和监控非常有用。
 A global onError handler can be set as well through `extras.onReactionError(handler)`. This can be useful in tests or for monitoring.

@@ -1,30 +1,26 @@
 # (@)computed
 
-Computed values are values that can be derived from the existing state or other computed values.
-Conceptually, they are very similar to formulas in spreadsheets.
-Computed values can't be underestimated, as they help you to make your actual modifiable state as small as possible.
-Besides that they are highly optimized, so use them wherever possible.
 
-Don't confuse `computed` with `autorun`. They are both reactively invoked expressions,
-but use `@computed` if you want to reactively produce a *value* that can be used by other observers and
-`autorun` if you don't want to produce a new value but rather want ot achieve an *effect*.
-For example imperative side effects like logging, making network requests etc.
+计算值是通过当前状态或者其他计算值衍生出来的。理论上，它们和Excel中的公式非常类似。
+请重视计算值，它们会帮助你减少需要修改的状态。因为它是经过高度优化的，所以请尽可能地使用他们
 
-Computed values are automatically derived from your state if any value that affects them changes.
-Computed values can be optimized away in many cases by MobX as they are assumed to be pure.
-For example, a computed property won't re-run if none of the data used in the previous computation changed.
-Nor will a computed property re-run if is not in use by some other computed property or reaction.
-In such cases it will be suspended.
+无需为 `computed` 和 `autorun`的使用感到困惑，虽然他们都是一种状态改变的响应。
+`computed` 是你希望生成一个新的*值*时所使用的。
+`autorun` 则是希望产生一些副作用，例如记录日志，发送请求等。
 
-This automatic suspension is very convenient. If a computed value is no longer observed, for example the UI in which it was used no longer exists, MobX can automatically garbage collect it. This differs from `autorun`'s values where you must dispose of them yourself.
-It sometimes confuses people new to MobX, that if you create a computed property but don't use it anywhere in a reaction, it will not cache its value and recompute more often than seems necessary.
-However, in real life situations this by far the best default, and you can always forcefully keep a computed value awake if you need to by using either [`observe`](observe.md) or [`keepAlive`](https://github.com/mobxjs/mobx-utils#keepalive).
+计算值是通过所有会影响它的状态所自动衍生的。计算值在大部分情况下都是可以优化的，所以应尽可能地使用纯函数（同样输入永远产生同样输出）。例如一个计算属性不会重新执行，只要它所依赖的状态没有变化。如果一个计算属性没有被其他计算属性所使用或者被观察，则也不会重新执行。
+
+这一套机制非常方便，甚至当一个计算值不再使用时，Mobx可以自动进行垃圾回收。这和你必须手动处理的`autorun`不同
+
+有些时候，这会使刚开始使用Mobx的人们感到疑惑，如果你创建了一个计算属性，但在任何地方都没有使用，则计算属性不会缓存它的值或重计算。如果你希望强制计算属性更新，你可以使用[`observe`](observe.md) 或者 [`keepAlive`](https://github.com/mobxjs/mobx-utils#keepalive).
 
 Note that `computed` properties are not enumerable. Nor can they be overwritten in an inheritance chain.
 
+注意 `computed` 是不可遍历的，也不能被继承链覆盖
+
 ## `@computed`
 
-If you have [decorators enabled](../best/decorators.md) you can use the `@computed` decorator on any getter of a class property to declaratively created computed properties.
+如果你 [能使用装饰器](../best/decorators.md) 你可以在任何类属性getter使用 `@computed` decorator来声明这是一个计算属性。
 
 ```javascript
 import {observable, computed} from "mobx";
@@ -43,11 +39,11 @@ class OrderLine {
 }
 ```
 
-## `computed` modifier
+## `computed` 修改方法
 
-If your environment doesn't support decorators, use the `computed(expression)` modifier in combination with `extendObservable` / `observable` to introduce new computed properties.
+如果你的环境不支持装饰器。请和`extendObservable` / `observable` 一起，使用`computed(expression)` 修改方法给可观察对象增加一个新的计算属性。
 
-`@computed get propertyName() { }` is basically sugar for [`extendObservable(this, { propertyName: get func() { } })`](extend-observable.md) in the constructor call.
+`@computed get propertyName() { }` 只是类创建时调用 [`extendObservable(this, { propertyName: get func() { } })`](extend-observable.md) 的一个基本语法糖.
 
 ```javascript
 import {extendObservable, computed} from "mobx";
@@ -70,10 +66,9 @@ class OrderLine {
 }
 ```
 
-## Setters for computed values
+## Setters 计算值
 
-It is possible to define a setter for computed values as well. Note that these setters cannot be used to alter the value of the computed property directly,
-but they can be used as 'inverse' of the derivation. For example:
+如果需要创建一个setter类型的计算值，注意这些setter不能直接改变计算属性的值。但他们可用于衍生的相反用途，例如：
 
 ```javascript
 const box = observable({
@@ -87,7 +82,7 @@ const box = observable({
 });
 ```
 
-And similarly
+或者类似的
 
 ```javascript
 class Foo {
@@ -101,18 +96,18 @@ class Foo {
 }
 ```
 
-_Note: always define the setter *after* the getter, some TypeScript versions are known to declare two properties with the same name otherwise._
+_注意：永远在getter之后使用setter，否则一些TypeScript的版本会将同样的命名声明为两个属性_
 
-_Note: setters require MobX 2.5.1 or higher_
+_注意: setters 需要 MobX 2.5.1 以上版本_
 
-## `computed(expression)` as function
+## `computed(expression)` 作为函数
 
-`computed` can also be invoked directly as function.
-Just like `observable.box(primitive value)` creates a stand-alone observable.
-Use `.get()` on the returned object to get the current value of the computation, or `.observe(callback)` to observe its changes.
-This form of `computed` is not used very often, but in some cases where you need to pass a "boxed" computed value around it might prove useful.
 
-Example:
+`computed` 可以像函数一样被调用。就像 `observable.box(primitive value)` 创建了一个独立的被观察者。
+使用 `.get()` 获取当前的计算值，或者使用`.observe(callback)` 观察它的变化。
+这个`computed` 的形式并不常使用，但是在一些你需要传递一个"boxed"的计算属性时，可能会非常有用。
+
+例如:
 
 ```javascript
 import {observable, computed} from "mobx";
@@ -128,26 +123,25 @@ name.set("Dave");
 // prints: 'DAVE'
 ```
 
-## Options for `computed`
+## `computed`的选项
+当将`computed`作为一个修改器或者box使用时，它接受第二个配置选项，你可以传入下面这些选项参数。
 
-When using `computed` as modifier or as box, it accepts a second options argument with the following optional arguments:
+* `name`: 字符型, debug时devtools或spy使用的debug name。
+* `context`: 上下文
+* `setter`: 这个参数是需要传入的。如果没有setter函数，则不能赋予计算值一个新的值。如果第二个配置选项传入一个函数，则被认为是setter函数。
+* `compareStructural`: 默认值为 `false`. When true, the output of the expression is structurally compared with the previous value before any observer is notified about a change. This makes sure that observers of the computation don't re-evaluate if new structures are returned that are structurally equal to the original ones. This is very useful when working with point, vector or color structures for example.
 
-* `name`: String, the debug name used in spy and the MobX devtools
-* `context`: The `this` that should be used in the provided expression
-* `setter`: The setter function to be used. Without setter it is not possible to assign new values to a computed value. If the second argument passed to `computed` is a function, this is assumed to be a setter.
-* `compareStructural`: By default `false`. When true, the output of the expression is structurally compared with the previous value before any observer is notified about a change. This makes sure that observers of the computation don't re-evaluate if new structures are returned that are structurally equal to the original ones. This is very useful when working with point, vector or color structures for example.
+当设置为true时，`computed`函数在输出之前会比较当前值与之前值结构上是否有变化。例如当将a.sender替换为a.cloneSender时，依旧会触发`computed`变化，当在一些点、向量或者颜色结构的场景下非常有用。
 
-## `@computed.struct` for structural comparison
+## `@computed.struct` 用于结构比较
 
-The `@computed` decorator does not take arguments. If you want to to create a computed property which does structural comparison, use `@computed.struct`.
+`@computed` 不带入任何变量，如果你想创建一个结构比较的计算属性，请使用`@computed.struct`
 
-## Note on error handling
 
-If a computed value throws an exception during its computation, this exception will be catched and rethrown any time its value is read.
-It is strongly recommended to always throw `Error`'s, so that the original stack trace is preserved. E.g.: `throw new Error("Uhoh")` instead of `throw "Uhoh"`.
-Throwing exceptions doesn't break tracking, so it is possible for computed values to recover from exceptions.
+## 注意错误处理
+如果一个计算值在计算的过程中抛出一个错误，这个错误会被捕捉并且在被查阅时抛出。抛出错误并不中断追踪，所以可以从报错中恢复运行。
 
-Example:
+例如:
 
 ```javascript
 const x = observable(3)

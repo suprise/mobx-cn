@@ -1,8 +1,8 @@
 # @observable
 
-Decorator that can be used on ES7- or TypeScript class properties to make them observable.
-The @observable can be used on instance fields and property getters.
-This offers fine-grained control on which parts of your object become observable.
+装饰器可以用于ES7环境或者TypeScript中，以使类属性转变为可观察的。
+@observable 可用于实例字段和属性getters。
+这为你的对象转变为可观察对象提供了细粒度的方法
 
 ```javascript
 import {observable} from "mobx";
@@ -21,11 +21,10 @@ class OrderLine {
 }
 ```
 
-If your environment doesn't support decorators or field initializers,
-`@observable key = value;` is sugar for [`extendObservable(this, { key: value })`](extend-observable.md)
+如果你的环境不支持装饰器或者字段初始化，`@observable key = value;` 只是一个 [`extendObservable(this, { key: value })`](extend-observable.md) 的语法糖，你可以使用extendObservable方法。
 
-Enumerability: properties decorator with `@observable` are enumerable, but defined on the class prototype and not on the class instances.
-In other words:
+可枚举性：`@observable`属性装饰器是可枚举的，但是是定义在类原型上的属性，而非类实例上。
+换句话说：
 
 ```javascript
 const line = new OrderLine();
@@ -33,16 +32,17 @@ console.log("price" in line); // true
 console.log(line.hasOwnProperty("price")); // false, the price _property_ is defined on the class, although the value will be stored per instance.
 ```
 
-The `@observable` decorator can be combined with modifiers like `asStructure`:
+`@observable` 装饰器可以和`asStructure`之类的修改器一起使用
 
 ```javascript
 @observable position = asStructure({ x: 0, y: 0})
 ```
 
 
-### Enabling decorators in your transpiler
+### 使你的构建工具支持装饰器
 
-Decorators are not supported by default when using TypeScript or Babel pending a definitive definition in the ES standard.
-* For _typescript_, enable the `--experimentalDecorators` compiler flag or set the compiler option `experimentalDecorators` to `true` in `tsconfig.json` (Recommended)
-* For _babel5_, make sure `--stage 0` is passed to the Babel CLI
-* For _babel6_, see the example configuration as suggested in this [issue](https://github.com/mobxjs/mobx/issues/105)
+装饰器语法默认是不被支持的。
+
+* 如果你使用的是_typescript_，请开启`--experimentalDecorators` 这一构建工具标记，并在`tsconfig.json` 中将`experimentalDecorators` 设置为`true`(推荐)。
+* 如果你使用的是_babel5_, 请确保`--stage 0`传给了Babel CLI
+* 如果你使用的是_babel6_，见下面这个配置[例子]((https://github.com/mobxjs/mobx/issues/105))
