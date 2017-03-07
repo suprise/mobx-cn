@@ -1,26 +1,28 @@
-# How to (not) use decorators
+# 如何使用装饰器
 
-Using ES.next decorators in MobX is optional. This section explains how to use them, or how to avoid them.
+使用ES.next的语法是可选的。这一部分解释了如何去使用它们，或者如果避免使用它们。
 
-Advantages of using decorators:
-* Minimizes boilerplate, declarative.
-* Easy to use and read. A majority of the MobX users use them.
+使用装饰器的优势:
+* 声明式语法，最小代码量。
+* 便于使用和阅读，大多数Mobx用户都这么用。
 
-Disadvantages of using decorators:
-* Stage-2 ES.next feature
-* Requires a little setup and transpilation, only supported with Babel / Typescript transpilation so far
 
-## Enabling decorators
+使用装饰器的缺点：
+* 这是Stage-2 ES.next的特性，兼容性上可能存在问题。
+* 需要一些安装和编译过程，目前只支持Babel/Typescript两种预编译器
 
-If you want to use decorators follow the following steps.
+## 使用装饰器
+
+如果你想使用装饰器可以按照以下步骤
 
 **TypeScript**
 
-Enable the compiler option `experimentalDecorators` in `tsconfig.json` or pass it as flag `--experimentalDecorators` to the compiler.
+使`tsconfig.json` 文件中的 `experimentalDecorators` 选项变为启用，或者以flag`--experimentalDecorators`的形式传给编译器
 
 **Babel:**
 
-Install support for decorators: `npm i --save-dev babel-plugin-transform-decorators-legacy`. And enable it in your `.babelrc` file:
+安装：`npm i --save-dev babel-plugin-transform-decorators-legacy`,
+并且在你的`.babelrc` 配置文件中开启。
 
 ```
 {
@@ -32,28 +34,26 @@ Install support for decorators: `npm i --save-dev babel-plugin-transform-decorat
 }
 ```
 
-Note that the order of plugins is important: `transform-decorators-legacy` should be listed *first*.
-Having issues with the babel setup? Check this [issue](https://github.com/mobxjs/mobx/issues/105) first.
+注意插件的顺序非常重要：`transform-decorators-legacy` 应该放在插件的第一个。关于Babel还有什么问题的话，请先查看这个[issue](https://github.com/mobxjs/mobx/issues/105)
 
-When using react native, the following preset can be used instead of `transform-decorators-legacy`:
+
+当使用react native的时候，下面这个预设可以代替`transform-decorators-legacy`
 ```
 {
   "presets": ["stage-2", "react-native-stage-0/decorator-support"]
 }
 ```
 
-## Limitations on decorators
+## 装饰器的限制
 
-* reflect-metadata https://github.com/mobxjs/mobx/issues/534
+* 元数据反射（reflect-metadata） https://github.com/mobxjs/mobx/issues/534
+* 装饰器还没有被Next.JS支持[issue](https://github.com/zeit/next.js/issues/26)
 * decorators are not supported out of the box in `create-react-app`. To fix this, you can either eject, or use [custom-react-scripts](https://www.npmjs.com/package/custom-react-scripts) for `create-react-app` ([blog](https://medium.com/@kitze/configure-create-react-app-without-ejecting-d8450e96196a#.n6xx12p5c))
-* decorators are currently not yet support in Next.JS [issue](https://github.com/zeit/next.js/issues/26)
 
 
-## Creating observable properties without decorators
-
-Without decorators `extendObservable` can be used to introduce observable properties on an object.
-Typically this is done inside a constructor function.
-The following example introduces observable properties, a computed property and an action in a constructor function / class:
+## 不使用装饰器也可以创建一个可观察的对象。
+如果不使用装饰器，`extendObservable` 可以用于将一个可观察的属性引入对象，一个典型的例子就是构造器所做的。
+下面这个例子介绍了如何在构造器函数中定义可观察属性、计算属性和行为
 
 ```javascript
 function Timer() {
@@ -82,10 +82,10 @@ class Timer {
 }
 ```
 
-## Creating observable properties with decorators
+## 使用装饰器创建可观察属性。
 
-Decorators combine very nicely with classes.
-When using decorators, observables, computed values and actions can be simply introduced by using the decorators:
+装饰器和Class一起使用是非常爽的。
+当使用装饰器时，可观察变量、计算值、行为都能很简单地定义。
 
 ```javascript
 class Timer {
@@ -102,13 +102,13 @@ class Timer {
 }
 ```
 
-## Creating observer components
+## 创建观察者组件
 
-The `observer` function / decorator from the mobx-package converts react components into observer components.
-The rule to remember here is that `@observer class ComponentName {}` is simply sugar for `const ComponentName = observer(class { })`.
-So all the following forms of creating observer components are valid:
+来自于mobx-package这个包的`observer` 函数或装饰器可以将React组件转换为观察者组件。
+你所需要记住的是：`@observer class ComponentName {}`只是 `const ComponentName = observer(class { })` 的语法糖。
+下面这些形式创建的观察者组件都是可行的：
 
-Stateless function component, ES5:
+无状态组件，ES5：
 
 ```javascript
 const Timer = observer(function(props) {
@@ -116,7 +116,7 @@ const Timer = observer(function(props) {
 })
 ```
 
-Stateless function component, ES6:
+无状态组件, ES6:
 
 ```javascript
 const Timer = observer(({ timer }) =>
@@ -124,7 +124,7 @@ const Timer = observer(({ timer }) =>
 )
 ```
 
-React component, ES5:
+React 组件, ES5:
 
 ```javascript
 const Timer = observer(React.createClass({
@@ -132,7 +132,7 @@ const Timer = observer(React.createClass({
 }))
 ```
 
-React component class, ES6:
+React 组件 class, ES6:
 
 ```javascript
 const Timer = observer(class Timer extends React.Component {
@@ -140,7 +140,7 @@ const Timer = observer(class Timer extends React.Component {
 })
 ```
 
-React component class with decorator, ES.next:
+React 组件类和装饰器一起使用, ES.next:
 
 ```javascript
 @observer
