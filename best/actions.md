@@ -1,26 +1,22 @@
-# Writing Actions
+# 编写行为（actions）
 
-Writing actions is straight-forward when using MobX.
-Just create, change or delete data and MobX will make sure that changes are picked up by the store and the components that depend on your data.
-Based on the store we have created in the previous section, actions become as simple as:
+使用Mobx来编写action是一件非常直观的事情。只需要创建、改变或者删除数据，Mobx会确保相应的一切都改变，因为Store和组件都依赖于你的数据。
+以之前创建的这个Store为例，action可以想这样简单：
 
 ```javascript
 var todo = todoStore.createTodo();
 todo.task = "make coffee";
 ```
+这样就能简单地创建todo，然后就可以提交给服务器和更新UI
 
-That is enough to create a todo, submit it to the server and update our user interface accordingly.
 
-## When to use actions?
+## 什么时候使用actions？
+Actions 应该只用于_改变_状态。
+提供查阅、过滤的函数不应该被标记为action以允许Mobx追踪它们的调用。
 
-Actions should only be used on functions that _modify_ state.
-Functions that just perform look-ups, filters etc should _not_ be marked as actions; to allow MobX to track their invocations.
 
-## Asynchronous actions
-
-Writing asynchronous actions is pretty simple as well.
-You can use observable data structures as a promise.
-This is what happens with the `isLoading` property in the `todoStore` for example:
+## 异步action
+编写一个异步action也很简单。直接用就可以了
 
 ```javascript
 // ...
@@ -31,9 +27,7 @@ This is what happens with the `isLoading` property in the `todoStore` for exampl
 	});
 // ...
 ```
-
-After completing the asynchronous action, just update your data and your views will update.
-The render function of a React component could become as simple as:
+在异步action完成之后，更新数据后View就会更新。
 
 ```javascript
 import {observer} from "mobx-react";
@@ -50,6 +44,4 @@ var TodoOverview = observer(function(props) {
 });
 ```
 
-The above `TodoOverview` component will now update whenever `isLoading` changes, or when `isLoading` is true and the `todos` list changes.
-Note that we could have expressed `todoStore.isLoading` as `todoStore.todos.length` as well.
-The result would be exactly the same.
+上面这个组件当`isLoading`改变的时候会自动更新，或者`isLoading`为true且`todos`改变也会自动更新。

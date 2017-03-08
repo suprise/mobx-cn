@@ -1,52 +1,40 @@
 # Best Practices for building large scale maintainable projects
+# 构建一个大型的、可扩展的、可持续维护项目的最佳实践。
 
-This section contains some best practices we discovered at Mendix while working with MobX.
-This section is opinionated and you are in no way forced to apply these practices.
-There are many ways of working with MobX and React, and this is just one of them.
+这部分包括了一些我们在使用Mobx开发Mendix时发现的最佳实践
+这部分是是可选的，你并不强制需要这么做。有很多方式来玩Mobx和React，这只是其中的一种方式。
 
 # Stores
 
-Let's start with _stores_.
-In the next sections we will discuss _actions_ and React _components_ as well.
-Stores can be found in any Flux architecture and can be compared a bit with controllers in the MVC pattern.
-The main responsibility of stores is to move _logic_ and _state_ out of your components into a standalone testable unit that can be used in both frontend and backend JavaScript.
+让我们从_stores_开始。之后我们会讨论_actions_和React _components_。
+Store可以从任何类Flux架构中找到，并且与MVC模式中的controller 对比。
+Store的主要职责是，从组件内移除_逻辑_和_状态_，抽取到一个独立的可单元测试的部分，这部分可以同时应用于前端和后端两部分。
 
-## Stores for the user interface state
+## 存储UI状态
 
-Most applications benefit from having at least two stores.
-One for the _UI state_ and one or more for the _domain state_.
-The advantage of separating those two is you can reuse and test _domain state_ universally, and you might very well reuse it in other applications.
-The _ui-state-store_ however is often very specific for your application.
-But usually very simple as well.
-This store typically doesn't have much logic in it, but will store a plethora of loosely coupled pieces of information about the UI.
-This is ideal as most applications will change the UI state often during the development process.
 
-Things you will typically find in UI stores:
-* Session information
-* Information about how far your application has loaded
-* Information that will not be stored in the backend
-* Information that affects the UI globally
-  * Window dimensions
-  * Accessibility information
-  * Current language
-  * Currently active theme
-* User interface state as soon as it effects multiple, further unrelated components:
-  * Current selection
-  * Visibility of toolbars, etc.
-  * State of a wizard
-  * State of a global overlay
+大多数应用朱旭至少两个Store，一个用于存储UI状态，另一个用于存储数据。
+分成两个的意义是你可以全局重用和测试，你也可以用于在其他系统中重用。
+UI状态Store通常是否为你的应用定制的，但通常会比较简单。这个store通常没有太多的逻辑，这对于开发是理想的，因为在开发过程中改变UI状态是很经常的事情。
 
-It might very well be that these pieces of information start as internal state of a specific component (for example the visibility of a toolbar).
-But after a while you discover that you need this information somewhere else in your application.
-Instead of pushing state in such a case upwards in the component tree, like you would do in plain React apps, you just move that state to the _ui-state-store_.
+UI Store中常见存储的信息有：
+* Session 信息
+* 不会再后端存储的信息
+* 会全局影响UI的信息。
+  * Window尺寸
+  * 提示消息
+  * 当前语言
+  * 当前主题
+* 更多可能存储的组件信息：
+  * 当前选择
+  * 工具条显示隐藏状态
 
-Make sure this state is a singleton.
-For isomorphic applications you might also want to provide a stub implementation of this store with sane defaults so that all components render as expected.
-You might distribute the _ui-state-store_ through your application by passing it as a property through your component tree.
-You can also pass this store by using context or make it globally available as a module.
-For testing purposes, I recommend to just pass it through the component tree.
+也许一开始你会尝试用组件内部状态存储这些信息。但后面你会发现，别的地方也需要这些信息。这种情况下，你可以将状态信息控制移到UI State Store。确保这个状态是单例的。
+对于同构应用，你可能也想使用同样的默认Store，这样所有组件都可以按照预期运行。
+你可以传递这个store，也可以作为模块全局引用。
+出于测试的目的，我建议你通过组件树传递。
 
-Example of a store (using ES6 syntax):
+Store的例子:
 
 ```javascript
 import {observable, computed, asStructure} from 'mobx';
@@ -78,7 +66,9 @@ singleton = new UiState();
 export default singleton;
 ```
 
-## Domain Stores
+## 数据模型 Stores
+
+稍后翻译。
 
 Your application will contain one or multiple _domain_ stores.
 These stores store the data your application is all about.

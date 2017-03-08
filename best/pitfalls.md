@@ -1,68 +1,66 @@
 # Common pitfalls & best practices
+# 常见隐患 & 最佳实践。
 
+感觉到Mobx很操蛋？这篇文章列举了刚开始接触Mobx时会遇到的常见问题。
 Stuck with MobX? This section contains a list of common issues people new to MobX might run into.
 
-#### Issues with decorators?
+#### 关于装饰器的讨论?
 
-For setup tips and limitations on decorators, check the [decorators](decorators.md) page
+查阅这个[页面](decorators.md) 获取关于装饰器的安装提示和限制。
+
 
 #### `Array.isArray(observable([1,2,3])) === false`
 
-In ES5 there is no way to reliably inherit from arrays, and hence observable arrays inherit from objects.
-This means that regularly libraries are not able to recognize observable arrays as normal arrays (like lodash, or built-in operations like `Array.concat`).
-This can simply be fixed by passing calling `observable.toJS()` or `observable.slice()` before passing the array to another library.
-As long as the external library has no intent to modify the array, this will further work completely as expected.
-You can use `isObservableArray(observable)` to check whether something is an observable array.
+在ES5中，没有办法可靠地继承数组，因此可观察数组继承自对象。
+这意味着那些常见的库不能将可观察数组识别为普通数组。（例如 lodash，或者内部操作如`Array.concat`）
+在将数组传给其他库使用之前，可以通过`observable.toJS()` 或 `observable.slice()`来转换成普通数组。
+如果其他库没有修改这个数组的时候，一切都能如预期般运转。
+你可以使用`isObservableArray(observable)` 来检查一些变量是否是可观察数组。
 
-#### `object.someNewProp = value` is not picked up
 
-MobX observable _objects_ do not detect or react to property assignments that weren't declared observable before.
-So MobX observable objects act as records with predefined keys.
-You can use `extendObservable(target, props)` to introduce new observable properties to an object.
-However object iterators like `for .. in` or `Object.keys()` won't react to this automatically.
-If you need a dynamically keyed object, for example to store users by id, create observable _map_s using [`observable.map`](../refguide/map.md).
-For more info see [what will MobX react to?](react.md).
+#### `object.someNewProp = value` 是无效的
+
+Mobx 可观察变量 _objects_ 不会检测和响应之前没有声明过的属性。
+你可以使用`extendObservable(target, props)`来为一个对象引入新的可观察变量。
+
+然而对象遍历器如`for .. in` 或者 `Object.keys()` 不会自动响应新增加的属性。
+如果你需要动态的字段对象，请使用[`observable.map`](../refguide/map.md)
+查阅[Mobx什么时候会响应?](react.md)以获取更多信息.
 
 ### Use `@observer` on all components that render `@observable`s.
+`@observer` 只是挂载你装饰过组件，而不会关心组件内部使用的组件。所以通常最好所有组件都使用装饰器。不用担心，这不是一个低效的方案，正好相反，更多的`observer`组件会使得渲染更加由效率。
 
-`@observer` only enhances the component you are decorating, not the components used inside it.
-So usually all your components should be decorated. Don't worry, this is not inefficient, in contrast, more `observer` components make rendering more efficient.
-
-### Dereference values as late as possible
-
-MobX can do a lot, but it cannot make primitive values observable (although it can wrap them in an object see [boxed observables](../refguide/boxed.md)).
-So it is not the _values_ that are observable, but the _properties_ of an object. This means that `@observer` actually reacts to the fact that you dereference a value.
-So in our above example, the `Timer` component would **not** react if it was initialized as follows:
+### 尽可能迟地解引用
+Mobx可以做很多事情，但是不能让原始类型值也变成可观察的。
+所以 一个对象中，对象的属性是可观察的，而属性对应的值不是。这意味着`@observer` 仅仅对你解引用的值进行响应。
+如下面这个例子，通过这种方式初始化的话，，`Timer` 组件**不会**正常地响应。
 
 ```javascript
 React.render(<Timer timerData={timerData.secondsPassed} />, document.body)
 ```
 
-In this snippet just the current value of `secondsPassed` is passed to the `Timer`, which is the immutable value `0` (all primitives are immutable in JS).
-That number won't change anymore in the future, so `Timer` will never update. It is the property `secondsPassed` that will change in the future,
-so we need to access it *in* the component. Or in other words: always try to pass the owning object of an observable property.
-For more info see [what will MobX react to?](react.md).
+在这个片段中，只有`secondsPassed`的值被传递给了`Timer`，是一个不可改变的值0。这个值在未来不会有任何的改变，所以`Timer`不会更新。所以我们在传递store时，最好将可观察变量的父对象传给组件。
 
-#### Computed values run more often then expected
+#### 计算值执行多次超过预期
 
-If a computed property is *not* in use by some reaction (`autorun`, `observer` etc), computed expressions will be evaluated lazily; each time their value is requested (so they just act as normal property).
-Computed values will only track their dependencies if they are observed.
-This allows MobX to automatically suspend computations that are not actively in use.
-See this [blog](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254) or [issue #356](https://github.com/mobxjs/mobx/issues/356) for an explanation.
-So if you fiddle arounds, computed properties might not seem efficient. But when applied in a project that uses `observer`, `autorun` etc, they become very efficient.
+如果一个计算属性没有被别的响应行为（`autorun`, `observer` 等等）所使用，计算表达式会被延后至当他们的值被获取的时候执行（所以它们表现得就像普通属性）。
+计算属性只会追踪他们所依赖的观察。如果没有实际上使用时，这允许Mobx自动暂缓计算。
 
-MobX computeds will automatically be kept alive during transactions as well, see PRs: [#452](https://github.com/mobxjs/mobx/pull/452) and [#489](https://github.com/mobxjs/mobx/pull/489)
+查阅这个 [blog](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254) 或者 [issue #356](https://github.com/mobxjs/mobx/issues/356) 来获得一些解释。
+所以如果你用计算属性来做其他的事情，可能并不那么有效，但如果你和`observer`、`autorun`等结合起来用，就可以变的非常有效。
+当执行`transactions`时，计算属性会保持激活状态。请查阅 PRs: [#452](https://github.com/mobxjs/mobx/pull/452) 和 [#489](https://github.com/mobxjs/mobx/pull/489)
 
 #### Always dispose reactions
+#### 一直需要终止响应行为
 
-all forms of `autorun`, `observe` and `intercept` will only be garbage collected if all objects they observe are garbage collection themselves.
-So it is recommend to use the disposer function that is returned from these methods to stop them when you no longer need them.
-Usually for `observe` and `intercept` it is not strictly necessary to dispose them if when targed `this`.
-For reactions like `autorun` it is more tricky, as they might observe many different observables, and as long as one of them is still in scope,
-the reaction will remain in scope which means that all other observables it uses are also kept alive to support future recomputions.
-So make sure to always dispose your reactions when you no longer need them!
+所有的响应行为形式如`autorun`、 `observe` 和 `intercept`只有当所有它们所观察的对象被回收后，它们自己才会回收。
+所以推荐当你不再使用它们时，使用返回的处理函数来终止它们的行为。
+通常对于`observe`和`intercept`而言，如果它们观察的内容是`this`，没有处理的严格必要。
+但对于`autorun` 而言就有点复杂了他们可能观察大量不同的可观察变量。
+只要有一个变量没被回收，这个响应行为就会持续存活，这意味着所有依赖于这个响应行为的可观察对象也需要保留以支持未来的计算。
+所以确保终止你的响应行为，当你不再需要他们的时候！
 
-Example:
+例如:
 
 ```javascript
 const VAT = observable(1.20)
@@ -88,16 +86,18 @@ class OrderLIne {
 }
 
 ```
-
+#### 当在React component 组件里使用`@observable`的时候，我有一个奇怪的异常
 #### I have a weird exception when using `@observable` in a React component.
 
-The following exception: `Uncaught TypeError: Cannot assign to read only property '__mobxLazyInitializers' of object` occurs when using a `react-hot-loader` that does not support decorators.
-Either use `extendObservable` in `componentWillMount` instead of `@observable`, or upgrade to `react-hot-loader` `"^3.0.0-beta.2"` or higher.
+异常如下: `Uncaught TypeError: Cannot assign to read only property '__mobxLazyInitializers' of object` 
+当使用`react-hot-loader` 的时候会出现，因为那不支持装饰器
+你可以在 `componentWillMount` 中使用 `extendObservable`，或者将`react-hot-loader`升级到`"^3.0.0-beta.2"` 更高的版本。
 
+#### react components组件的显示名是没被设置过的。
 #### The display name of react components is not set
 
-If you use `export const MyComponent = observer((props => <div>hi</div>))`, no display name will be visible in the devtools.
-The following approaches can be used to fix this:
+如果你使用 `export const MyComponent = observer((props => <div>hi</div>))`，则不会有任何显示名。
+可以通过以下方式去修正。
 
 ```javascript
 // 1 (set displayName explicitly)
@@ -116,12 +116,13 @@ const MyComponent = observer((props => <div>hi</div>))
 export default observer(MyComponent)
 ```
 
-See also: http://mobxjs.github.io/mobx/best/stateless-HMR.html or [#141](https://github.com/mobxjs/mobx/issues/141#issuecomment-228457886).
+查阅这个: http://mobxjs.github.io/mobx/best/stateless-HMR.html or [#141](https://github.com/mobxjs/mobx/issues/141#issuecomment-228457886).
 
-#### The propType of an observable array is object
 
-Observable arrays are actually objects, so they comply to `propTypes.object` instead of `array`.
-`mobx-react` provides its explicit `PropTypes` for observable data structures.
+#### 可观察数组的propType是一个对象
+
+可观察数组实际上是一个对象，所以它们属于`propTypes.object`而不是`array`，`mobx-react`提供了明确的`PropTypes` 对于所有可观察数据结构。
+
 
 #### Rendering ListViews in React Native
 
@@ -159,15 +160,15 @@ const listStore = new ListStore();
 
 For more info see [#476](https://github.com/mobxjs/mobx/issues/476)
 
-#### Declaring propTypes might cause unnecessary renders in dev mode
+#### 开发模式下，声明propTypes可能会引起不必要的渲染
 
-See: https://github.com/mobxjs/mobx-react/issues/56
+查看: https://github.com/mobxjs/mobx-react/issues/56
 
-#### `@observable` properties initialize lazily when using Babel
 
-This issue only occurs when transpiling with Babel and not with Typescript (in which decorator support is more mature).
-Observable properties will not be instantiated upon an instance until the first read / write to a property (at that point they all will be initialized).
-This results in the following subtle bug:
+#### 当使用Babel时，`@observable` 属性会懒初始化
+
+可观察属性不会实例化，直到首次读写。
+这会导致如下细微的bug。
 
 ```javascript
 class Todo {
@@ -186,5 +187,5 @@ todo.hasOwnProperty("done") // true
 Object.keys(todo) // ["done", "title"]
 ```
 
-In practice this is rarely an issue, only when using generic methods like `Object.assign(target, todo)` or `assert.deepEquals` *before* reading or writing any property of the object.
-If you want to make sure that this issue doesn't occur, just initialize the fields in the constructor instead of at the field declaration or use `extendObservable` to create the observable properties.
+在实践中很少遇到，只有在读写前调用公共方法，如`Object.assign(target, todo)`或者 `assert.deepEquals` 会出现这个问题。
+如果你希望完全避免这个问题，只需要在构造函数中初始化这个属性，而不是字段声明。或者使用`extendObservable` 方法。
