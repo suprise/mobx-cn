@@ -13,15 +13,15 @@
 class MyResource {
 	constructor() {
 		when(
-			// once...
+			// 一旦 isVisible 改变...
 			() => !this.isVisible,
-			// ... then
+			// ... 然后，this.dispose 会执行
 			() => this.dispose()
 		);
 	}
 
 	@computed get isVisible() {
-		// indicate whether this item is visible
+		// 指明 isVisible 的值
 	}
 
 	dispose() {

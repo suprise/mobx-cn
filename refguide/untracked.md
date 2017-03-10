@@ -15,15 +15,15 @@ autorun(() => {
 	console.log(
 		person.lastName,
 		",",
-		// this untracked block will return the person's firstName without establishing a dependency
+		// untracked 区块将返回 person.firstName 但不建立依赖
 		untracked(() => person.firstName)
 	);
 });
-// prints: Weststrate, Michel
+// 输出: Weststrate, Michel
 
 person.firstName = "G.K.";
-// doesn't print!
+// 没有输出!
 
 person.lastName = "Chesterton";
-// prints: Chesterton, G.K.
+// 输出: Chesterton, G.K.
 ```
