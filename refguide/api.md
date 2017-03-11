@@ -266,22 +266,19 @@ const taskStore = observable({
 在严格模式中，不允许除 [`action`](action.md) 以外的任何改变状态的代码。
 也可查阅 `extras.allowStateChanges`.
 
-
 # 开发工具（Development utilities）
 
-_属于高阶用法，暂不翻译，各位大牛自取_
+_如果你想在 MobX 顶层构建酷炫的工具或是检查 MobX 的内部状态，下列 API 可能会被使用_
 
-_The following api's might come in handy if you want to build cool tools on top of MobX or if you want to inspect the internal state of MobX_
-
-### `"mobx-react-devtools"` package
-The mobx-react-devtools is a powerful package that helps you to investigate the performance and dependencies of your react components.
-Also has a powerful logger utility based on `spy`. [&laquo;details&raquo;](../best/devtools.md)
+### `"mobx-react-devtools"` 包
+mobx-react-devtools 是一个强大的包，帮你查看 react 组件的性能和依赖。
+也是一个基于 `spy` 强大的日志实用程序。[&laquo;details&raquo;](../best/devtools.md)
 
 ### `spy`
 用法: `spy(listener)`.
-Registers a global spy listener that listens to all events that happen in MobX.
-It is similar to attaching an `observe` listener to *all* observables at once, but also notifies about running (trans/re)actions and computations.
-Used for example by the `mobx-react-devtools`.
+注册一个全局的 spy 监听器来监听 MobX 发生的所有事件。
+这相当于将 `observe` 监听器一次性附加到 *所有* observables，也包括通知正在运行的 (trans/re)actions 和 computations。
+使用的例子如：`mobx-react-devtools`。
 [&laquo;details&raquo;](spy.md)
 
 ### `whyRun`
@@ -290,48 +287,47 @@ Used for example by the `mobx-react-devtools`.
 * `whyRun(Reaction object / ComputedValue object / disposer function)`
 * `whyRun(object, "computed property name")`
 
-`whyRun` is a small utility that can be used inside computed value or reaction (`autorun`, `reaction` or the `render` method of an `observer` React component)
-and prints why the derivation is currently running, and under which circumstances it will run again.
-This should help to get a deeper understanding when and why MobX runs stuff, and prevent some beginner mistakes.
-
+`whyRun` 是用于在计算值（computed value）或 reaction（`autorun`, `reaction` 或是 `observer` React 组件的 `render` 方法）
+并打印出为何 derivation 可以正确运行，在什么情况下将再次运行
+这将有助于更深入理解 MobX 何时以及为何运行，避免许多初学者会犯的错误。
 
 ### `extras.getAtom`
 用法: `getAtom(thing, property?)`.
-Returns the backing *Atom* of a given observable object, property, reaction etc.
+返回给定 observable 对象，属性，reaction等等 的 *Atom*。
 
 ### `extras.getDebugName`
 用法: `getDebugName(thing, property?)`
-Returns a (generated) friendly debug name of an observable object, property, reaction etc. Used by for example the `mobx-react-devtools`.
+返回 observable 对象，属性，reaction等等的（生成的）对开发者友好的 debug 名称。例如 `mobx-react-devtools` 的使用。
 
 ### `extras.getDependencyTree`
 用法: `getDependencyTree(thing, property?)`.
-Returns a tree structure with all observables the given reaction / computation currently depends upon.
+返回给定 reaction / computation 当前依赖 observables 的树结构。
 
 ### `extras.getObserverTree`
 用法: `getObserverTree(thing, property?)`.
-Returns a tree structure with all reactions / computations that are observing the given observable.
+返回一个所有 reactions / computations 的树结构，这些 reactions / computations 均正在观察给定 observable。
 
 ### `extras.isSpyEnabled`
-用法: `isSpyEnabled()`. Returns true if at least one spy is active
+用法: `isSpyEnabled()`. 如果当前至少有一个 spy，返回 true。
 
 ### `extras.spyReport`
-用法: `spyReport({ type: "your type", &laquo;details&raquo; data})`. Emit your own custom spy event.
+用法: `spyReport({ type: "your type", &laquo;details&raquo; data})`. 触发你自定义的 spy 事件。
 
 ### `extras.spyReportStart`
-用法: `spyReportStart({ type: "your type", &laquo;details&raquo; data})`. Emit your own custom spy event. Will start a new nested spy event group which should be closed using `spyReportEnd()`
+用法: `spyReportStart({ type: "your type", &laquo;details&raquo; data})`. 触发你自定义 spy 事件。将开始一个新的嵌套 spy 事件组，可以用 `spyReportEnd()` 关闭。
 
 ### `extras.spyReportEnd`
-用法: `spyReportEnd()`. Ends the current spy group that was started with `extras.spyReportStart`.
+用法: `spyReportEnd()`. 结束当前用 `extras.spyReportStart` 开始的 spy 事件组。
 
-### `"mobx-react"` development hooks
-The `mobx-react` package exposes the following additional api's that are used by the `mobx-react-devtools`:
-* `trackComponents()`: enables the tracking of `observer` based React components
-* `renderReporter.on(callback)`: callback will be invoked on each rendering of an `observer` enabled React component, with timing information etc
-* `componentByNodeRegistery`: ES6 WeakMap that maps from DOMNode to a `observer` based React component instance
+### `"mobx-react"` 开发钩子
+`mobx-react` 包为 `mobx-react-devtools` 暴露额外的 API：
+* `trackComponents()`: 启用对基于 React 组件的 `observer` 跟踪。
+* `renderReporter.on(callback)`: 每当作用于 `observer` 的 React 组件渲染时，callback 将会被调用，伴随着时间信息等等。
+* `componentByNodeRegistery`: ES6 WeakMap 从 DOM 节点映射到基于 React 组件实例的 `observer`。
 
 # 内部函数（Internal functions）
 
-_下面这些方法都是MobX内部使用的，并且可能可以用于处理一些特殊情况。但通常MobX会提供更加语义化的方式去解决这些问题。_
+_下面这些方法都是 MobX 内部使用的，并且可能可以用于处理一些特殊情况。但通常 MobX 会提供更加语义化的方式去解决这些问题。_
 
 ### `transaction`
 用法: `transaction(() => { block })`.
@@ -347,5 +343,6 @@ _下面这些方法都是MobX内部使用的，并且可能可以用于处理一
 [&laquo;详情&raquo;](extending.md)
 
 ### `Reaction`
-工具类，用于创建你独特的响应方法并将其挂载在MobX上。内部被`autorun`, `reaction`所使用。
+工具类，用于创建你独特的响应方法并将其挂载在MobX上。内部被 `autorun`, `reaction` 所使用。
 [&laquo;详情&raquo;](extending.md)
+
