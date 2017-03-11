@@ -2,7 +2,7 @@
 
 * MobX简介
   * [为什么使用MobX?](fp.md)
-  * [核心思想](intro/overview.md)
+  * [MobX 的要领](intro/overview.md)
   * [概念 & 原则](intro/concepts.md)
 * [API 概述](refguide/api.md)
   * [observable](refguide/observable.md)

@@ -83,7 +83,7 @@ Observable的值可以是JS元数据，引用，纯对象，类实例，数组�
 
 用法: `extendObservable(target, propertyMap)`
 对于`propertyMap`中的任何一个键/值对，目标对象上将会被引入一个新的`observable`属性。我们可以使用它在`constructor`构造函数引入`observable`属性，取代装饰器。
-如果`propertyMap`中的值为无参函数时，会被当做是一个计算属性。
+如果`propertyMap`中的值为无参函数时，会被当做是一个计算值。
 
 如果新的属性不需要被传染（新加入的属性的值也会被转化成可观察的）
 注意：`extendObservable`改变已有的对象，而不是像`observable.object`创建一个新对象。
@@ -99,7 +99,7 @@ Modifiers可以使用装饰器的用法，也可以组合`extendObservable` 和 
 * `observable.deep`：默认的改变规则。将任何非原始类型的值转变为可观察的。
 * `observable.ref`：禁用自动的可观察转换，只创建一个可观察的引用。
 * `observable.shallow`：只可用于集合（collections）。集合中每个元素不会自动转变为可观察的。
-* `computed`：创建一个计算属性。看[`computed`](computed-decorator.md)
+* `computed`：创建一个计算值。看[`computed`](computed-decorator.md)
 * `action`：创建一个行为。看[`action`](action.md)
 
 Modifiers可以使用装饰器的用法：
@@ -122,7 +122,7 @@ const taskStore = observable({
 [&laquo;详情&raquo;](modifiers.md)
 
 
-## 计算属性（Computed values）
+## 计算值（Computed values）
 
 用法:
 * `computed(() => expression)`
@@ -131,7 +131,7 @@ const taskStore = observable({
 * `@computed get classProperty() { return expression; }`
 * `@computed.struct get classProperty() { return expression; }`
 
-创建一个计算属性。`expression` 不应该有任何副作用，而仅仅是返回一个值。当这个`expression`依赖的可观察属性变化时，这个表达式会重新计算。
+创建一个计算值。`expression` 不应该有任何副作用，而仅仅是返回一个值。当这个`expression`依赖的可观察属性变化时，这个表达式会重新计算。
 
 [&laquo;详情&raquo;](computed-decorator.md)
 
@@ -177,11 +177,11 @@ const taskStore = observable({
 
 ### `autorun`
 用法: `autorun(debugname?, () => { sideEffect })`. 
-用法：`autorun(debugname?, () => { sideEffect })`，`Autorun`会运行提供的`sideEffect`并且会跟踪副作用运行时使用的被观察的状态。任何一个使用的被观察的变量变化时，`sideEffect`都会被重新运行。其返回一个处理器函数以取消副作用。
+用法：`autorun(debugname?, () => { sideEffect })`，`Autorun`会运行提供的`sideEffect`并且会跟踪副作用运行时使用的被观察的状态。任何一个使用的被观察的变量变化时，`sideEffect`都会被重新运行。其返回一个销毁函数以取消副作用。
 。[&laquo;详情&raquo;](autorun.md)
 
 ### `when`
-用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察的变量变化时会自动执行。一旦表达式返回true，`sideEffect`函数将被调用，但只调用一次。`when`会返回一个处理器函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
+用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察的变量变化时会自动执行。一旦表达式返回true，`sideEffect`函数将被调用，但只调用一次。`when`会返回一个销毁函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
 
 ### `autorunAsync`
 用法：`autorunAsync(debugname?, () => { sideEffect }, delay)`。和`autorun`相似，但是`sideEffect`将被延迟执行以达到去抖目的。
@@ -196,7 +196,7 @@ const taskStore = observable({
 
 ### `expr`
 用法: `expr(() => someExpression)`. 只是 `computed(() => someExpression).get()`的快捷方式.
-在一些特殊的情况下，为了充分优化计算属性和`reaction`，`expr` 非常有用。
+在一些特殊的情况下，为了充分优化计算值和`reaction`，`expr` 非常有用。
 
 [&laquo;详情&raquo;](expr.md)
 
@@ -210,7 +210,7 @@ const taskStore = observable({
 
 # 工具方法（Utilities）
 
-这里可能有一些工具，使得使用被观察对象和计算属性更加方便。参见[MobX-utils](https://github.com/MobXjs/MobX-utils)
+这里可能有一些工具，使得使用被观察对象和计算值更加方便。参见[MobX-utils](https://github.com/MobXjs/MobX-utils)
 
 ### `Provider` (`mobx-react` package)
 
@@ -246,7 +246,7 @@ Usage: `isComputed(thing, property?)`. Returns true if the giving thing is a box
 
 ### `createTransformer`
 用法: `createTransformer(transformation: A => B, onCleanup?): A = B`.
-可以用于创建一个函数，将一个值转换为另一个可以响应和缓存的值。它和计算属性类似，但是可以用于跟进一步的模式，更加高效地处理数组或是不是对象一部分的计算属性。
+可以用于创建一个函数，将一个值转换为另一个可以响应和缓存的值。它和计算值类似，但是可以用于跟进一步的模式，更加高效地处理数组或是不是对象一部分的计算值。
 [&laquo;详情&raquo;](create-transformer.md)
 
 ### `intercept`

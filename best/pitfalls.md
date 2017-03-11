@@ -43,17 +43,17 @@ React.render(<Timer timerData={timerData.secondsPassed} />, document.body)
 
 #### 计算值执行多次超过预期
 
-如果一个计算属性没有被别的响应行为（`autorun`, `observer` 等等）所使用，计算表达式会被延后至当他们的值被获取的时候执行（所以它们表现得就像普通属性）。
-计算属性只会追踪他们所依赖的观察。如果没有实际上使用时，这允许MobX自动暂缓计算。
+如果一个计算值没有被别的响应行为（`autorun`, `observer` 等等）所使用，计算表达式会被延后至当他们的值被获取的时候执行（所以它们表现得就像普通属性）。
+计算值只会追踪他们所依赖的观察。如果没有实际上使用时，这允许MobX自动暂缓计算。
 
 查阅这个 [blog](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254) 或者 [issue #356](https://github.com/MobXjs/MobX/issues/356) 来获得一些解释。
-所以如果你用计算属性来做其他的事情，可能并不那么有效，但如果你和`observer`、`autorun`等结合起来用，就可以变的非常有效。
-当执行`transactions`时，计算属性会保持激活状态。请查阅 PRs: [#452](https://github.com/MobXjs/MobX/pull/452) 和 [#489](https://github.com/MobXjs/MobX/pull/489)
+所以如果你用计算值来做其他的事情，可能并不那么有效，但如果你和`observer`、`autorun`等结合起来用，就可以变的非常有效。
+当执行`transactions`时，计算值会保持激活状态。请查阅 PRs: [#452](https://github.com/MobXjs/MobX/pull/452) 和 [#489](https://github.com/MobXjs/MobX/pull/489)
 
 #### 一直需要终止响应行为
 
 所有的响应行为形式如`autorun`、 `observe` 和 `intercept`只有当所有它们所观察的对象被回收后，它们自己才会回收。
-所以推荐当你不再使用它们时，使用返回的处理函数来终止它们的行为。
+所以推荐当你不再使用它们时，使用返回的销毁函数来终止它们的行为。
 通常对于`observe`和`intercept`而言，如果它们观察的内容是`this`，没有处理的严格必要。
 但对于`autorun` 而言就有点复杂了他们可能观察大量不同的可观察变量。
 只要有一个变量没被回收，这个响应行为就会持续存活，这意味着所有依赖于这个响应行为的可观察对象也需要保留以支持未来的计算。

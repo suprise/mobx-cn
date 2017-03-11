@@ -88,9 +88,9 @@ function Todo() {
 
 ```
 
-### 计算属性（Computed values）
+### 计算值（Computed values）
 
-使用MobX，你可以很容易的定义计算属性，当相关数据变化时，计算属性的值会自动发生变化。
+使用MobX，你可以很容易的定义计算值，当相关数据变化时，计算值的值会自动发生变化。
 通过使用 [`@computed`](http://MobXjs.github.io/MobX/refguide/computed-decorator.html) 装饰器声明，也可以通过 `(extend)Observable` 这个方法进行声明。
 
 ```
@@ -108,7 +108,7 @@ MobX 会确保当一个todo增加或者当`finished`改变时， `unfinishedTodo
 
 ### 响应行为（Reactions）
 
-响应行为和计算属性类似，但是与产生一个新的值不同，一个响应行为产生一系列副作用（side effect），例如输出console、发出网络请求、更新React组件等等。简而言之，响应行为是[响应式编程](https://en.wikipedia.org/wiki/Reactive_programming)和[命令式编程](https://en.wikipedia.org/wiki/Imperative_programming)的一座桥梁
+响应行为和计算值类似，但是与产生一个新的值不同，一个响应行为产生一系列副作用（side effect），例如输出console、发出网络请求、更新React组件等等。简而言之，响应行为是[响应式编程](https://en.wikipedia.org/wiki/Reactive_programming)和[命令式编程](https://en.wikipedia.org/wiki/Imperative_programming)的一座桥梁
 
 #### React components {#react-components}
 
