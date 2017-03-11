@@ -102,7 +102,7 @@ class TodoList {
 
 MobX 会确保当一个 todo 增加或者当 `finished` 改变时， `unfinishedTodoCount` 是自动更新的。
 计算类似于电子表格程序的公式。
-他们的更新永远是自动的，并且只在需要的时候。
+它们的更新永远是自动的，并且只在需要的时候。
 
 ### 响应行为（Reactions）
 
@@ -146,7 +146,8 @@ const store = new TodoList();
 ReactDOM.render(<TodoListView todoList={store} />, document.getElementById('mount'));
 ```
 
-`observer` 将 React 组件与他们用于渲染的数据关联上。当使用 MobX 时，没有智能组件（smart）或者木偶组件（dumb）的概念。所有的组件都被智能地渲染，但是以木偶的方式进行定义。MobX 只在该组件确实需要时，触发其重渲染。所以上面的例子中，`onClick` 方法会触发 `TodoView` 的重渲染。如果没有完成的任务数量改变（`unfinishedTodoCount`），`TodoListView` 也将重渲染。但如果你移除 `Tasks left` 这一行（或者将其放到一个独立的组件中），当勾选 checkbox 时，`TodoListView` 不会再重渲染。你可以通过以下例子尝试 [JSFiddle](https://jsfiddle.net/mweststrate/wv3yopo0/).
+`observer` 将 React 组件与
+用于渲染的数据关联上。当使用 MobX 时，没有智能组件（smart）或者木偶组件（dumb）的概念。所有的组件都被智能地渲染，但是以木偶的方式进行定义。MobX 只在该组件确实需要时，触发其重渲染。所以上面的例子中，`onClick` 方法会触发 `TodoView` 的重渲染。如果没有完成的任务数量改变（`unfinishedTodoCount`），`TodoListView` 也将重渲染。但如果你移除 `Tasks left` 这一行（或者将其放到一个独立的组件中），当勾选 checkbox 时，`TodoListView` 不会再重渲染。你可以通过以下例子尝试 [JSFiddle](https://jsfiddle.net/mweststrate/wv3yopo0/).
 
 #### 自定义响应行为 {#custom-reactions}
 
