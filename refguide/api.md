@@ -18,7 +18,7 @@ _这是最重要的 MobX API。仅仅理解 `observable`, `computed`, `reactions
 
 
 observable 函数的参数可以是JS原始类型、引用、纯对象、类实例、数组和maps。
-`observable(value)` 是一个方便而又强大的方法，他会尽可能地用最合适的可观察类型来创建可观察变量。
+`observable(value)` 是一个方便而又强大的方法，他会尽可能地用最合适的类型来创建可观察变量。
 
 有如下转换规则，但是它们可以使用装饰符调整行为，我们往下看。
 
