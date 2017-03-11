@@ -179,11 +179,11 @@ const taskStore = observable({
 
 ### `autorun`
 用法: `autorun(debugname?, () => { sideEffect })`. 
-用法：`autorun(debugname?, () => { sideEffect })`，`Autorun` 会运行提供的 `sideEffect` 并且会追踪副作用运行时使用的可观察变量。任何一个使用的可观察变量变化时， `sideEffect` 都会被重新运行。其返回一个处理器函数以取消副作用。
+用法：`autorun(debugname?, () => { sideEffect })`，`Autorun` 会运行提供的 `sideEffect` 并且会追踪副作用运行时使用的可观察变量。任何一个使用的可观察变量变化时， `sideEffect` 都会被重新运行。其返回一个销毁函数以取消副作用。
 。[&laquo;详情&raquo;](autorun.md)
 
 ### `when`
-用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察变量变化时会自动执行。一旦表达式返回true，`sideEffect` 函数将被调用，但只调用一次。 `when` 会返回一个处理器函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
+用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察变量变化时会自动执行。一旦表达式返回true，`sideEffect` 函数将被调用，但只调用一次。 `when` 会返回一个销毁函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
 
 ### `autorunAsync`
 用法：`autorunAsync(debugname?, () => { sideEffect }, delay)`。和 `autorun` 相似，但是 `sideEffect` 将被延迟执行以达到去抖目的。
@@ -230,7 +230,7 @@ const taskStore = observable({
 
 ### `isObservable`
 用法: `isObservable(thing, property?)`. 如果传入的 `thing` 或者 `property` 是可观察的，则返回true。
-可用于所有的可观察变量，计算值或相应行为的处理函数。 [&laquo;details&raquo;](is-observable)
+可用于所有的可观察变量，计算值或相应行为的销毁函数。 [&laquo;details&raquo;](is-observable)
 
 ### `isObservableObject|Array|Map`
 用法: `isObservableObject(thing)`, `isObservableArray(thing)`, `isObservableMap(thing)`. 如果匹配就返回 `true` 。

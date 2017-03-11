@@ -177,11 +177,11 @@ const taskStore = observable({
 
 ### `autorun`
 用法: `autorun(debugname?, () => { sideEffect })`. 
-用法：`autorun(debugname?, () => { sideEffect })`，`Autorun`会运行提供的`sideEffect`并且会跟踪副作用运行时使用的被观察的状态。任何一个使用的被观察的变量变化时，`sideEffect`都会被重新运行。其返回一个处理器函数以取消副作用。
+用法：`autorun(debugname?, () => { sideEffect })`，`Autorun`会运行提供的`sideEffect`并且会跟踪副作用运行时使用的被观察的状态。任何一个使用的被观察的变量变化时，`sideEffect`都会被重新运行。其返回一个销毁函数以取消副作用。
 。[&laquo;详情&raquo;](autorun.md)
 
 ### `when`
-用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察的变量变化时会自动执行。一旦表达式返回true，`sideEffect`函数将被调用，但只调用一次。`when`会返回一个处理器函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
+用法：`when(debugname?, () => condition, () => { sideEffect })`。条件表达式在其使用的任何可观察的变量变化时会自动执行。一旦表达式返回true，`sideEffect`函数将被调用，但只调用一次。`when`会返回一个销毁函数以取消整个过程。 [&laquo;详情&raquo;](when.md)
 
 ### `autorunAsync`
 用法：`autorunAsync(debugname?, () => { sideEffect }, delay)`。和`autorun`相似，但是`sideEffect`将被延迟执行以达到去抖目的。

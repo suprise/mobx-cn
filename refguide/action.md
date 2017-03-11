@@ -12,15 +12,15 @@
 
 任何应用都有行为。任何改变状态的代码都称为行为。
 使用MobX可以使你的代码更加清晰，Action会使你的代码结构更优。
-它获得一个函数，并将这个函数使用`untracked`, `transaction` and `allowStateChanges` 包裹后返回。
+它获得一个函数，并将这个函数使用 `untracked` , `transaction` and `allowStateChanges` 包裹后返回。
 建议在任何改变状态或具有副作用的函数上使用。也提供了有效的调试信息。
 
-不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action`, 即使[计算值自动触发action](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
+不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action` , 即使[计算值自动触发action](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
 
 
-注意：当严格模式开启时。使用`action`是强制的。请查阅 [`useStrict`](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/api.md#usestrict)
+注意：当严格模式开启时。使用 `action` 是强制的。请查阅 [`useStrict`](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/api.md#usestrict)
 
- 可以查看关于`action` 的进一步介绍 [MobX 2.2 release notes](https://medium.com/p/45cdc73c7c8d/).
+可以查看关于`action` 的进一步介绍 [MobX 2.2 release notes](https://medium.com/p/45cdc73c7c8d/).
 
 两个来自于『通讯录』项目的例子:
 
@@ -45,17 +45,17 @@
 ```
 
 
-## `async`actions 和`runInAction`
+## `async` 行为 和`runInAction`
 
-`action`只影响当前运行的函数，不是当前调度（不是调用）的函数。也就是说，如果你有一个`setTimeOut`，promise`.then`或`async`构造，在回调中有更多的状态被该改变，这些回调也应该被包含在`action`中。这可以在上面的`"createRandomContact-callback"`操作来演示。
+`action`只影响当前运行的函数，不是当前被调度（不是调用）的函数。也就是说，如果你有一个`setTimeOut`，promise `.then` 或 `async` 构造，在回调中有更多的状态被该改变，这些回调也应该被包含在 `action` 中。这可以在上面的 `"createRandomContact-callback"`操作来演示。
 
-如果你使用`async/await`，这就非常棘手了，因为你不能只是在`action`中单纯的包装异步函数体了。在这种情况下，`runInAction`就可以派上用场了，在你打算更新状态的地方使用它就可以了。(但是不要在`await`中调用这些区块)
+如果你使用 `async/await` ，这就非常棘手了，因为你不能只是在 `action` 中单纯的包装异步函数体了。在这种情况下， `runInAction` 就可以派上用场了，在你打算更新状态的地方使用它就可以了。(但是不要在 `await` 中调用这些区块)
 
 例如:
 ```javascript
-@action /*optional*/ updateDocument = async () => {
+@action /*可选的*/ updateDocument = async () => {
     const data = await fetchDataFromUrl();
-    /* required in strict mode to be allowed to update state: */
+    /* 在严格模式下是强制的: */
     runInAction("update state after fetching data", () => {
         this.data.replace(data);
         this.isSaving = true;
@@ -67,7 +67,7 @@
 
 如果你使用babel，这个插件可以帮助你处理你的异步行为：[MobX-deep-action](https://github.com/MobXjs/babel-plugin-MobX-deep-action).
 
-## 绑定行为（Bound actions）
+## 绑定行为的上下文（Bound actions）
 
  `action` 装饰器 / 函数使用javascript通常的绑定（binding）规则。
  而MobX3 引入了`action.bound`以自动地将action与目标对象绑定。
@@ -81,7 +81,7 @@ class Ticker {
 
 	@action.bound
 	increment() {
-		this.tick++ // 'this' will always be correct
+		this.tick++ // 上下文永远是正确的
 	}
 }
 
@@ -95,11 +95,11 @@ Or
 const ticker = observable({
 	tick: 1,
 	increment: action.bound(function() {
-		this.tick++ // bound 'this'
+		this.tick++ // 绑定上下文
 	})
 })
 
 setInterval(ticker.increment, 1000)
 ```
 
-_注意：不要将*action.bind*与箭头函数组合使用，因为箭头函数已经绑定上下文，且不能重新绑定_
+_注意：不要将 *action.bind* 与箭头函数组合使用，因为箭头函数已经绑定上下文，且不能重新绑定_

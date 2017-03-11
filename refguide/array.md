@@ -41,7 +41,7 @@ todos.shift();
 除了所有的内置函数，下面的方法对可观察的数组来说也是非常有用的：
 
 * `intercept(interceptor)`，它可以作用于数组以拦截任何改变前的状态，具体请参阅[observe & intercept](observe.md) 
-* `observe(listener, fireImmediately? = false)`监听数组的改变。其回调会在数组拼接或数组变化时接收参数 ：(。它将返回一个处理函数以停止监听。
+* `observe(listener, fireImmediately? = false)`监听数组的改变。其回调会在数组拼接或数组变化时接收参数 ：(。它将返回一个销毁函数以停止监听。
 * `clear()` 从数组中删除 
 * `replace(newItems)` 用一个新的条目替换数组中所有存在的条目。
 * `find(predicate: (item, index, array) => boolean, thisArg?), fromIndex?)` 基本上和ES7的`Array.find`提议相同，除了附加的`fromIndex`。
