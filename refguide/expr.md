@@ -8,7 +8,7 @@ Instead the component will only re-render when the relevant todo is (de)selected
 
 ```javascript
 const TodoView = observer(({todo, editorState}) => {
-    const isSelected = mobx.expr(() => editorState.selection === todo);
+    const isSelected = MobX.expr(() => editorState.selection === todo);
     return <div className={isSelected ? "todo todo-selected" : "todo"}>{todo.title}</div>;
 });
 ```

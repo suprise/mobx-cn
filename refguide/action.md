@@ -11,14 +11,14 @@
 * `@action.bound(function() {})`
 
 任何应用都有行为。任何改变状态的代码都称为行为。
-使用Mobx可以使你的代码更加清晰，Action会使你的代码结构更优。
+使用MobX可以使你的代码更加清晰，Action会使你的代码结构更优。
 它获得一个函数，并将这个函数使用`untracked`, `transaction` and `allowStateChanges` 包裹后返回。
 建议在任何改变状态或具有副作用的函数上使用。也提供了有效的调试信息。
 
-不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action`, 即使[计算属性自动触发action](https://github.com/mobxjs/mobx/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
+不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action`, 即使[计算属性自动触发action](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
 
 
-注意：当严格模式开启时。使用`action`是强制的。请查阅 [`useStrict`](https://github.com/mobxjs/mobx/blob/gh-pages/docs/refguide/api.md#usestrict)
+注意：当严格模式开启时。使用`action`是强制的。请查阅 [`useStrict`](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/api.md#usestrict)
 
  可以查看关于`action` 的进一步介绍 [MobX 2.2 release notes](https://medium.com/p/45cdc73c7c8d/).
 
@@ -65,12 +65,12 @@
 
 `runInAction` 的用法是: `runInAction(name?, fn, scope?)`.
 
-如果你使用babel，这个插件可以帮助你处理你的异步行为：[mobx-deep-action](https://github.com/mobxjs/babel-plugin-mobx-deep-action).
+如果你使用babel，这个插件可以帮助你处理你的异步行为：[MobX-deep-action](https://github.com/MobXjs/babel-plugin-MobX-deep-action).
 
 ## 绑定行为（Bound actions）
 
  `action` 装饰器 / 函数使用javascript通常的绑定（binding）规则。
- 而Mobx3 引入了`action.bound`以自动地将action与目标对象绑定。
+ 而MobX3 引入了`action.bound`以自动地将action与目标对象绑定。
  注意`(@)action.bound` 与 `action` 不同，不需要一个name参数，这个名称与action绑定的属性相同。
 
 例如:

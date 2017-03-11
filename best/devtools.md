@@ -23,4 +23,4 @@ const App = () => (
 )
 ```
 
-For more details check the [mobx-react-devtools](https://github.com/mobxjs/mobx-react-devtools) repository.
+For more details check the [mobx-react-devtools](https://github.com/MobXjs/mobx-react-devtools) repository.

@@ -67,7 +67,7 @@ _`observe` reacts to *mutations*, when they are being made, while reactions like
 Example:
 
 ```javascript
-import {observable, observe} from 'mobx';
+import {observable, observe} from 'MobX';
 
 const person = observable({
 	firstName: "Maarten",
@@ -89,7 +89,7 @@ const disposer2 = observe(person, "lastName", (change) => {
 	console.log("LastName changed to ", change.newValue);
 });
 ```
-Related blog: [Object.observe is dead. Long live mobx.observe](https://medium.com/@mweststrate/object-observe-is-dead-long-live-mobservable-observe-ad96930140c5)
+Related blog: [Object.observe is dead. Long live MobX.observe](https://medium.com/@mweststrate/object-observe-is-dead-long-live-mobservable-observe-ad96930140c5)
 
 ## Event overview
 

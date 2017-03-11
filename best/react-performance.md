@@ -1,6 +1,6 @@
 # 优化React 组件的渲染
 
-Mobx性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/status/718444275239882753)。这里有一些提示能应用到React和Mobx的大多数场景。注意这些提示对于React的应用也是通用的优化措施，并不仅限于Mobx。
+MobX性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/status/718444275239882753)。这里有一些提示能应用到React和MobX的大多数场景。注意这些提示对于React的应用也是通用的优化措施，并不仅限于MobX。
 
 ## 使用小组件
 `@observer` 组件会追踪所有需要重渲染的组件。你的组件越小，重渲染的范围越小。那意味着你的UI可以和其他部分独立渲染。
@@ -56,7 +56,7 @@ Mobx性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/s
 
 ## 尽可能晚的解引用
 
-当使用 `mobx-react` 时，推荐的做法是尽可能晚地解引用。因为Mobx会自动重渲染那些解引用了可观察变量的组件。
+当使用 `mobx-react` 时，推荐的做法是尽可能晚地解引用。因为MobX会自动重渲染那些解引用了可观察变量的组件。
 所以如果这个重渲染出现在你组件树更底层，就会只有更少的组件需要重渲染。
 
 快:

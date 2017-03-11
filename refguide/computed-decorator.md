@@ -10,9 +10,9 @@
 
 计算值是通过所有会影响它的状态所自动衍生的。计算值在大部分情况下都是可以优化的，所以应尽可能地使用纯函数（同样输入永远产生同样输出）。例如一个计算属性不会重新执行，只要它所依赖的状态没有变化。如果一个计算属性没有被其他计算属性所使用或者被观察，则也不会重新执行。
 
-这一套机制非常方便，甚至当一个计算值不再使用时，Mobx可以自动进行垃圾回收。这和你必须手动处理的`autorun`不同
+这一套机制非常方便，甚至当一个计算值不再使用时，MobX可以自动进行垃圾回收。这和你必须手动处理的`autorun`不同
 
-有些时候，这会使刚开始使用Mobx的人们感到疑惑，如果你创建了一个计算属性，但在任何地方都没有使用，则计算属性不会缓存它的值或重计算。如果你希望强制计算属性更新，你可以使用[`observe`](observe.md) 或者 [`keepAlive`](https://github.com/mobxjs/mobx-utils#keepalive).
+有些时候，这会使刚开始使用MobX的人们感到疑惑，如果你创建了一个计算属性，但在任何地方都没有使用，则计算属性不会缓存它的值或重计算。如果你希望强制计算属性更新，你可以使用[`observe`](observe.md) 或者 [`keepAlive`](https://github.com/MobXjs/MobX-utils#keepalive).
 
 Note that `computed` properties are not enumerable. Nor can they be overwritten in an inheritance chain.
 
@@ -23,7 +23,7 @@ Note that `computed` properties are not enumerable. Nor can they be overwritten 
 如果你 [能使用装饰器](../best/decorators.md) 你可以在任何类属性getter使用 `@computed` decorator来声明这是一个计算属性。
 
 ```javascript
-import {observable, computed} from "mobx";
+import {observable, computed} from "MobX";
 
 class OrderLine {
     @observable price = 0;
@@ -46,7 +46,7 @@ class OrderLine {
 `@computed get propertyName() { }` 只是类创建时调用 [`extendObservable(this, { propertyName: get func() { } })`](extend-observable.md) 的一个基本语法糖.
 
 ```javascript
-import {extendObservable, computed} from "mobx";
+import {extendObservable, computed} from "MobX";
 
 class OrderLine {
     constructor(price) {
@@ -110,7 +110,7 @@ _注意: setters 需要 MobX 2.5.1 以上版本_
 例如:
 
 ```javascript
-import {observable, computed} from "mobx";
+import {observable, computed} from "MobX";
 var name = observable("John");
 
 var upperCaseName = computed(() =>

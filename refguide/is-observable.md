@@ -19,12 +19,12 @@ isObservable(person, "age"); // false
 
 # isObservableMap
 
-Returns true if the given object is created using `mobx.map`.
+Returns true if the given object is created using `MobX.map`.
 
 # isObservableArray
 
-Returns true if the given object is an array that was made observable using `mobx.observable(array)`.
+Returns true if the given object is an array that was made observable using `MobX.observable(array)`.
 
 # isObservableObject
 
-Returns true if the given object is an object that was made observable using `mobx.observable(object)`.
+Returns true if the given object is an object that was made observable using `MobX.observable(object)`.

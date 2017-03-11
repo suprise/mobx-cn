@@ -20,7 +20,7 @@ Observable的值可以是JS元数据，引用，纯对象，类实例，数组�
 一些注意事项：
 
 * 为了创建一个包含动态属性的对象，请永远使用maps！对象中只有初始化时存在的属性是可观察的，虽然可以使用`extendObservable` 来新增属性。
-* 如果使用`@overvable`装饰器，要确保在你的编译器（babel 或 typescript）中[启用装饰器语法](http://mobxjs.github.io/mobx/refguide/observable-decorator.html)
+* 如果使用`@overvable`装饰器，要确保在你的编译器（babel 或 typescript）中[启用装饰器语法](http://MobXjs.github.io/MobX/refguide/observable-decorator.html)
 * 创建一个可观察的数据结构是具有*传染性*的。那意味着`observable`会自动将数据结构中所有的值一同转变为`observable`。这个行为可以通过 *modifiers* 或者 *shallow* 改变。
 
 一些例子：

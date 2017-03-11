@@ -4,7 +4,7 @@
 
 使用装饰器的优势:
 * 声明式语法，最小代码量。
-* 便于使用和阅读，大多数Mobx用户都这么用。
+* 便于使用和阅读，大多数MobX用户都这么用。
 
 
 使用装饰器的缺点：
@@ -34,7 +34,7 @@
 }
 ```
 
-注意插件的顺序非常重要：`transform-decorators-legacy` 应该放在插件的第一个。关于Babel还有什么问题的话，请先查看这个[issue](https://github.com/mobxjs/mobx/issues/105)
+注意插件的顺序非常重要：`transform-decorators-legacy` 应该放在插件的第一个。关于Babel还有什么问题的话，请先查看这个[issue](https://github.com/MobXjs/MobX/issues/105)
 
 
 当使用react native的时候，下面这个预设可以代替`transform-decorators-legacy`
@@ -46,7 +46,7 @@
 
 ## 装饰器的限制
 
-* 元数据反射（reflect-metadata） https://github.com/mobxjs/mobx/issues/534
+* 元数据反射（reflect-metadata） https://github.com/MobXjs/MobX/issues/534
 * 装饰器还没有被Next.JS支持[issue](https://github.com/zeit/next.js/issues/26)
 * decorators are not supported out of the box in `create-react-app`. To fix this, you can either eject, or use [custom-react-scripts](https://www.npmjs.com/package/custom-react-scripts) for `create-react-app` ([blog](https://medium.com/@kitze/configure-create-react-app-without-ejecting-d8450e96196a#.n6xx12p5c))
 
@@ -104,7 +104,7 @@ class Timer {
 
 ## 创建观察者组件
 
-来自于mobx-package这个包的`observer` 函数或装饰器可以将React组件转换为观察者组件。
+来自于MobX-package这个包的`observer` 函数或装饰器可以将React组件转换为观察者组件。
 你所需要记住的是：`@observer class ComponentName {}`只是 `const ComponentName = observer(class { })` 的语法糖。
 下面这些形式创建的观察者组件都是可行的：
 

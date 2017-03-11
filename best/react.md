@@ -1,9 +1,9 @@
-# 什么情况下Mobx才会响应（react）？
+# 什么情况下MobX才会响应（react）？
 
 （之所以先翻译这个，是因为暂时需要先了解这些坑）
 
-Mobx通常会像你所想的那样响应，可以说90%的情况下你所使用的mobx都可以顺利工作。
-然而，在一些情况下你回到遇到不符合你期望的案例，在那种情况下，值得深入理解Mobx是如何检测它需要如何响应。
+MobX通常会像你所想的那样响应，可以说90%的情况下你所使用的MobX都可以顺利工作。
+然而，在一些情况下你回到遇到不符合你期望的案例，在那种情况下，值得深入理解MobX是如何检测它需要如何响应。
 
 >在可追踪函数执行过程中，如果任一 **已被观察** 的_属性（property）_被**使用（read）**时，这个被观察的属性会触发响应_
 
@@ -13,12 +13,12 @@ Mobx通常会像你所想的那样响应，可以说90%的情况下你所使用�
 * _"可追踪的函数"_ 是对一些函数的表述：如`computed`；如一个观察者组件的renderf方法；或者是传给`when`, `reaction` 和 `autorun` 三个函数的第一个参数
 * _"在XX的执行过程中"_ 意味着被观察对象只有在函数的执行过程中被使用。至于直接使用或是间接使用，都不是问题。
 
-换句话说，以下情况Mobx不会响应：
+换句话说，以下情况MobX不会响应：
 * 值虽然是通过被观察者获取的，这一过程却不在追踪函数中。
 * 被观察者在一个异步的代码段中被使用
 
 
-## Mobx追踪的是属性，而不是属性对应的值
+## MobX追踪的是属性，而不是属性对应的值
 
 为了更加清晰地用例子阐明上述规则，假设你有如下一个可观察的数据结构（可观察作用于一个对象时默认是递归的，所以这个例子中的所有字段都是可观察的）
 
@@ -55,7 +55,7 @@ message.title = "Bar"
 这会像预期的那样进行响应，`.title` 在autorun中被解引用。然后在后续被改变，所以这个改变是可以被检测到的。
 This will react as expected, the `.title` property was dereferenced by the autorun, and changed afterwards, so this change is detected.
 
-你可以验证Mobx会通过在被追踪函数内部调用 `whyRun()`函数进行追踪，在这个例子中该函数会输出如下
+你可以验证MobX会通过在被追踪函数内部调用 `whyRun()`函数进行追踪，在这个例子中该函数会输出如下
 
 ```javascript
 autorun(() => {
@@ -106,7 +106,7 @@ message.author.name = "Sara";
 message.author = { name: "John" };
 ```
 
-两次改变都会正常响应。`author` 和 `author.name` 都用的是点调用的方式，允许Mobx去追踪它们的引用。
+两次改变都会正常响应。`author` 和 `author.name` 都用的是点调用的方式，允许MobX去追踪它们的引用。
 
 #### 不正确: 将可观察的对象通过新生命变量进行引用，将不会有追踪 
 
@@ -147,7 +147,7 @@ message.likes.push("Jennifer");
 ```
 
 如果用的是之前的数据，上述这个例子会响应，数组索引（index）被作为属性一样调用，但是只在 `index < length` 的情况下才会生效。
-Mobx 不会追踪一个还不存在的属性（除非使用maps），所以确保你使用的数组引用小于该数组的长度。 
+MobX 不会追踪一个还不存在的属性（除非使用maps），所以确保你使用的数组引用小于该数组的长度。 
 
 #### 正确: 在追踪函数中调用数组相关函数
 
@@ -194,7 +194,7 @@ autorun(() => {
 message.postDate = new Date()
 ```
 
-这不会响应。Mobx只追踪可观察属性
+这不会响应。MobX只追踪可观察属性
 
 #### 不正确: 使用可观察对象中不存在的属性
 #### Incorrect: using not yet existing observable object properties
@@ -247,7 +247,7 @@ message.author.name = "Chesterton"
 ```
 
 这会如预期一样响应。即使 `author.name` 并没有在 `autorun` 中解引用。
-Mobx始终会追踪`upperCaseAuthorName` 中发生的一切解引用，因为这一切都是在autorun的**执行过程中**发生。
+MobX始终会追踪`upperCaseAuthorName` 中发生的一切解引用，因为这一切都是在autorun的**执行过程中**发生。
 
 ----
 

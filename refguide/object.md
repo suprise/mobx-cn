@@ -3,7 +3,7 @@
 如果一个纯 JavaScript 对象传递给`observable`，其包含的所有的属性都将被观察（纯对象就是不通过构造函数创造的对象）。默认情况下，`observable`是递归调用的，所以如果遇到一个值是对象或数组的情况，它的值也会传递给`observable`。
 
 ```javascript
-import {observable, autorun, action} from "mobx";
+import {observable, autorun, action} from "MobX";
 
 var person = observable({
     // observable properties:
@@ -23,7 +23,7 @@ var person = observable({
 });
 
 // object properties don't expose an 'observe' method,
-// but don't worry, 'mobx.autorun' is even more powerful
+// but don't worry, 'MobX.autorun' is even more powerful
 autorun(() => console.log(person.labelText));
 
 person.name = "Dave";

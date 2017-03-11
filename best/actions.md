@@ -1,6 +1,6 @@
 # 编写行为（actions）
 
-使用Mobx来编写action是一件非常直观的事情。只需要创建、改变或者删除数据，Mobx会确保相应的一切都改变，因为Store和组件都依赖于你的数据。
+使用MobX来编写action是一件非常直观的事情。只需要创建、改变或者删除数据，MobX会确保相应的一切都改变，因为Store和组件都依赖于你的数据。
 以之前创建的这个Store为例，action可以想这样简单：
 
 ```javascript
@@ -12,7 +12,7 @@ todo.task = "make coffee";
 
 ## 什么时候使用actions？
 Actions 应该只用于_改变_状态。
-提供查阅、过滤的函数不应该被标记为action以允许Mobx追踪它们的调用。
+提供查阅、过滤的函数不应该被标记为action以允许MobX追踪它们的调用。
 
 
 ## 异步action

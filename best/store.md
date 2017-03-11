@@ -1,8 +1,8 @@
 # Best Practices for building large scale maintainable projects
 # 构建一个大型的、可扩展的、可持续维护项目的最佳实践。
 
-这部分包括了一些我们在使用Mobx开发Mendix时发现的最佳实践
-这部分是是可选的，你并不强制需要这么做。有很多方式来玩Mobx和React，这只是其中的一种方式。
+这部分包括了一些我们在使用MobX开发Mendix时发现的最佳实践
+这部分是是可选的，你并不强制需要这么做。有很多方式来玩MobX和React，这只是其中的一种方式。
 
 # Stores
 
@@ -37,7 +37,7 @@ UI Store中常见存储的信息有：
 Store的例子:
 
 ```javascript
-import {observable, computed, asStructure} from 'mobx';
+import {observable, computed, asStructure} from 'MobX';
 import jquery from 'jquery';
 
 class UiState {
@@ -119,7 +119,7 @@ Especially in large applications this is important.
 ### Example domain store
 
 ```javascript
-import {observable, autorun} from 'mobx';
+import {observable, autorun} from 'MobX';
 import uuid from 'node-uuid';
 
 export class TodoStore {

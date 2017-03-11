@@ -1,7 +1,7 @@
 # Observable Maps
 
 `observable(asMap(values?, modifier?))` （和`map(values?, modifier?)`）创建一个具有动态键值的可观察Map。如果你不想要对特定的条目更改做出响应，而只是在添加和删除条目时使得这一行为可观察，maps是非常有用的。ES6 map可以使用对象、 数组或者字符串作为初始值。
-而Mobx Map 和 ES6 的maps不同，其只接受字符串作为键。
+而MobX Map 和 ES6 的maps不同，其只接受字符串作为键。
 
 以下的方式是根据[ES6 Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)规范提供的：
 
@@ -17,7 +17,7 @@
 
 下面的方法不是 ES6 支持的，但是在MobX中是非常有用的：
 
-* `toJS()` 返回该map的一个浅拷贝简单对象(对于深拷贝请使用`mobx.toJS(map))。
+* `toJS()` 返回该map的一个浅拷贝简单对象(对于深拷贝请使用`MobX.toJS(map))。
 * `intercept(interceptor)` 注册一个在应用于map中任何改变之前会被触发的拦截器。请参阅[observe & intercept](observe.md)。
 * `observe(listener, fireImmdidately)` 注册一个当map中任何改变时被触发的监听者，类似[Object.observe](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)的触发事件。详情请参阅[observe & intercept](observe.md)。
 * `merge(object | map)` 复制提供的对象中的所有条目到这个map中。

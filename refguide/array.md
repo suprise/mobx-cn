@@ -4,7 +4,7 @@
 
 
 ```javascript
-import {observable, autorun} from "mobx";
+import {observable, autorun} from "MobX";
 
 var todos = observable([
 	{ title: "Spoil tea", completed: true },

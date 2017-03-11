@@ -22,7 +22,7 @@ This all might still be a bit vague, so here are two examples that explain this 
 
 ## Tracking mutable state using immutable, shared data structures.
 
-This example is taken from the [Reactive2015 conference demo](https://github.com/mobxjs/mobx-reactive2015-demo):
+This example is taken from the [Reactive2015 conference demo](https://github.com/MobXjs/mobx-reactive2015-demo):
 
 ```javascript
 /*
@@ -87,7 +87,7 @@ This can be used to transform an observable data graph into a another observable
 
 Here is a small example that encodes a reactive file explorer that will update its representation upon each change.
 Data graphs that are built this way will in general react a lot faster and will consist of much more straight-forward code,
-compared to derived data graph that are updated using your own code. See the [performance tests](https://github.com/mobxjs/mobx/blob/3ea1f4af20a51a1cb30be3e4a55ec8f964a8c495/test/perf/transform-perf.js#L4) for some examples.
+compared to derived data graph that are updated using your own code. See the [performance tests](https://github.com/MobXjs/MobX/blob/3ea1f4af20a51a1cb30be3e4a55ec8f964a8c495/test/perf/transform-perf.js#L4) for some examples.
 
 Unlike the previous example, the `transformFolder` will only run once as long as a folder remains visible;
 the `DisplayFolder` objects track the associated `Folder` objects themselves.

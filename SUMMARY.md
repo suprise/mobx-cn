@@ -1,6 +1,6 @@
 # MobX
 
-* Mobx简介
+* MobX简介
   * [为什么使用MobX?](fp.md)
   * [核心思想](intro/overview.md)
   * [概念 & 原则](intro/concepts.md)

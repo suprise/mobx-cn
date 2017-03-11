@@ -8,7 +8,7 @@ JavaScript中的所有原始数据都是不可变的，因此根据此定义这�
 
 所以 `observable.box(value)` 接受任何值，并将其存储在box内，这个值可以使用`.get()`获取，使用`.set(newValue)` 更新。
 甚至你可以注册一个回调，使用它的`.observe`方法以监听存储的数据变化。
-但自从Mobx自动追踪box的任何变化，在大多数情况下最好的方法是使用[`mobx.autorun`](autorun.md)来代替上述方法。
+但自从MobX自动追踪box的任何变化，在大多数情况下最好的方法是使用[`MobX.autorun`](autorun.md)来代替上述方法。
 
 
 所以`observable(scalar)`返回的对象签名是：
@@ -25,13 +25,13 @@ JavaScript中的所有原始数据都是不可变的，因此根据此定义这�
 
 ### `observable(primitiveValue)`
 
-当使用普通的`observable(value)`方法，Mobx会自动创建box。
+当使用普通的`observable(value)`方法，MobX会自动创建box。
 
 
 ### 例如
 
 ```javascript
-import {observable} from "mobx";
+import {observable} from "MobX";
 
 const cityName = observable("Vienna");
 
@@ -49,7 +49,7 @@ cityName.set("Amsterdam");
 Array Example:
 
 ```javascript
-import {observable} from "mobx";
+import {observable} from "MobX";
 
 const myArray = ["Vienna"];
 const cityName = observable(myArray);

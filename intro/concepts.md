@@ -2,7 +2,7 @@
 
 ## 概念
 
-Mobx 将会区分以下概念，你可以在之前的例子中已经见过，不过让我们钻得更深一些以了解更多的细节。
+MobX 将会区分以下概念，你可以在之前的例子中已经见过，不过让我们钻得更深一些以了解更多的细节。
 
 ### 1. 状态（State）
 
@@ -19,12 +19,12 @@ _状态（State）_ 是驱动你应用的数据。
 * 衍生数据，例如没完成的todo列表
 * 后台交互，例如发送变动给服务器
 
-Mobx区分两种衍生物
+MobX区分两种衍生物
 
 * *计算属性（Computed values）* 这是一种可以将当前被观察的状态，通过纯函数衍生出的新值。
 * *响应行为（Reactions）* 响应行为是当状态发生变化时会自动执行的副作用（side effects），它们是响应式和命令式两种编程方式的桥梁。通常用于获取I/O
 
-当开始使用Mobx时，人们喜欢大量使用响应行为。
+当开始使用MobX时，人们喜欢大量使用响应行为。
 黄金准则是：当你想要基于当前的状态创建一个新值时，使用计算属性 `computed`
 
 类似Excel，公式计算是一种衍生物，用于*计算*某个值，而将这个公式显示到显示器上，则是一种GUI的响应行为。
@@ -34,11 +34,11 @@ Mobx区分两种衍生物
 
 任何导致状态改变的代码称为行为。例如用户事件、后端数据推送等等
 行为可以帮助你的代码结构变得更清晰。
-如果使用严格模式，则Mobx会强制只有在行为中才能改变状态。
+如果使用严格模式，则MobX会强制只有在行为中才能改变状态。
 
 ## 原则
 
-Mobx支持单向数据流，但行为改变状态的时候，会更新所有被影响到的视图
+MobX支持单向数据流，但行为改变状态的时候，会更新所有被影响到的视图
 
 ![Action, State, View](../images/action-state-view.png)
 
@@ -52,7 +52,7 @@ Mobx支持单向数据流，但行为改变状态的时候，会更新所有被�
 下面这个例子体现了上面的概念和原则
 
 ```javascript
-import {observable, autorun} from 'mobx';
+import {observable, autorun} from 'MobX';
 
 var todoStore = observable({
 	/* some observable state */
@@ -84,4 +84,4 @@ todoStore.todos[0].completed = true;
 
 ```
 
-在这个视频中 [10 minute introduction to MobX and React](https://mobxjs.github.io/mobx/getting-started.html) 你可以了解更多，并且用[React](https://facebook.github.io/react/) 建立一个UI视图。
+在这个视频中 [10 minute introduction to MobX and React](https://MobXjs.github.io/MobX/getting-started.html) 你可以了解更多，并且用[React](https://facebook.github.io/react/) 建立一个UI视图。

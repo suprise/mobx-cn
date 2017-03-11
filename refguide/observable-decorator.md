@@ -5,7 +5,7 @@
 这为你的对象转变为可观察对象提供了细粒度的方法
 
 ```javascript
-import {observable} from "mobx";
+import {observable} from "MobX";
 
 class OrderLine {
     @observable price = 0;
@@ -45,4 +45,4 @@ console.log(line.hasOwnProperty("price")); // false, the price _property_ is def
 
 * 如果你使用的是_typescript_，请开启`--experimentalDecorators` 这一构建工具标记，并在`tsconfig.json` 中将`experimentalDecorators` 设置为`true`(推荐)。
 * 如果你使用的是_babel5_, 请确保`--stage 0`传给了Babel CLI
-* 如果你使用的是_babel6_，见下面这个配置[例子]((https://github.com/mobxjs/mobx/issues/105))
+* 如果你使用的是_babel6_，见下面这个配置[例子]((https://github.com/MobXjs/MobX/issues/105))

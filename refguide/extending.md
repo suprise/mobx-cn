@@ -14,7 +14,7 @@ This clock will only actually tick if it is observed by someone.
 The complete API of the `Atom` class is demonstrated by this example.
 
 ```javascript
-import {Atom, autorun} from "mobx";
+import {Atom, autorun} from "MobX";
 
 class Clock {
 	atom;

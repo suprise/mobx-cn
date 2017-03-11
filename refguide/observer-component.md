@@ -1,7 +1,7 @@
 # @observer
 
-`observer` 函数 / 装饰器可以将React组件转换为可响应Mobx的组件.
-它将components的render函数使用`mobx.autorun`包裹，以确保任何依赖数据的更新都会触发重渲染。
+`observer` 函数 / 装饰器可以将React组件转换为可响应MobX的组件.
+它将components的render函数使用`MobX.autorun`包裹，以确保任何依赖数据的更新都会触发重渲染。
 它是通过独立的 `mobx-react` 包提供的。
 
 ```javascript
@@ -64,7 +64,7 @@ const Timer = observer(({ timerData }) =>
 
 ```javascript
 import {observer} from "mobx-react"
-import {observable} from "mobx"
+import {observable} from "MobX"
 
 @observer class Timer extends React.Component {
 	@observable secondsPassed = 0
@@ -119,20 +119,20 @@ colors.foreground = 'blue';
 // all buttons updated
 ```
 
-更多信息请查阅 [`mobx-react` 文档](https://github.com/mobxjs/mobx-react#provider-experimental).
+更多信息请查阅 [`mobx-react` 文档](https://github.com/MobXjs/mobx-react#provider-experimental).
 
 
 ## 何时使用`observer`?
 
 这里有一个简单的原则：_所有使用可观察数据渲染的组件_。如果你不想把这个组件标记为可观察的，例如为了减少通用组件库的依赖，请确保你传递的只是纯粹的数据。
 
-通过使用`@observer`，我们就不需要为了渲染的目的区分 'smart' 组件和 'dump' 组件。它仍然是一个很好的分离，我们只需关注在哪里处理事件，发起请求等。当它们 _自身_ 的依赖发生变化时，所有的组件都负责更新。它的开销是可以忽略的，它可以确保每当你使用可观察的数据时，组件将会根据它响应。更多信息请参阅 [thread](https://www.reddit.com/r/reactjs/comments/4vnxg5/free_eggheadio_course_learn_mobx_react_in_30/d61oh0l)
+通过使用`@observer`，我们就不需要为了渲染的目的区分 'smart' 组件和 'dump' 组件。它仍然是一个很好的分离，我们只需关注在哪里处理事件，发起请求等。当它们 _自身_ 的依赖发生变化时，所有的组件都负责更新。它的开销是可以忽略的，它可以确保每当你使用可观察的数据时，组件将会根据它响应。更多信息请参阅 [thread](https://www.reddit.com/r/reactjs/comments/4vnxg5/free_eggheadio_course_learn_MobX_react_in_30/d61oh0l)
 
 
 
 ## `observer`和`PureRenderMixin`
 
-`observer`也是阻止 _props_ 浅改变时的重新渲染，这使得传递到组件的数据是具有响应性的，这是非常有意义的。这个行为和 [React PureRender mixin](https://facebook.github.io/react/docs/pure-render-mixin.html)是非常相似的，除了仍然还是要处理状态改变。如果一个组件提供了它自己的`shouldComponentUpdate`，那么它的优先级更高。可以参阅这个解释 [github issue](https://github.com/mobxjs/mobx/issues/101)
+`observer`也是阻止 _props_ 浅改变时的重新渲染，这使得传递到组件的数据是具有响应性的，这是非常有意义的。这个行为和 [React PureRender mixin](https://facebook.github.io/react/docs/pure-render-mixin.html)是非常相似的，除了仍然还是要处理状态改变。如果一个组件提供了它自己的`shouldComponentUpdate`，那么它的优先级更高。可以参阅这个解释 [github issue](https://github.com/MobXjs/MobX/issues/101)
 
 
 ## `componentWillReact` (生命周期钩子)
@@ -178,4 +178,4 @@ import {observer} from "mobx-react";
 
 * 如果你使用的是_typescript_，请开启`--experimentalDecorators` 这一构建工具标记，并在`tsconfig.json` 中将`experimentalDecorators` 设置为`true`(推荐)。
 * 如果你使用的是_babel5_, 请确保`--stage 0`传给了Babel CLI
-* 如果你使用的是_babel6_，见下面这个配置[例子]((https://github.com/mobxjs/mobx/issues/105))
+* 如果你使用的是_babel6_，见下面这个配置[例子]((https://github.com/moMobX/moMobXssues/105))

@@ -7,17 +7,17 @@ Supports observable arrays, objects, maps and primitives.
 Computed values and other non-enumerable properties won't be part of the result.
 Cycles are detected and properly supported by default, but this can be disabled to improve performance.
 
-For more complex (de)serialization scenario's, one can use [serializr](https://github.com/mobxjs/serializr)
+For more complex (de)serialization scenario's, one can use [serializr](https://github.com/MobXjs/serializr)
 
 ```javascript
-var obj = mobx.observable({
+var obj = MobX.observable({
     x: 1
 });
 
-var clone = mobx.toJS(obj);
+var clone = MobX.toJS(obj);
 
-console.log(mobx.isObservableObject(obj)); // true
-console.log(mobx.isObservableObject(clone)); // false
+console.log(MobX.isObservableObject(obj)); // true
+console.log(MobX.isObservableObject(clone)); // false
 ```
 
 Note: this method was named `toJSON` before MobX 2.2
