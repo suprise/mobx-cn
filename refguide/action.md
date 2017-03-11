@@ -15,7 +15,7 @@
 它获得一个函数，并将这个函数使用`untracked`, `transaction` and `allowStateChanges` 包裹后返回。
 建议在任何改变状态或具有副作用的函数上使用。也提供了有效的调试信息。
 
-不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action`, 即使[计算属性自动触发action](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
+不支持在 [ES 5.1 setters](http://www.ecma-international.org/ecma-262/5.1/#sec-11.1.5) (i.e. `@action set propertyName`) 使用 `@action`, 即使[计算值自动触发action](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/computed-decorator.md#setters-for-computed-values).
 
 
 注意：当严格模式开启时。使用`action`是强制的。请查阅 [`useStrict`](https://github.com/MobXjs/MobX/blob/gh-pages/docs/refguide/api.md#usestrict)

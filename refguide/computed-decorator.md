@@ -8,11 +8,11 @@
 `computed` 是你希望生成一个新的*值*时所使用的。
 `autorun` 则是希望产生一些副作用，例如记录日志，发送请求等。
 
-计算值是通过所有会影响它的状态所自动衍生的。计算值在大部分情况下都是可以优化的，所以应尽可能地使用纯函数（同样输入永远产生同样输出）。例如一个计算属性不会重新执行，只要它所依赖的状态没有变化。如果一个计算属性没有被其他计算属性所使用或者被观察，则也不会重新执行。
+计算值是通过所有会影响它的状态所自动衍生的。计算值在大部分情况下都是可以优化的，所以应尽可能地使用纯函数（同样输入永远产生同样输出）。例如一个计算值不会重新执行，只要它所依赖的状态没有变化。如果一个计算值没有被其他计算值所使用或者被观察，则也不会重新执行。
 
 这一套机制非常方便，甚至当一个计算值不再使用时，MobX可以自动进行垃圾回收。这和你必须手动处理的`autorun`不同
 
-有些时候，这会使刚开始使用MobX的人们感到疑惑，如果你创建了一个计算属性，但在任何地方都没有使用，则计算属性不会缓存它的值或重计算。如果你希望强制计算属性更新，你可以使用[`observe`](observe.md) 或者 [`keepAlive`](https://github.com/MobXjs/MobX-utils#keepalive).
+有些时候，这会使刚开始使用MobX的人们感到疑惑，如果你创建了一个计算值，但在任何地方都没有使用，则计算值不会缓存它的值或重计算。如果你希望强制计算值更新，你可以使用[`observe`](observe.md) 或者 [`keepAlive`](https://github.com/MobXjs/MobX-utils#keepalive).
 
 Note that `computed` properties are not enumerable. Nor can they be overwritten in an inheritance chain.
 
@@ -20,7 +20,7 @@ Note that `computed` properties are not enumerable. Nor can they be overwritten 
 
 ## `@computed`
 
-如果你 [能使用装饰器](../best/decorators.md) 你可以在任何类属性getter使用 `@computed` decorator来声明这是一个计算属性。
+如果你 [能使用装饰器](../best/decorators.md) 你可以在任何类属性getter使用 `@computed` decorator来声明这是一个计算值。
 
 ```javascript
 import {observable, computed} from "MobX";
@@ -41,7 +41,7 @@ class OrderLine {
 
 ## `computed` 修改方法
 
-如果你的环境不支持装饰器。请和`extendObservable` / `observable` 一起，使用`computed(expression)` 修改方法给可观察对象增加一个新的计算属性。
+如果你的环境不支持装饰器。请和`extendObservable` / `observable` 一起，使用`computed(expression)` 修改方法给可观察对象增加一个新的计算值。
 
 `@computed get propertyName() { }` 只是类创建时调用 [`extendObservable(this, { propertyName: get func() { } })`](extend-observable.md) 的一个基本语法糖.
 
@@ -68,7 +68,7 @@ class OrderLine {
 
 ## Setters 计算值
 
-如果需要创建一个setter类型的计算值，注意这些setter不能直接改变计算属性的值。但他们可用于衍生的相反用途，例如：
+如果需要创建一个setter类型的计算值，注意这些setter不能直接改变计算值的值。但他们可用于衍生的相反用途，例如：
 
 ```javascript
 const box = observable({
@@ -105,7 +105,7 @@ _注意: setters 需要 MobX 2.5.1 以上版本_
 
 `computed` 可以像函数一样被调用。就像 `observable.box(primitive value)` 创建了一个独立的被观察者。
 使用 `.get()` 获取当前的计算值，或者使用`.observe(callback)` 观察它的变化。
-这个`computed` 的形式并不常使用，但是在一些你需要传递一个"boxed"的计算属性时，可能会非常有用。
+这个`computed` 的形式并不常使用，但是在一些你需要传递一个"boxed"的计算值时，可能会非常有用。
 
 例如:
 
@@ -135,7 +135,7 @@ name.set("Dave");
 
 ## `@computed.struct` 用于结构比较
 
-`@computed` 不带入任何变量，如果你想创建一个结构比较的计算属性，请使用`@computed.struct`
+`@computed` 不带入任何变量，如果你想创建一个结构比较的计算值，请使用`@computed.struct`
 
 
 ## 注意错误处理

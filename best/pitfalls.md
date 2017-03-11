@@ -43,12 +43,12 @@ React.render(<Timer timerData={timerData.secondsPassed} />, document.body)
 
 #### 计算值执行多次超过预期
 
-如果一个计算属性没有被别的响应行为（`autorun`, `observer` 等等）所使用，计算表达式会被延后至当他们的值被获取的时候执行（所以它们表现得就像普通属性）。
-计算属性只会追踪他们所依赖的观察。如果没有实际上使用时，这允许MobX自动暂缓计算。
+如果一个计算值没有被别的响应行为（`autorun`, `observer` 等等）所使用，计算表达式会被延后至当他们的值被获取的时候执行（所以它们表现得就像普通属性）。
+计算值只会追踪他们所依赖的观察。如果没有实际上使用时，这允许MobX自动暂缓计算。
 
 查阅这个 [blog](https://medium.com/@mweststrate/becoming-fully-reactive-an-in-depth-explanation-of-mobservable-55995262a254) 或者 [issue #356](https://github.com/MobXjs/MobX/issues/356) 来获得一些解释。
-所以如果你用计算属性来做其他的事情，可能并不那么有效，但如果你和`observer`、`autorun`等结合起来用，就可以变的非常有效。
-当执行`transactions`时，计算属性会保持激活状态。请查阅 PRs: [#452](https://github.com/MobXjs/MobX/pull/452) 和 [#489](https://github.com/MobXjs/MobX/pull/489)
+所以如果你用计算值来做其他的事情，可能并不那么有效，但如果你和`observer`、`autorun`等结合起来用，就可以变的非常有效。
+当执行`transactions`时，计算值会保持激活状态。请查阅 PRs: [#452](https://github.com/MobXjs/MobX/pull/452) 和 [#489](https://github.com/MobXjs/MobX/pull/489)
 
 #### 一直需要终止响应行为
 
