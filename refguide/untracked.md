@@ -1,8 +1,8 @@
 # Untracked
 
-Untracked allows you to run a piece of code without establishing observers.
-Like `transaction`, `untracked` is automatically applied by `(@)action`, so usually it makes more sense to use actions than to use `untracked` directly.
-Example:
+Untracked 允许你不建立观察地运行一段代码。
+像 `transaction`, `untracked` 被 `(@)action` 自动应用, 所以通常使用 actions 比直接使用 `untracked` 更有意义。
+例如:
 
 ```javascript
 
@@ -15,15 +15,15 @@ autorun(() => {
 	console.log(
 		person.lastName,
 		",",
-		// this untracked block will return the person's firstName without establishing a dependency
+		// untracked 区块将返回 person.firstName 但不建立依赖
 		untracked(() => person.firstName)
 	);
 });
-// prints: Weststrate, Michel
+// 输出: Weststrate, Michel
 
 person.firstName = "G.K.";
-// doesn't print!
+// 没有输出!
 
 person.lastName = "Chesterton";
-// prints: Chesterton, G.K.
+// 输出: Chesterton, G.K.
 ```
