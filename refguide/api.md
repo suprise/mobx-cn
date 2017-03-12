@@ -216,7 +216,7 @@ const taskStore = observable({
 
 ### `Provider` (`mobx-react` package)
 
-可以通过React的上下文机制，将store传给子组件。[`mobx-react` docs](https://github.com/MobXjs/mobx-react#provider-experimental).
+可以通过React的上下文机制，将 store 传给子组件。[`mobx-react` docs](https://github.com/MobXjs/mobx-react#provider-experimental).
 
 ### `inject` (`mobx-react` package)
 与 `Provider` 结合使用的部分。用于将store中的部分状态，通过上下文的形式注入给子组件，用法如下：
@@ -268,11 +268,11 @@ const taskStore = observable({
 
 # 开发工具（Development utilities）
 
-_如果你想在 MobX 顶层构建酷炫的工具或是检查 MobX 的内部状态，下列 API 可能会被使用_
+_如果你想在 MobX 顶层构建酷炫的工具或是检查 MobX 的内部状态，可以使用下列API_
 
 ### `"mobx-react-devtools"` 包
 mobx-react-devtools 是一个强大的包，帮你查看 react 组件的性能和依赖。
-也是一个基于 `spy` 强大的日志实用程序。[&laquo;details&raquo;](../best/devtools.md)
+也是一个基于 `spy` 的强大的日志实用程序。[&laquo;details&raquo;](../best/devtools.md)
 
 ### `spy`
 用法: `spy(listener)`.
@@ -287,8 +287,8 @@ mobx-react-devtools 是一个强大的包，帮你查看 react 组件的性能�
 * `whyRun(Reaction object / ComputedValue object / disposer function)`
 * `whyRun(object, "computed property name")`
 
-`whyRun` 是用于在计算值（computed value）或 reaction（`autorun`, `reaction` 或是 `observer` React 组件的 `render` 方法）
-并打印出为何 derivation 可以正确运行，在什么情况下将再次运行
+`whyRun` 是用于在计算值（computed value）或 reaction（`autorun`, `reaction` 或是 `observer` React 组件的 `render` 方法）的小工具。
+并打印出为何衍生行为可以正确运行，在什么情况下将再次运行。
 这将有助于更深入理解 MobX 何时以及为何运行，避免许多初学者会犯的错误。
 
 ### `extras.getAtom`
