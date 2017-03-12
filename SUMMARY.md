@@ -1,7 +1,6 @@
 # MobX
 
-* MobX简介
-  * [为什么使用MobX?](fp.md)
+* [MobX 简介](fp.md)
   * [MobX 的要领](intro/overview.md)
   * [概念 & 原则](intro/concepts.md)
 * [API 概述](refguide/api.md)
