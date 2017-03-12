@@ -8,7 +8,7 @@
 只需要确保那些你希望随时改变的属性被标记，以使其可观察
 
 ```javascript
-import {observable} from 'MobX';
+import {observable} from 'mobx';
 
 var appState = observable({
     timer: 0

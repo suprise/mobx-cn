@@ -9,7 +9,7 @@
 
 
 ```javascript
-import {observable} from 'MobX';
+import {observable} from 'mobx';
 
 var appState = observable({
     timer: 0

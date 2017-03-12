@@ -17,12 +17,12 @@
 
 **TypeScript**
 
-使`tsconfig.json` 文件中的 `experimentalDecorators` 选项变为启用，或者以flag`--experimentalDecorators`的形式传给编译器
+使 `tsconfig.json` 文件中的 `experimentalDecorators` 选项变为启用，或者以flag `--experimentalDecorators` 的形式传给编译器
 
 **Babel:**
 
 安装：`npm i --save-dev babel-plugin-transform-decorators-legacy`,
-并且在你的`.babelrc` 配置文件中开启。
+并且在你的 `.babelrc` 配置文件中开启。
 
 ```
 {
@@ -37,7 +37,7 @@
 注意插件的顺序非常重要：`transform-decorators-legacy` 应该放在插件的第一个。关于Babel还有什么问题的话，请先查看这个[issue](https://github.com/MobXjs/MobX/issues/105)
 
 
-当使用react native的时候，下面这个预设可以代替`transform-decorators-legacy`
+当使用react native的时候，下面这个预设可以代替 `transform-decorators-legacy`
 ```
 {
   "presets": ["stage-2", "react-native-stage-0/decorator-support"]
@@ -70,13 +70,13 @@ function Timer() {
 }
 ```
 
-Or, when using classes:
+或者，使用类声明的方式：
 
 ```javascript
 class Timer {
 	constructor() {
 		extendObservable(this, {
-			/* See previous listing */
+			/* 查看之前的列表 */
 		})
 	}
 }
@@ -104,8 +104,8 @@ class Timer {
 
 ## 创建观察者组件
 
-来自于MobX-package这个包的`observer` 函数或装饰器可以将React组件转换为观察者组件。
-你所需要记住的是：`@observer class ComponentName {}`只是 `const ComponentName = observer(class { })` 的语法糖。
+来自于MobX-package这个包的 `observer` 函数或装饰器可以将React组件转换为观察者组件。
+你所需要记住的是：`@observer class ComponentName {}` 只是 `const ComponentName = observer(class { })` 的语法糖。
 下面这些形式创建的观察者组件都是可行的：
 
 无状态组件，ES5：

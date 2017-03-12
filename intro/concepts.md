@@ -54,7 +54,7 @@ MobX支持一个单向数据流：使用行为改变状态，以触发更新所�
 下面这个例子体现了上面的概念和原则：
 
 ```javascript
-import {observable, autorun} from 'MobX';
+import {observable, autorun} from 'mobx';
 
 var todoStore = observable({
 	/* 可观察状态 */

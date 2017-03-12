@@ -67,7 +67,7 @@ _`observe` reacts to *mutations*, when they are being made, while reactions like
 Example:
 
 ```javascript
-import {observable, observe} from 'MobX';
+import {observable, observe} from 'mobx';
 
 const person = observable({
 	firstName: "Maarten",
