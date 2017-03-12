@@ -26,7 +26,7 @@ MobX性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/s
 }
 ```
 
-如果是像上面的列表，当`user.name`变化时，React会不必要地重新协调（reconcile）所有的`TodoView`组件，他不会重渲染，但重新协调这一过程代价昂贵。
+如果是像上面的列表，当 `user.name` 变化时，React会不必要地重新协调（reconcile）所有的 `TodoView` 组件，他不会重渲染，但重新协调这一过程代价昂贵。
 
 好的例子:
 
@@ -67,7 +67,7 @@ MobX性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/s
 
 `<DisplayName name={person.name} />`.
 
-用后面这种没毛病。但如果`name`属性变化，第一种情况下会触发`DisplayName`的重渲染，在第二种情况下会触发`DisplayName` 的_父组件_重渲染。
+用后面这种没毛病。但如果 `name` 属性变化，第一种情况下会触发 `DisplayName` 的重渲染，在第二种情况下会触发`DisplayName` 的 _父组件_ 重渲染。
 然而，对你的组件而言，比这个性能优化而言更重要的是可理解的API，所以不要过度优化哟。
 如果需要鱼和熊掌兼得，考虑使用细粒度的组件。
 
@@ -75,7 +75,7 @@ MobX性能非常好，[通常比 Redux 更好](https://twitter.com/mweststrate/s
 
 ## 尽早绑定函数
 
-这个提示对于React使用而言是通用的，它会影响使用`PureRenderMixin`库。
+这个提示对于React使用而言是通用的，它会影响使用 `PureRenderMixin` 库。
 
 请查看这些资源:
 * [Autobinding with property initializers](https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#autobinding)
@@ -102,4 +102,4 @@ handleClick = () => {
 }
 ```
 
-坏例子会使`PureRenderMixin`所使用的 `shouldComponent` 一直返回false，因为当父组件重渲染时，你一直传了一个新的函数。
+坏例子会使 `PureRenderMixin` 所使用的 `shouldComponent` 一直返回false，因为当父组件重渲染时，你一直传了一个新的函数。

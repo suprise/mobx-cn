@@ -2,10 +2,10 @@
 
 ##### 支持哪些浏览器？
 
-MobX在ES5环境下运行，那意味着在Node.js、Rhino和IE9+浏览器都能支持。请查阅[caniuse.com](http://caniuse.com/#feat=es5)
+MobX在ES5环境下运行，那意味着在Node.js、Rhino和IE9+浏览器都能支持。请查阅 [caniuse.com](http://caniuse.com/#feat=es5)
 
 ##### MobX能否和RxJS一起使用?
-是的，你可以使用来自于MobX-utils包的[toStream 和 fromStream ](https://github.com/MobXjs/MobX-utils#tostream) 这两个方法，来使用 RXJS（and other TC 39 compatible observables）。
+是的，你可以使用来自于MobX-utils包的 [toStream 和 fromStream ](https://github.com/MobXjs/MobX-utils#tostream) 这两个方法，来使用 RXJS（and other TC 39 compatible observables）。
 
 
 ##### 什么时候改用RxJS代替MobX？（后续了解更多再翻译这个对比）
@@ -17,7 +17,7 @@ Use for example RxJS to process and throttle user events and as a result of that
 If the state has been made observable by MobX, it will then take care of updating the UI and other derivations accordingly.
 
 ##### 是否支持React Native?
-是的，`MobX` 和 `mobx-react`能够在React Native上工作，后者需要引入`"mobx-react/native"`。
+是的，`MobX` 和 `mobx-react` 能够在React Native上工作，后者需要引入 `"mobx-react/native"`。
 但是开发工具不支持React Native。注意如果你希望存储组件的状态，并且该状态可以热更新，组件中不要使用装饰器，而是用函数去处理（例如使用 `action(fn)` 代替 `@action`）。
 
 
@@ -46,4 +46,4 @@ MobX在服务端渲染也能够执行，并且和jQuery一起使用。（请查�
 
 
 ##### 我能否记录状态？
-是的，请查阅一些[createTransformer](http://MobXjs.github.io/MobX/refguide/create-transformer.html) 的例子。
+是的，请查阅一些 [createTransformer](http://MobXjs.github.io/MobX/refguide/create-transformer.html) 的例子。

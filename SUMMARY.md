@@ -19,10 +19,10 @@
 * [理解如何响应](best/react.md)
 * [如何使用装饰器](best/decorators.md)
 * 相关资源
-  * [Tutorials, videos and blogs](faq/blogs.md)
-  * [Related Projects](faq/related.md)
-  * [Examples projects](faq/examples.md)
-  * [Boilerplates](faq/boilerplates.md)
+  * [教程, 视频和博客](faq/blogs.md)
+  * [相关项目](faq/related.md)
+  * [项目Demo](faq/examples.md)
+  * [与其他工具组合（Boilerplates）](faq/boilerplates.md)
   * [常见问题](faq/faq.md)
 * 提示 & 技巧
   * [常见的坑 & 最佳实践](best/pitfalls.md)
