@@ -1,4 +1,5 @@
-<img src="MobX.png" alt="logo" height="120" align="right" />
+<img src="mobx.png" alt="logo" height="120" align="right" />
+
 # MobX
 
 _简单、高扩展的状态管理库_
