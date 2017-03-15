@@ -272,7 +272,7 @@ _如果你想在 MobX 顶层构建酷炫的工具或是检查 MobX 的内部状�
 
 ### `"mobx-react-devtools"` 包
 mobx-react-devtools 是一个强大的包，帮你查看 react 组件的性能和依赖。
-也是一个基于 `spy` 的强大的日志实用程序。[&laquo;details&raquo;](../best/devtools.md)
+也是一个基于 `spy` 强大的日志工具。[&laquo;details&raquo;](../best/devtools.md)
 
 ### `spy`
 用法: `spy(listener)`.
@@ -287,8 +287,8 @@ mobx-react-devtools 是一个强大的包，帮你查看 react 组件的性能�
 * `whyRun(Reaction object / ComputedValue object / disposer function)`
 * `whyRun(object, "computed property name")`
 
-`whyRun` 是用于在计算值（computed value）或 reaction（`autorun`, `reaction` 或是 `observer` React 组件的 `render` 方法）的小工具。
-并打印出为何衍生行为可以正确运行，在什么情况下将再次运行。
+`whyRun` 是用于在计算值（computed value）或 reaction（`autorun`, `reaction` 或是 `observer` React 组件的 `render` 方法）的小型工具。
+并打印出为何 derivation 可以正确运行，在什么情况下将再次运行
 这将有助于更深入理解 MobX 何时以及为何运行，避免许多初学者会犯的错误。
 
 ### `extras.getAtom`
