@@ -1,7 +1,9 @@
 # isObservable
 
-Returns true if the given value was made observable by MobX.
-Optionally accepts a second string parameter to see whether a specific property is observable.
+如果给定的值是被MobX转化为可观察的，则返回true。
+
+可以接受第二个字符串参数来查看特定属性是否可观察。
+
 
 ```javascript
 var person = observable({
@@ -19,12 +21,12 @@ isObservable(person, "age"); // false
 
 # isObservableMap
 
-Returns true if the given object is created using `MobX.map`.
+如果给定的对象是由`MobX.map`建立的，则返回 true。
 
 # isObservableArray
 
-Returns true if the given object is an array that was made observable using `MobX.observable(array)`.
+如果给定的对象是使用`MobX.observable(array)`建立的可观察数组，则返回true。
 
 # isObservableObject
 
-Returns true if the given object is an object that was made observable using `MobX.observable(object)`.
+如果给定对象是使用`MobX.observable(object)`建立的可观察对象，则返回true。
