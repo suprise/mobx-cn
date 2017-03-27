@@ -1,9 +1,9 @@
 # 什么情况下MobX才会响应（react）？
 
 MobX通常会像你所想的那样响应，可以说90%的情况下你所使用的MobX都可以顺利工作。
-然而，在一些情况下你回到遇到不符合你期望的案例，在那种情况下，值得深入理解MobX是如何检测它需要如何响应。
+然而，在某些时候你可能会遇到不符合你期望的情况，在这一点上，理解MobX是如何确定它需要如何响应是非常宝贵的。
 
-> 在可追踪函数执行过程中，如果任一 **已被观察** 的 _属性（property）_ 被**使用（read）**时，这个被观察的属性会触发响应
+> 在可追踪函数执行过程中，如果任一 **已被观察** 的 _属性（property）_ 被 **使用（read）** 时，这个被观察的属性会触发响应
 
 > 原文：MobX reacts to any _existing_ **observable** _property_ that is read during the execution of a tracked function.
 
@@ -53,7 +53,7 @@ message.title = "Bar"
 这会像预期的那样进行响应，`.title` 在autorun中被解引用。然后在后续被改变，所以这个改变是可以被检测到的。
 This will react as expected, the `.title` property was dereferenced by the autorun, and changed afterwards, so this change is detected.
 
-你可以验证MobX会通过在被追踪函数内部调用 `whyRun()` 函数进行追踪，在这个例子中该函数会输出如下
+你可以通过在跟踪函数内调用的 `whyRun()` 来验证MobX将跟踪哪些内容。在这个例子中，它将输出以下内容：
 
 ```javascript
 autorun(() => {
@@ -68,7 +68,7 @@ WhyRun? reaction 'Autorun@1':
     ObservableObject@1.title
 ```
 
-#### 不正确: 改变一个不是可观察的引用
+#### 不正确: 改变一个不可观察的引用
 
 ```javascript
 autorun(() => {
@@ -82,7 +82,7 @@ message = observable({ title: "Bar" })
 （译者按：这是说，改变message中如title之类的属性，是会响应的，但重新给message赋一个新对象，则不会进行响应）
 
 
-#### 不正确：在被追踪函数之外解引用
+#### 不正确：在追踪函数外被解引用
 
 ```javascript
 var title = message.title;
@@ -94,7 +94,7 @@ message.title = "Bar"
 
 这**不会**响应，`message.title` 在 `autorun` 之外被解引用了，而被传进来的只是 `message.title` 的值，`title` 本身不是可观察的，所以 `autorun` 不会响应
 
-#### 正确: 在被追踪函数之内解引用
+#### 正确: 在被追踪函数内解引用
 
 ```javascript
 autorun(() => {
@@ -106,7 +106,7 @@ message.author = { name: "John" };
 
 两次改变都会正常响应。`author` 和 `author.name` 都用的是点调用的方式，允许MobX去追踪它们的引用。
 
-#### 不正确: 将可观察的对象通过新生命变量进行引用，将不会有追踪 
+#### 不正确: 将可观察的对象通过新声明变量进行引用，将不会有追踪 
 
 ```javascript
 const author = message.author;
@@ -129,7 +129,7 @@ autorun(() => {
 message.likes.push("Jennifer");
 ```
 
-这会如预期一样响应。`.length` 计数是一个属性，注意会对array中的每一个变化进行响应。Array不是通过其中的每一个元素或属性进行追踪，可是整体追踪。
+这会如预期一样响应。`.length` 计数是一个属性，注意会对array中的每一个变化进行响应。Array不是通过其中的每一个元素或属性进行追踪，而是整体追踪。
 
 #### 不正确: 在追踪函数中调用越界索引
 
@@ -350,5 +350,5 @@ const Likes = observer(({ likes }) =>
 
 ## 总而言之（TL;DR）
 
->在可追踪函数执行过程中，如果任一 **已被观察** 的_属性（property）_被**使用（read）**时，这个被观察的属性会触发响应_
+>在可追踪函数执行过程中，如果任一 ***已被观察** 的_属性（property）_* 被 **使用（read）** 时，这个被观察的属性会触发响应_
 > MobX reacts to any an _existing_ **observable** _property_ that is read during the execution of a tracked function.
