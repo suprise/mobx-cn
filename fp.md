@@ -4,16 +4,20 @@
 
 _简单、高扩展的状态管理库_
 
-[![Build Status](https://travis-ci.org/MobXjs/MobX.svg?branch=master)](https://travis-ci.org/MobXjs/MobX)
-[![Coverage Status](https://coveralls.io/repos/MobXjs/MobX/badge.svg?branch=master&service=github)](https://coveralls.io/github/MobXjs/MobX?branch=master)
-[![Join the chat at https://gitter.im/MobXjs/MobX](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MobXjs/MobX?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/mobxjs/mobx.svg?branch=master)](https://travis-ci.org/mobxjs/mobx)
+[![Coverage Status](https://coveralls.io/repos/mobxjs/mobx/badge.svg?branch=master&service=github)](https://coveralls.io/github/mobxjs/mobx?branch=master)
+[![Join the chat at https://gitter.im/mobxjs/mobx](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mobxjs/mobx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Discuss MobX on Hashnode](https://hashnode.github.io/badges/mobx.svg)](https://hashnode.com/n/mobx)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://mobxjs.github.io/mobx/donate.html)
+[![OpenCollective](https://opencollective.com/mobx/backers/badge.svg)](#backers)
+[![OpenCollective](https://opencollective.com/mobx/sponsors/badge.svg)](#sponsors)
 
-![npm install MobX](https://nodei.co/npm/MobX.png?downloadRank=true&downloads=true)
-
+![npm install mobx](https://nodei.co/npm/mobx.png?downloadRank=true&downloads=true)
 
 * 安装: `npm install mobx --save`。配合React: `npm install mobx-react --save`。如果要使用 ECMAScript 下一代的语法：装饰器（可选），请见下文
-* CDN: [https://unpkg.com/mobx/lib/mobx.umd.js](https://unpkg.com/mobx/lib/mobx.umd.js)
-
+* CDN:
+- https://unpkg.com/mobx/lib/mobx.umd.js
+- https://cdnjs.com/libraries/mobx
 
 ## 相关教程
 
@@ -22,7 +26,7 @@ _简单、高扩展的状态管理库_
 *   视频:
     *   [Egghead.io course: Manage Complex State in React Apps with MobX](https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx) - 30m.
     *   [ReactNext 2016: Real World MobX](https://www.youtube.com/watch?v=Aws40KOx90U) - 40m [slides](https://docs.google.com/presentation/d/1DrI6Hc2xIPTLBkfNH8YczOcPXQTOaCIcDESdyVfG_bE/edit?usp=sharing)
-    *   [Mobx与 React 实战](https://www.youtube.com/watch?v=XGwuM_u7UeQ). In depth introduction and explanation to MobX and React by Matt Ruby on OpenSourceNorth (ES5 only) - 42m.
+    *   [MobX 与 React 实战](https://www.youtube.com/watch?v=XGwuM_u7UeQ). In depth introduction and explanation to MobX and React by Matt Ruby on OpenSourceNorth (ES5 only) - 42m.
     *   LearnCode.academy MobX tutorial [Part I: MobX + React is AWESOME (7m)](https://www.youtube.com/watch?v=_q50BXqkAfI) [Part II: Computed Values and Nested/Referenced Observables (12m.)](https://www.youtube.com/watch?v=nYvNqKrl69s)
     *   [Screencast: intro to MobX](https://www.youtube.com/watch?v=K8dr8BMU7-8) - 8m
     *   [Talk: State Management Is Easy, React Amsterdam 2016 conf](https://www.youtube.com/watch?v=ApmSsu3qnf0&feature=youtu.be) ([slides](https://speakerdeck.com/mweststrate/state-management-is-easy-introduction-to-mobx))
@@ -33,14 +37,11 @@ _简单、高扩展的状态管理库_
 
 MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。
 
-
 MobX的思想非常简单：
 
-```
 _来源于应用的状态的任何事物，都能被自动获得_
 
 _Anything that can be derived from the application state, should be derived. Automatically._
-```
 
 包括UI、数据变更、与服务器通信等等
 
@@ -108,7 +109,6 @@ class TodoList {
 MobX 会确保当一个 todo 增加或者当 `finished` 改变时， `unfinishedTodoCount` 是自动更新的。
 计算值类似于电子表格程序的公式。它们的更新永远是自动的，并且只在需要的时候更新。
 
-
 ### 响应行为（Reactions）
 
 响应行为和计算值类似，但是与产生一个新的值不同，一个响应行为产生一系列副作用（side effect），例如输出 console、发出网络请求、增量更新 React 组件等等。简而言之，响应行为是 [响应式编程](https://en.wikipedia.org/wiki/Reactive_programming) 和 [命令式编程](https://en.wikipedia.org/wiki/Imperative_programming) 的一座桥梁
@@ -154,12 +154,12 @@ ReactDOM.render(<TodoListView todoList={store} />, document.getElementById('moun
 
 `observer` 将 React 组件与用于渲染的数据关联上。当使用 MobX 时，没有智能组件（smart）或者木偶组件（dumb）的概念。所有的组件都被智能地渲染，但是以木偶的方式进行定义。MobX 只在该组件确实需要时，触发其重渲染。所以上面的例子中，`onClick` 方法会触发 `TodoView` 的重渲染。如果没有完成的任务数量改变（`unfinishedTodoCount`），`TodoListView` 也将重渲染。但如果你移除 `Tasks left` 这一行（或者将其放到一个独立的组件中），当勾选 checkbox 时，`TodoListView` 不会再重渲染。你可以通过以下例子尝试 [JSFiddle](https://jsfiddle.net/mweststrate/wv3yopo0/).
 
-#### 自定义响应行为 {#custom-reactions}
+#### 自定义响应行为 （custom-reactions）
 
 自定义响应行为可以非常简单地创建，请根据你的实际情况适用以下3个函数：
-[`autorun`](http://MobXjs.github.io/MobX/refguide/autorun.html), 
-[`autorunAsync`](http://MobXjs.github.io/MobX/refguide/autorun-async.html) 或者
-[`when`](http://MobXjs.github.io/MobX/refguide/when.html) 
+[`autorun`](http://mobxjs.github.io/mobx/refguide/autorun.html), 
+[`autorunAsync`](http://mobxjs.github.io/mobx/refguide/autorun-async.html) 或者
+[`when`](http://mobxjs.github.io/mobx/refguide/when.html) 
 
 下面这个例子，当 `unfinishedTodoCount` 发生改变时，autorun 会自动执行
 
@@ -169,7 +169,7 @@ autorun(() => {
 })
 ```
 
-### 什么情况下MobX会触发响应？ {#what-will-mobx-react-to}
+### 什么情况下MobX会触发响应（what-will-mobx-react-to）
 
 为什么当 `unfinishedTodoCount` 每次发生改变时，都会打印出一条新的记录？
 答案是：
@@ -190,7 +190,6 @@ _MobX reacts to any existing observable property that is read during the executi
 
 在更新状态之后，MobX 会高效、无干扰地处理剩下的问题。所以像下面这种一个简单的状态，完全可以自动更新用户界面，而不需要触发事件，调用 dispatcher 或者其他操作。一个 React 组件就是应用状态的最好描述。这个衍生由 MobX 来管理。
 
-
 ```javascript
 store.todos.push(
     new Todo("Get Coffee"),
@@ -202,11 +201,9 @@ store.todos[0].finished = true;
 尽管如此，MobX 也还是有一个可选的概念，[`actions`](https://mobxjs.github.io/mobx/refguide/action.html)。
 使用它们的好处：它们帮助你更好地确定你的代码结构，以确保在合适的时间与地方来修改应用状态。
 
-
 ## 再聊聊简单与可扩展性（Simple and scalable） 
 
 MobX 是上手成本最小的状态管理库之一，以下几点措施保证 `MobX` 不仅仅简单，还具有很好的可扩展性。
-
 
 ### 支持类（Class）和引用 （using-classes-and-real-references）
 
@@ -217,7 +214,6 @@ MobX 是上手成本最小的状态管理库之一，以下几点措施保证 `M
 因为数据不需要转换成标准格式，以及 MobX 会自动追踪状态和衍生状态之间的关系，可以获得很好的参照完整性。你有没有遇到过这样一种情况，为了渲染一些东西，需要经过 3 个层级的、方向不明的复杂状态传递？
 
 没有问题，当其中的任何一个引用发生变化的时候，MobX 会追踪他们并且重渲染。因此原先的许多错误会成为历史。在某个边界情况中，作为程序员的你也许会忘记，改变某些数据可能会影响一个看上去不相关的组件，但 MobX 不会。
-
 
 ### 更加容易维护的简单行为 
 
@@ -246,20 +242,16 @@ MobX 基于普通的 javascript 结构，使得非常容易和其他库进行集
 
 所以上手成本很低，你完全不需要像其他状态管理库一样学习很多新概念。
 
-
-
 ![](https://www.mendix.com/styleguide/img/logo-mendix.png) 
 __MobX is proudly used in mission critical systems at [Mendix](https://www.mendix.com)__
 
-
 ## 致谢 
 
-Mobx 的响应式编程思想来源于电子表格，同时受到 MVVM 框架的启发，例如MeteorJS tracker, knockout 和 Vue.js 等，但 MobX 使得透明函数响应式编程（TFRP）的发展更进一步，并提供了一种独立的实现。它实现的TFRP具有无干扰性、同步、可预见性、高效等特性。
+MobX 的响应式编程思想来源于电子表格，同时受到 MVVM 框架的启发，例如MeteorJS tracker, knockout 和 Vue.js 等，但 MobX 使得透明函数响应式编程（TFRP）的发展更进一步，并提供了一种独立的实现。它实现的TFRP具有无干扰性、同步、可预见性、高效等特性。
 
 对 [Mendix](https://github.com/mendix) 致以成吨的感谢，为支持 MobX 的维护，尤其是在一个真实的、复杂的、高性能要求的应用中证明了 MobX 的思想。
 
 最后，荣誉属于那些相信、尝试、验证甚至 [贡献](https://github.com/mobxjs/mobx/blob/master/sponsors.md) MobX 的人们。
-
 
 ## 更多资源和文档 
 
@@ -269,34 +261,36 @@ Mobx 的响应式编程思想来源于电子表格，同时受到 MVVM 框架的
 *   [模板](http://mobxjs.github.io/mobx/faq/boilerplates.html)
 *   [相关项目](http://mobxjs.github.io/mobx/faq/related.html)
 
-
 ## 让我们听听元芳怎么说……
 
-> After using #MobX for lone projects for a few weeks, it feels awesome to introduce it to the team. Time: 1/2, Fun: 2X
+> After using #mobx for lone projects for a few weeks, it feels awesome to introduce it to the team. Time: 1/2, Fun: 2X
 
-> Working with #MobX is basically a continuous loop of me going “this is way too simple, it definitely won’t work” only to be proven wrong
+> Working with #mobx is basically a continuous loop of me going “this is way too simple, it definitely won’t work” only to be proven wrong
 
-> Try react-MobX with es6 and you will love it so much that you will hug someone.
+> Try react-mobx with es6 and you will love it so much that you will hug someone.
 
 > I have built big apps with MobX already and comparing to the one before that which was using Redux, it is simpler to read and much easier to reason about.
 
-> The #MobX is the way I always want things to be! It's really surprising simple and fast! Totally awesome! Don't miss it!
+> The #mobx is the way I always want things to be! It's really surprising simple and fast! Totally awesome! Don't miss it!
 
 ## 如何贡献
 
 * 放轻松，先实现个小目标，提一个小 pull request。如果新增一些特性或者大的改动，请先在 Github 的 issue 中大家一起来讨论。
-* 使用 `npm test` 测试基本用例，使用`npm run coverage` 测试用例的代码覆盖率，使用 `npm run perf` 进行性能测试。
+* 使用 `npm test` 测试基本用例，使用 `npm run coverage` 测试用例的代码覆盖率，使用 `npm run perf` 进行性能测试。
 
+## Bower 支持
 
-## Bower 支持 (bower-support)
-
-通过以下方式安装 `bower install https://unpkg.com/MobX/bower.zip`
-然后使用 `lib/MobX.umd.js` 或者 `lib/MobX.umd.min.js`
+通过以下方式安装 `bower install https://unpkg.com/mobx/bower.zip`
+然后使用 `lib/mobx.umd.js` 或者 `lib/mobx.umd.min.js`
 
 ## 捐赠
+
 Mobx是否是你项目成功的关键因素？欢迎点击 [捐赠按钮](https://mobxjs.github.io/mobx/donate.html) 分享你的成功！
 Mobx在很长一段发展的过程中保持了免费，对于任何回报我都万分感谢 :-）。如果留下你的名字，你会被加入 [贡献者](https://github.com/mobxjs/mobx/blob/master/sponsors.md) 的列表当中~:-）
 
-也欢迎给翻译者捐赠，用于抚慰因为翻译被冷落的女朋友。
+## 翻译者捐赠
+
+欢迎给翻译者捐赠，用于抚慰因为翻译被冷落的女朋友。
 支付宝（Alipay）：
+
 ![](https://img.alicdn.com/tps/TB1Eo2DPFXXXXccaXXXXXXXXXXX-600-900.jpg_400x400.jpg)
