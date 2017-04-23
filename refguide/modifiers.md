@@ -1,42 +1,43 @@
-# Modifiers for observable
+# observable 的修饰符
 
-Modifiers can be used decorator or in combination with `extendObservable` and `observable.object` to change the autoconversion rules for specific properties.
+修饰符可以使用 decorator 或者对于特殊属性结合 `extendObservable` 与 `observable.object` 来改变自动转换规则。
 
-* `observable.deep`: This is the default modifier, used by any observable. It converts any assigned, non-primitive value into an observable value if it isn't one yet.
-* `observable.ref`: Disables automatic observable conversion, just creates an observable reference instead.
-* `observable.shallow`: Can only used in combination with collections. Turns any assigned collection into an collection, which is shallowly observable (instead of deep)
-* `computed`: Creates a derived property, see [`computed`](computed-decorator.md)
-* `action`: Creates an action, see [`action`](action.md)
+* `observable.deep`: 默认修饰符，被使用于任何 observable，在尚未转化的情况下，它会将任何已分配，非原始的值转化为 observable。
+* `observable.ref`: 无法自动进行 observable 的转化，用创建一个 observable 的引用来代替。
+* `observable.shallow`:
 
-## Deep observability
+ Can only used in combination with collections. Turns any assigned collection into an collection, which is shallowly observable (instead of deep)
+* `computed`: 创建一个派生的属性, 详见 [`computed`](computed-decorator.md)
+* `action`: 创建一个 action, 详见 [`action`](action.md)
 
-When MobX creates an observable object, (using `observable`, `observable.object`, or `extendObservable`), it introduces observable properties which
-by default use the `deep` modifier. The deep modifier basically recursively calls `observable(newValue)` for any newly assigned value.
-Which in turns uses the `deep` modifier... you get the idea.
+## 深度可观察的
 
-This is a very convenient default. Without any additional effort all values assigned to an observable will themselves be made observable too (unless they already are), so no additional
-effort is required to make objects deep observable.
+当 MobX 使用 `observable`, `observable.object`, 或 `extendObservable` 创建 observable 的对象时，它添加 observable 属性默认使用 `deep` 的修饰符。对于任何新分配的值，深度修饰符深度递归调用 `observable(newValue)`。
+当不停得使用 `deep` 修饰符... 你懂的。
 
-## Reference observability
+默认是十分方便的，不需要任何额外的开销，所有被分配给 observable 值的值将是 observable 的，所以不需要额外开销来使对象深度 observable。
 
-In some cases however, objects don't need to be converted into observables.
-Typical cases are immutable objects, or objects that are not managed by you but by an external library.
-Examples are JSX elements, DOM elements, native objects like History, window or etc.
-To those kind of objects, you just want to store a reference without turning them into an observable.
+## 引用可观察的
 
-For these situations there is the `ref` modifier. It makes sure that an observable property is created, which only tracks the reference but doesn't try to convert its value.
-For example:
+然而，在一些情况下，对象不需要转化为可观察的。
+典型的例子是不可变的对象，或者是由第三方库来管理的对象。
+例如：JSX 元素，DOM 元素，History、window等等原生对象。
+对于这些对象，你就想存储一个引用，而不是将他们转化为 observable。
+
+对于这些情况，`ref` 修饰符创建的 observable 属性只追踪引用，不会尝试转换值。
+例如：
 
 ```javascript
 class Message {
     @observable message = "Hello world"
 
+    // 示例，如果 author 是不可变的，我们就只需要存储引用，不需要转化为一个可变的，observable 的对象
     // fictional example, if author is immutable, we just need to store a reference and shouldn't turn it into a mutable, observable object
     @observable.ref author = null
 }
 ```
 
-Or with just ES5 syntax:
+或者使用 ES5 的语法：
 
 ```javascript
 function Message() {
@@ -47,27 +48,26 @@ function Message() {
 }
 ```
 
-Note that an observable, boxed reference can be created by using `const box = observable.shallowBox(value)`
+注意：一个 observable、box 的引用，使用 `const box = observable.shallowBox(value)` 创建。
 
-## Shallow observability
+## 浅可观察的
 
-The `observable.shallow` modifier applies observability 'one-level-deep'. You need those if you want to create a _collection_ of observable references.
-If a new collection is assigned to a property with this modifier, it will be made observable, but its values will be left as is, so unlike `deep`, it won't recurse.
-Example:
+`observable.shallow` 修饰符应用于可观察的 '一级深度' 。如果你需要创建 observable 引用的 _集合_。
+如果一个新的集合被分配为一个属性使用这个修饰符，它会是 observable，但它的值与 `deep` 不同，将保持原样，不会递归。
+例如：
 
 ```javascript
 class AuthorStore {
     @observable.shallow authors = []
 }
 ```
-In the above example an assignment of a plain array with authors to the `authors` will update the authors with an observable array, containing the original, non-observable authors.
+在上述例子中，存储 authors 信息的普通数组分配给了属性 `authors`，更新 authors 将使用 observable 数组，这其中包括原始的，不可观察的 authors。
 
-Note that the following methods can be used to create shallow collections manually: `observable.shallowObject`, `observable.shallowArray`, `observable.shallowMap` and `extendShallowObservable`.
+注意：可以使用以下方法来手动创建浅集合：`observable.shallowObject`, `observable.shallowArray`, `observable.shallowMap` 和 `extendShallowObservable`.
 
 ## Action & Computed
 
-`action`, `action.bound`, `computed` and `computed.struct` can be used as modifiers as well.
-See [`computed`](computed-decorator.md) respectively [`action`](action.md).
+`action`, `action.bound`, `computed` 和 `computed.struct` 也可以使用修饰符。分别查阅 [`computed`](computed-decorator.md) 与 [`action`](action.md).
 
 ```javascript
 const taskStore = observable({
@@ -83,10 +83,10 @@ const taskStore = observable({
 
 ## asStructure
 
-MobX 2 had the `asStructure` modifier, which in practice was rarely used, or only used in cases where it is used `reference` / `shallow` is often a better fit (when using immutable data for example).
-Structural comparision for computed properties and reactions is still possible.
+MobX 2 具有 `asStructure` 修饰符，在实践中很少使用，或者仅在使用 `reference` / `shallow` 的情况下使用会比较合适（例如使用不可变数据）。
+对于计算属性（computed）与反应（reaction）的结构比较仍是可能的。
 
-## Effect of modifiers
+## 修饰符的作用
 
 ```javascript
 class Store {
@@ -105,11 +105,11 @@ store.collection2 = todos;
 store.collection3 = todos;
 ```
 
-After these assignments:
+在这些操作后：
 
-1. `collection1 === todos` is false; the contents of todos will be cloned into a new observable array
-2. `collection1[0] === todos[0]` is false; the first todo was a plain object and hence it was cloned into an observable object which is stored in the array
-3. `collection2 === todos` is true; the `todos` are kept as is, and are non-observable. Only the `collection2` property itself is observable.
-4. `collection2[0] === todos[0]` is true; because of 3.
-5. `collection3 === todos` is false; collection 3 is a new observable array
-6. `collection3[0] === todos[0]` is true; the value of `collection3` was only shallowly turned into an observable, but the contents of the array is left as is.
+1. `collection1 === todos` 是 false；todos 的内容将被克隆进入新的 observable 数组
+2. `collection1[0] === todos[0]` 是 false；第一个 todo 是普通对象，它被克隆进入 observable 对象，存储于数组中
+3. `collection2 === todos` 是 true；`todos` 保持原样，不是 observable 的。仅仅 `collection2` 属性本身是 observable 的
+4. `collection2[0] === todos[0]` 是 true；因为第 3 点
+5. `collection3 === todos` 是 false；collection 3 是一个新的 observable 数组
+6. `collection3[0] === todos[0]` 是 true；`collection3` 的值仅仅浅转换为 observable，但数组的内容维持原样
