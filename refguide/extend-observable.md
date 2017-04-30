@@ -1,11 +1,11 @@
 # extendObservable
 
-Quite similar to `Object.assign`, `extendObservable` takes two or more arguments, a `target` object and one or more `properties` maps.
-It adds all key-value pairs from the properties to the `target` as observable properties.
+与 `Object.assign` 类似，`extendObservable` 可以接受两个甚至更多参数，一个 `目标` 对象和一个或多个 `属性` map。
+它将所有属性中的键值对添加到 `目标` 对象中作为 observable 属性。
 
 ```javascript
 var Person = function(firstName, lastName) {
-	// initialize observable properties on a new instance
+	// 在一个新的实例，初始化 observable 属性
 	extendObservable(this, {
 		firstName: firstName,
 		lastName: lastName
@@ -14,25 +14,26 @@ var Person = function(firstName, lastName) {
 
 var matthew = new Person("Matthew", "Henry");
 
-// add a observable property to an already observable object
+// 向已存在的 observable 对象，增加一个 observable 属性
 extendObservable(matthew, {
 	age: 353
 });
 ```
 
-N.b:  `observable.object(object)` is actually an alias for `extendObservable({}, object)`.
+注:  `observable.object(object)` 实际上是 `extendObservable({}, object)`.
 
-Note that the property maps are not always copied literally onto the target, but they are considered property descriptor.
-Most values are copied as-is, but values wrapped in a modifier as treated specially. And so are properties that have a getter.
+注意，属性 map 不总是逐一复制到目标对象上的，而被视为是属性描述符。
+大多数值是维持原样的，但值会包含修饰符的会被特别处理。所有属性都具有 getter。
 
-## Modifiers
+## 修饰符
 
-[Modifiers](modifiers.md) can be used to define special behavior for certain properties.
-For example `observable.ref` creates an observable reference which doesn't automatically convert its values into observables, and `computed` introduces a derived property:
+[修饰符](modifiers.md) 被用来定义某些属性的特殊行为。
+
+例如 `observable.ref` 建立 observable 引用，它不会自动将值转化为 observable，`computed` 引入了派生属性：
 
 ```javascript
 var Person = function(firstName, lastName) {
-	// initialize observable properties on a new instance
+	// 在一个新的实例，初始化 observable 属性
 	extendObservable(this, {
 		firstName: observable.ref(firstName),
 		lastName: observable.ref(lastName),
@@ -43,15 +44,15 @@ var Person = function(firstName, lastName) {
 }
 ```
 
-An overview of all available modifiers can be found in the [modifiers](modifiers.md) section.
+所有有效修饰符的介绍可以在 [修饰符](modifiers.md) 中寻找。
 
-## Computed properties
+## Computed 属性
 
-Computed properties can also be written by using a *getter* function. Optionally accompanied with a setter:
+Computed 属性也可以通过使用 *getter* 函数编写。同时也可以设定 setter：
 
 ```javascript
 var Person = function(firstName, lastName) {
-	// initialize observable properties on a new instance
+	// 在一个新的实例，初始化 observable 属性
 	extendObservable(this, {
 		firstName: firstName,
 		lastName: lastName,
@@ -67,10 +68,10 @@ var Person = function(firstName, lastName) {
 }
 ```
 
-_Note: getter / setter is valid ES5 syntax and doesn't require a transpiler!_
+_注意: getter / setter 是有效的 ES5 语法，不需要转换器!_
 
 ## `extendShallowObservable`
 
-`extendShallowObservable` is like `extendObservable`, except that by default the properties will by default *not* automatically convert their values into observables.
-So it is similar to calling `extendObservable` with `observable.ref` modifier for each property.
-Note that `observable.deep` can be used to get the automatic conversion back for a specific property.
+`extendShallowObservable` 就像 `extendObservable`, 除了默认情况，属性将默认 *不* 自动将值转化为 observable。
+因此就相当于 `extendObservable` 中每个属性调用了 `observable.ref` 修饰符。
+注意：`observable.deep` 能使特定的属性自动回退（即转换到默认情况）
