@@ -29,6 +29,7 @@
   * [编写 (async) actions](best/actions.md)
   * [优化 React 组件](best/react-performance.md)
   * [DevTools](best/devtools.md)
+  * [ES5 / ES6 / ES.next 语法](best/syntax.md)
   * [无状态组件和热更新](best/stateless-HMR.md)
 * 工具方法
   * [autorunAsync](refguide/autorun-async.md)
