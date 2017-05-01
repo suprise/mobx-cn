@@ -1,0 +1,1219 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>intercept &amp; observe | MobX 中文文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.3">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-edit-link/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../refguide/reaction.html" />
+    
+    
+    <link rel="prev" href="../refguide/modifiers.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="8.8" data-basepath=".." data-revision="Mon May 01 2017 23:45:37 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="fp.html">
+            
+                
+                    <a href="../fp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        MobX 简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="intro/overview.html">
+            
+                
+                    <a href="../intro/overview.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        MobX 的要领
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="intro/concepts.html">
+            
+                
+                    <a href="../intro/concepts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        概念 &amp; 原则
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="refguide/api.html">
+            
+                
+                    <a href="../refguide/api.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API 概述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="refguide/observable.html">
+            
+                
+                    <a href="../refguide/observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="refguide/observable-decorator.html">
+            
+                
+                    <a href="../refguide/observable-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        @observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="refguide/computed-decorator.html">
+            
+                
+                    <a href="../refguide/computed-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        (@)computed
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="refguide/autorun.html">
+            
+                
+                    <a href="../refguide/autorun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        autorun
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="refguide/observer-component.html">
+            
+                
+                    <a href="../refguide/observer-component.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        (@)observer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="refguide/action.html">
+            
+                
+                    <a href="../refguide/action.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        action
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> 可观察类型</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="refguide/object.html">
+            
+                
+                    <a href="../refguide/object.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="refguide/array.html">
+            
+                
+                    <a href="../refguide/array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        arrays
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="refguide/map.html">
+            
+                
+                    <a href="../refguide/map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        maps
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="refguide/boxed.html">
+            
+                
+                    <a href="../refguide/boxed.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        boxed values
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="best/react.html">
+            
+                
+                    <a href="../best/react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        理解如何响应
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="best/decorators.html">
+            
+                
+                    <a href="../best/decorators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        如何使用装饰器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> 相关资源</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="faq/blogs.html">
+            
+                
+                    <a href="../faq/blogs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        教程, 视频和博客
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="faq/related.html">
+            
+                
+                    <a href="../faq/related.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        相关项目
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="faq/examples.html">
+            
+                
+                    <a href="../faq/examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        项目Demo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="faq/boilerplates.html">
+            
+                
+                    <a href="../faq/boilerplates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        与其他工具组合（Boilerplates）
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="faq/faq.html">
+            
+                
+                    <a href="../faq/faq.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        常见问题
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> 提示 &amp; 技巧</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="best/pitfalls.html">
+            
+                
+                    <a href="../best/pitfalls.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        常见的坑 &amp; 最佳实践
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="best/store.html">
+            
+                
+                    <a href="../best/store.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        定义数据Store
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="best/actions.html">
+            
+                
+                    <a href="../best/actions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        编写 (async) actions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="best/react-performance.html">
+            
+                
+                    <a href="../best/react-performance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        优化 React 组件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="best/devtools.html">
+            
+                
+                    <a href="../best/devtools.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        DevTools
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="best/syntax.html">
+            
+                
+                    <a href="../best/syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        ES5 / ES6 / ES.next 语法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="best/stateless-HMR.html">
+            
+                
+                    <a href="../best/stateless-HMR.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        无状态组件和热更新
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> 工具方法</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="refguide/autorun-async.html">
+            
+                
+                    <a href="../refguide/autorun-async.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        autorunAsync
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="refguide/extending.html">
+            
+                
+                    <a href="../refguide/extending.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Atom &amp; Reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="refguide/create-transformer.html">
+            
+                
+                    <a href="../refguide/create-transformer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        createTransformer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="refguide/expr.html">
+            
+                
+                    <a href="../refguide/expr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        expr
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="refguide/extend-observable.html">
+            
+                
+                    <a href="../refguide/extend-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        extendObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="refguide/is-observable.html">
+            
+                
+                    <a href="../refguide/is-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        isObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="refguide/modifiers.html">
+            
+                
+                    <a href="../refguide/modifiers.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        modifiers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="8.8" data-path="refguide/observe.html">
+            
+                
+                    <a href="../refguide/observe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.8.</b>
+                        
+                        intercept &amp; observe
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="refguide/reaction.html">
+            
+                
+                    <a href="../refguide/reaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.9.</b>
+                        
+                        reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.10" data-path="refguide/spy.html">
+            
+                
+                    <a href="../refguide/spy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.10.</b>
+                        
+                        spy
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.11" data-path="refguide/tojson.html">
+            
+                
+                    <a href="../refguide/tojson.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.11.</b>
+                        
+                        toJS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.12" data-path="refguide/transaction.html">
+            
+                
+                    <a href="../refguide/transaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.12.</b>
+                        
+                        transaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.13" data-path="refguide/untracked.html">
+            
+                
+                    <a href="../refguide/untracked.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.13.</b>
+                        
+                        untracked
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.14" data-path="refguide/when.html">
+            
+                
+                    <a href="../refguide/when.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.14.</b>
+                        
+                        when
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="donating.html">
+            
+                
+                    <a href="../donating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        捐赠
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >MobX 中文文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <a id="edit-link" href="https://github.com/suprise/mobx-cn/tree/master/refguide/observe.md" class="btn fa fa-edit pull-left">&#xA0;&#xA0;&#x5F00;&#x59CB;&#x7EA0;&#x9519;</a><h1 id="intercept-observe">Intercept &amp; Observe</h1>
+<p><code>observe</code> &#x548C; <code>intercept</code> &#x80FD;&#x591F;&#x76D1;&#x542C;&#x5355;&#x4E2A; observable &#x7684;&#x53D8;&#x5316; (&#x4ED6;&#x4EEC; <strong><em>&#x65E0;&#x6CD5;</em></strong> &#x8DDF;&#x8E2A;&#x5D4C;&#x5957;&#x7684; observable).
+<code>intercept</code> &#x80FD;&#x591F;&#x63A2;&#x6D4B;&#x548C;&#x4FEE;&#x6539;&#x7A81;&#x53D8;&#xFF0C;&#x5728;&#x5B83;&#x4EEC;&#x4F5C;&#x7528;&#x4E8E; observable &#x4E4B;&#x524D;&#x3002;
+<code>observe</code> &#x5141;&#x8BB8;&#x4F60;&#x5728;&#x5B83;&#x4EEC;&#x6539;&#x53D8;&#x540E;&#x62E6;&#x622A;&#x6539;&#x53D8;&#x3002;</p>
+<h2 id="intercept">Intercept</h2>
+<p>&#x7528;&#x6CD5;: <code><span class="token function">intercept</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> propertyName<span class="token operator">?</span><span class="token punctuation">,</span> interceptor<span class="token punctuation">)</span></code></p>
+<ul>
+<li><code>target</code>: &#x76D1;&#x542C;&#x7684; observable</li>
+<li><code>propertyName</code>: &#x53EF;&#x9009;&#x53C2;&#x6570;&#xFF0C;&#x4E3A;&#x4E86;&#x6307;&#x5B9A;&#x62E6;&#x622A;&#x7684;&#x7279;&#x5B9A;&#x5C5E;&#x6027;&#x3002;&#x6CE8;&#x610F; <code><span class="token function">intercept</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>name<span class="token punctuation">,</span> interceptor<span class="token punctuation">)</span></code> &#x4E0E; <code><span class="token function">intercept</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> <span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span> interceptor<span class="token punctuation">)</span></code> &#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x8BD5;&#x56FE;&#x5411; <code>user<span class="token punctuation">.</span>name</code> &#x4E2D;&#x7684; <em>&#x5F53;&#x524D;</em> &#x503C;&#x6DFB;&#x52A0;&#x62E6;&#x622A;&#x5668;&#xFF08;&#x5B83;&#x53EF;&#x80FD;&#x5B8C;&#x5168;&#x4E0D;&#x662F;&#x4E00;&#x4E2A; observable&#xFF09;&#xFF0C;&#x540E;&#x4E00;&#x4E2A;&#x5BF9; <code>user</code> &#x5C5E;&#x6027; <code>name</code> &#x7684;&#x6539;&#x53D8;&#x8FDB;&#x884C;&#x62E6;&#x622A;&#x3002; </li>
+<li><code>interceptor</code>: &#x5BF9;&#x4E8E;&#x76D1;&#x542C;&#x7684; observable &#x7684; <em>&#x6BCF;&#x4E00;&#x4E2A;</em> &#x6539;&#x53D8;&#x90FD;&#x4F1A;&#x4F7F; callback &#x88AB;&#x8C03;&#x7528;&#x3002;&#x63A5;&#x6536;&#x63CF;&#x8FF0;&#x7A81;&#x53D8;&#x7684;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;</li>
+</ul>
+<p><code>intercept</code> &#x5E94;&#x8BE5;&#x544A;&#x8BC9; MobX &#x5F53;&#x524D;&#x6539;&#x53D8;&#x9700;&#x8981;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#x3002;
+&#x56E0;&#x6B64;&#x5B83;&#x5E94;&#x8BE5;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x4E8B;&#x9879;&#xFF1A;</p>
+<ol>
+<li>&#x8BE5;&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x63A5;&#x6536;&#x7684; <code>change</code> &#x88AB;&#x8FD4;&#x56DE;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x6539;&#x53D8;&#x5C06;&#x4F1A;&#x88AB;&#x5E94;&#x7528;&#x3002;</li>
+<li>&#x4FEE;&#x6539; <code>change</code> &#x5BF9;&#x8C61;&#xFF0C;&#x6BD4;&#x5982;&#x89C4;&#x8303;&#x5316;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x5B83;&#x3002;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x7684;&#x5B57;&#x6BB5;&#x90FD;&#x53EF;&#x6539;&#x53D8;&#xFF0C;&#x89C1;&#x4E0B;&#x3002;</li>
+<li>&#x8FD4;&#x56DE; <code><span class="token keyword">null</span></code>&#xFF0C;&#x8FD9;&#x8868;&#x660E;&#x8FD9;&#x4E2A;&#x7A81;&#x53D8;&#x53EF;&#x4EE5;&#x88AB;&#x5FFD;&#x7565;&#x4E14;&#x4E0D;&#x8BE5;&#x88AB;&#x5E94;&#x7528;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F3A;&#x5927;&#x7684;&#x6982;&#x5FF5;&#x53BB;&#x64CD;&#x4F5C;&#x4F60;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F8B;&#x5982;&#x4E34;&#x65F6;&#x4E0D;&#x53EF;&#x53D8;&#x3002;</li>
+<li>&#x629B;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x4F8B;&#x5982;&#x67D0;&#x4E9B;&#x4E0D;&#x53D8;&#x91CF;&#x672A;&#x88AB;&#x6EE1;&#x8DB3;&#x3002;</li>
+</ol>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>disposer</code> &#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5C06;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x62E6;&#x622A;&#x5668;&#x53D6;&#x6D88;&#x3002;
+&#x53EF;&#x80FD;&#x5728;&#x591A;&#x4E2A; observable &#x4E0A;&#x6CE8;&#x518C;&#x4E86;&#x591A;&#x4E2A;&#x62E6;&#x622A;&#x5668;&#x3002;
+&#x5B83;&#x4EEC;&#x5C06;&#x6309;&#x7167;&#x6CE8;&#x518C;&#x987A;&#x5E8F;&#x8FDB;&#x884C;&#x6392;&#x5217;&#x3002;
+&#x5F53;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x62E6;&#x622A;&#x5668;&#x8FD4;&#x56DE; <code><span class="token keyword">null</span></code> &#x6216;&#x8005;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x5176;&#x4ED6;&#x62E6;&#x622A;&#x5668;&#x5C06;&#x4E0D;&#x4F1A;&#x518D;&#x8FD0;&#x884C;&#x3002;
+&#x53EF;&#x4EE5;&#x5728;&#x5BF9;&#x8C61;&#x548C;&#x5176;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x5C5E;&#x6027;&#x5747;&#x6CE8;&#x518C;&#x4E86;&#x62E6;&#x622A;&#x5668;&#x3002;
+&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5BF9;&#x8C61;&#x62E6;&#x622A;&#x5668;&#x4F1A;&#x5728;&#x5C5E;&#x6027;&#x62E6;&#x622A;&#x5668;&#x4E4B;&#x524D;&#x5148;&#x8FD0;&#x884C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> theme <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  backgroundColor<span class="token punctuation">:</span> <span class="token string">&quot;#ffffff&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> disposer <span class="token operator">=</span> <span class="token function">intercept</span><span class="token punctuation">(</span>theme<span class="token punctuation">,</span> <span class="token string">&quot;backgroundColor&quot;</span><span class="token punctuation">,</span> change <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>change<span class="token punctuation">.</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// &#x5FFD;&#x7565;&#x4F01;&#x56FE;&#x53D6;&#x6D88;&#x8BBE;&#x7F6E;&#x80CC;&#x666F;&#x8272;</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>change<span class="token punctuation">.</span>newValue<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// &#x4FEE;&#x6B63;&#x4E22;&#x5931;&#x7684;&#x524D;&#x7F00; &#x201C;#&#x201D;</span>
+    change<span class="token punctuation">.</span>newValue <span class="token operator">=</span> <span class="token string">&apos;#&apos;</span> <span class="token operator">+</span> change<span class="token punctuation">.</span>newValue<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> change<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>change<span class="token punctuation">.</span>newValue<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// &#x5FC5;&#x987B;&#x662F;&#x6B63;&#x786E;&#x683C;&#x5F0F;&#x7684;&#x989C;&#x8272;&#x4EE3;&#x7801;</span>
+      <span class="token keyword">return</span> change<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>change<span class="token punctuation">.</span>newValue<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token function">disposer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// &#x505C;&#x6B62;&#x672A;&#x6765;&#x7684;&#x62E6;&#x622A;&#x53D8;&#x5316;</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;This doesn&apos;t like a color at all: &quot;</span> <span class="token operator">+</span> change<span class="token punctuation">.</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="observe">Observe</h2>
+<p>&#x7528;&#x6CD5;: <code><span class="token function">observe</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> propertyName<span class="token operator">?</span><span class="token punctuation">,</span> listener<span class="token punctuation">,</span> invokeImmediately<span class="token operator">?</span><span class="token punctuation">)</span></code></p>
+<ul>
+<li><code>target</code>: &#x89C2;&#x5BDF; observable</li>
+<li><code>propertyName</code>: &#x53EF;&#x9009;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x6307;&#x5B9A;&#x8981;&#x89C2;&#x5BDF;&#x7684;&#x7279;&#x5B9A;&#x5C5E;&#x6027;&#x3002;&#x6CE8;&#x610F; <code><span class="token function">observe</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>name<span class="token punctuation">,</span> listener<span class="token punctuation">)</span></code> &#x4E0E; <code><span class="token function">observe</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> <span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span> listener<span class="token punctuation">)</span></code> &#x672C;&#x8D28;&#x4E0A;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x7B2C;&#x4E00;&#x4E2A;&#x89C2;&#x5BDF; <code>user<span class="token punctuation">.</span>name</code> &#x4E2D;&#x7684; <em>&#x5F53;&#x524D;</em> &#x503C;&#xFF08;&#x5B83;&#x53EF;&#x80FD;&#x5B8C;&#x5168;&#x4E0D;&#x662F;&#x4E00;&#x4E2A; observable&#xFF09;&#xFF0C;&#x540E;&#x4E00;&#x4E2A;&#x662F;&#x89C2;&#x5BDF; <code>user</code> &#x7684;&#x5C5E;&#x6027; <code>name</code>&#x3002;</li>
+<li><code>listener</code>: &#x5BF9;&#x4E8E;&#x76D1;&#x542C;&#x7684; observable &#x7684; <em>&#x6BCF;&#x4E00;&#x4E2A;</em> &#x6539;&#x53D8;&#x90FD;&#x4F1A;&#x4F7F; callback &#x88AB;&#x8C03;&#x7528;&#x3002;&#x63A5;&#x6536;&#x63CF;&#x8FF0;&#x7A81;&#x53D8;&#x7684;&#x5355;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x9664;&#x4E86; boxed observable&#xFF0C;&#x5C06;&#x4F1A;&#x8C03;&#x7528; <code>listener</code> &#x7684;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;<code>newValue<span class="token punctuation">,</span> oldValue</code>&#x3002;</li>
+<li><code>invokeImmediately</code>&#xFF1A;&#x9ED8;&#x8BA4; false&#x3002;&#x8BBE;&#x7F6E;&#x4E3A; true&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8981; <code>observe</code> &#x53BB;&#x7ACB;&#x5373;&#x8C03;&#x7528; <code>listener</code> &#x4E2D; observable &#x7684;&#x72B6;&#x6001;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x7B49;&#x5F85;&#x7B2C;&#x4E00;&#x6B21;&#x6539;&#x53D8;&#xFF09;&#x3002;&#x6682;&#x4E0D;&#x652F;&#x6301;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x7684; observable&#x3002;</li>
+</ul>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; <code>disposer</code> &#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x53D6;&#x6D88;&#x89C2;&#x5BDF;&#x8005;&#xFF08;observer&#xFF09;&#x3002;
+&#x6CE8;&#x610F; <code>transaction</code> &#x4E0D;&#x5F71;&#x54CD; <code>observe</code> &#x7684;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x3002;
+&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5728;&#x4E8B;&#x52A1;&#x4E2D;&#xFF0C;<code>observe</code> &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x6B21;&#x7A81;&#x53D8;&#x5C06;&#x4F1A;&#x89E6;&#x53D1;&#x76D1;&#x542C;&#x5668;&#x3002;
+&#x56E0;&#x6B64; <code>autorun</code> &#x7ECF;&#x5E38;&#x662F;&#x66F4;&#x52A0;&#x5F3A;&#x5927;&#x548C; <code>observe</code> &#x7684;&#x6709;&#x6548;&#x66FF;&#x4EE3;&#x3002;</p>
+<p><em>&#x5F53;&#x53D1;&#x751F;&#x7A81;&#x53D8;&#x65F6;&#xFF0C;<code>observe</code> &#x968F;&#x6539;&#x53D8;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#xFF0C;&#x5C31;&#x50CF; <code>autorun</code> &#x6216; <code>reaction</code> &#x5BF9;&#x53EF;&#x7528;&#x7684;&#x65B0;&#x503C;&#x505A;&#x51FA;&#x54CD;&#x5E94;&#xFF0C;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x540E;&#x8005;&#x662F;&#x591F;&#x7528;&#x7684;</em></p>
+<p>Example:</p>
+<pre><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span>observable<span class="token punctuation">,</span> observe<span class="token punctuation">}</span> from <span class="token string">&apos;mobx&apos;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> person <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    firstName<span class="token punctuation">:</span> <span class="token string">&quot;Maarten&quot;</span><span class="token punctuation">,</span>
+    lastName<span class="token punctuation">:</span> <span class="token string">&quot;Luther&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> disposer <span class="token operator">=</span> <span class="token function">observe</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> <span class="token punctuation">(</span>change<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>change<span class="token punctuation">.</span>type<span class="token punctuation">,</span> change<span class="token punctuation">.</span>name<span class="token punctuation">,</span> <span class="token string">&quot;from&quot;</span><span class="token punctuation">,</span> change<span class="token punctuation">.</span>oldValue<span class="token punctuation">,</span> <span class="token string">&quot;to&quot;</span><span class="token punctuation">,</span> change<span class="token punctuation">.</span>object<span class="token punctuation">[</span>change<span class="token punctuation">.</span>name<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+person<span class="token punctuation">.</span>firstName <span class="token operator">=</span>  <span class="token string">&quot;Martin&quot;</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// &#x8F93;&#x51FA;: &apos;update firstName from Maarten to Martin&apos;</span>
+
+<span class="token function">disposer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// &#x5FFD;&#x7565;&#x4E4B;&#x540E;&#x4EFB;&#x4F55;&#x7684;&#x66F4;&#x65B0;</span>
+
+<span class="token comment" spellcheck="true">// &#x89C2;&#x5BDF;&#x5355;&#x4E2A;&#x5B57;&#x6BB5;</span>
+<span class="token keyword">const</span> disposer2 <span class="token operator">=</span> <span class="token function">observe</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> <span class="token string">&quot;lastName&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>change<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">&quot;LastName changed to &quot;</span><span class="token punctuation">,</span> change<span class="token punctuation">.</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x76F8;&#x5173;&#x535A;&#x5BA2;: <a href="https://medium.com/@mweststrate/object-observe-is-dead-long-live-mobservable-observe-ad96930140c5" target="_blank">Object.observe is dead. Long live MobX.observe</a></p>
+<h2 id="event-overview">Event overview</h2>
+<p><code>intercept</code> &#x4E0E; <code>observe</code> &#x7684;&#x56DE;&#x8C03;&#x4F1A;&#x63A5;&#x6536;&#x4E00;&#x4E2A;&#x81F3;&#x5C11;&#x5177;&#x6709;&#x4EE5;&#x4E0B;&#x5C5E;&#x6027;&#x7684;&#x4E8B;&#x4EF6;&#x5BF9;&#x8C61;&#xFF1A;</p>
+<ul>
+<li><code>object</code>: &#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x7684; observable</li>
+<li><code>type</code>: (string) &#x5F53;&#x524D;&#x4E8B;&#x4EF6;&#x7684;&#x7C7B;&#x578B;</li>
+</ul>
+<p>&#x8FD9;&#x4E9B;&#x662F;&#x6BCF;&#x79CD;&#x7C7B;&#x578B;&#x53EF;&#x7528;&#x7684;&#x5176;&#x4ED6;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>observable &#x7C7B;&#x578B;</th>
+<th>event &#x7C7B;&#x578B;</th>
+<th>&#x5C5E;&#x6027;</th>
+<th>&#x63CF;&#x8FF0;</th>
+<th>&#x5728; intercept &#x4E2D;&#x53EF;&#x7528;</th>
+<th>&#x5728; intercept &#x4E2D;&#x53EF;&#x88AB;&#x4FEE;&#x6539;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td>add</td>
+<td>name</td>
+<td>name of the property being added</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>newValue</td>
+<td>the new value being assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td>update*</td>
+<td>name</td>
+<td>name of the property being updated</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>newValue</td>
+<td>the new value being assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>oldValue</td>
+<td>the value that is replaced</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Array</td>
+<td>splice</td>
+<td>index</td>
+<td>starting index of the splice. Splices are also fired by <code>push</code>, <code>unshift</code>, <code>replace</code> etc.</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>removedCount</td>
+<td>amount of items being removed</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>added</td>
+<td>array with items being added</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>removed</td>
+<td>array with items that where removed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>addCount</td>
+<td>amount of items that where added</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>update</td>
+<td>index</td>
+<td>index of the single entry that is being updated</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>newValue</td>
+<td>the newValue that is / will be assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>oldValue</td>
+<td>the old value that was replaced</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Map</td>
+<td>add</td>
+<td>name</td>
+<td>the name of the entry that was added</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>newValue</td>
+<td>the new value that is being assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td>update</td>
+<td>name</td>
+<td>the name of the entry that is being updated</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>newValue</td>
+<td>the new value that is being assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>oldValue</td>
+<td>the value that has been replaced</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>delete</td>
+<td>name</td>
+<td>the name of the entry that is being removed</td>
+<td>&#x221A;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>oldValue</td>
+<td>the value of the entry that was removed</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Boxed &amp; computed observables</td>
+<td>create</td>
+<td>newValue</td>
+<td>the value that was assigned during creation. Only available as <code>spy</code> event for boxed observables</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>update</td>
+<td>newValue</td>
+<td>the new value being assigned</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>oldValue</td>
+<td>the previous value of the observable</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>* &#x5BF9;&#x4E8E;&#x5DF2;&#x88AB;&#x66F4;&#x65B0;&#x7684; computated values&#xFF0C;<code>update</code> &#x4E8B;&#x4EF6;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#xFF08;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x4E0D;&#x662F;&#x7A81;&#x53D8;&#x7684;&#xFF09;&#x3002;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528; <code><span class="token function">observe</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> <span class="token string">&apos;computedPropertyName&apos;</span><span class="token punctuation">,</span> listener<span class="token punctuation">)</span></code> &#x663E;&#x5F0F;&#x8BA2;&#x9605;&#x7279;&#x5B9A;&#x7684;&#x5C5E;&#x6027;&#x6765;&#x8FDB;&#x884C;&#x89C2;&#x5BDF;.</em></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../refguide/modifiers.html" class="navigation navigation-prev " aria-label="Previous page: modifiers"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../refguide/reaction.html" class="navigation navigation-next " aria-label="Next page: reaction"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"edit-link":{"base":"https://github.com/suprise/mobx-cn/tree/master","label":"开始纠错"},"ga":{"token":"UA-65632006-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-65632006-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>

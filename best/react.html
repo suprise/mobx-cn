@@ -1,0 +1,1210 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>理解如何响应 | MobX 中文文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.3">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-edit-link/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../best/decorators.html" />
+    
+    
+    <link rel="prev" href="../refguide/boxed.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="4" data-basepath=".." data-revision="Mon May 01 2017 23:45:37 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="fp.html">
+            
+                
+                    <a href="../fp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        MobX 简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="intro/overview.html">
+            
+                
+                    <a href="../intro/overview.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        MobX 的要领
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="intro/concepts.html">
+            
+                
+                    <a href="../intro/concepts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        概念 &amp; 原则
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="refguide/api.html">
+            
+                
+                    <a href="../refguide/api.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API 概述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="refguide/observable.html">
+            
+                
+                    <a href="../refguide/observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="refguide/observable-decorator.html">
+            
+                
+                    <a href="../refguide/observable-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        @observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="refguide/computed-decorator.html">
+            
+                
+                    <a href="../refguide/computed-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        (@)computed
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="refguide/autorun.html">
+            
+                
+                    <a href="../refguide/autorun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        autorun
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="refguide/observer-component.html">
+            
+                
+                    <a href="../refguide/observer-component.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        (@)observer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="refguide/action.html">
+            
+                
+                    <a href="../refguide/action.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        action
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> 可观察类型</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="refguide/object.html">
+            
+                
+                    <a href="../refguide/object.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="refguide/array.html">
+            
+                
+                    <a href="../refguide/array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        arrays
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="refguide/map.html">
+            
+                
+                    <a href="../refguide/map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        maps
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="refguide/boxed.html">
+            
+                
+                    <a href="../refguide/boxed.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        boxed values
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="4" data-path="best/react.html">
+            
+                
+                    <a href="../best/react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        理解如何响应
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="best/decorators.html">
+            
+                
+                    <a href="../best/decorators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        如何使用装饰器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> 相关资源</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="faq/blogs.html">
+            
+                
+                    <a href="../faq/blogs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        教程, 视频和博客
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="faq/related.html">
+            
+                
+                    <a href="../faq/related.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        相关项目
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="faq/examples.html">
+            
+                
+                    <a href="../faq/examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        项目Demo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="faq/boilerplates.html">
+            
+                
+                    <a href="../faq/boilerplates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        与其他工具组合（Boilerplates）
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="faq/faq.html">
+            
+                
+                    <a href="../faq/faq.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        常见问题
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> 提示 &amp; 技巧</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="best/pitfalls.html">
+            
+                
+                    <a href="../best/pitfalls.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        常见的坑 &amp; 最佳实践
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="best/store.html">
+            
+                
+                    <a href="../best/store.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        定义数据Store
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="best/actions.html">
+            
+                
+                    <a href="../best/actions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        编写 (async) actions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="best/react-performance.html">
+            
+                
+                    <a href="../best/react-performance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        优化 React 组件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="best/devtools.html">
+            
+                
+                    <a href="../best/devtools.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        DevTools
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="best/syntax.html">
+            
+                
+                    <a href="../best/syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        ES5 / ES6 / ES.next 语法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="best/stateless-HMR.html">
+            
+                
+                    <a href="../best/stateless-HMR.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        无状态组件和热更新
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> 工具方法</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="refguide/autorun-async.html">
+            
+                
+                    <a href="../refguide/autorun-async.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        autorunAsync
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="refguide/extending.html">
+            
+                
+                    <a href="../refguide/extending.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Atom &amp; Reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="refguide/create-transformer.html">
+            
+                
+                    <a href="../refguide/create-transformer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        createTransformer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="refguide/expr.html">
+            
+                
+                    <a href="../refguide/expr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        expr
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="refguide/extend-observable.html">
+            
+                
+                    <a href="../refguide/extend-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        extendObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="refguide/is-observable.html">
+            
+                
+                    <a href="../refguide/is-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        isObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="refguide/modifiers.html">
+            
+                
+                    <a href="../refguide/modifiers.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        modifiers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.8" data-path="refguide/observe.html">
+            
+                
+                    <a href="../refguide/observe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.8.</b>
+                        
+                        intercept &amp; observe
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="refguide/reaction.html">
+            
+                
+                    <a href="../refguide/reaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.9.</b>
+                        
+                        reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.10" data-path="refguide/spy.html">
+            
+                
+                    <a href="../refguide/spy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.10.</b>
+                        
+                        spy
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.11" data-path="refguide/tojson.html">
+            
+                
+                    <a href="../refguide/tojson.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.11.</b>
+                        
+                        toJS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.12" data-path="refguide/transaction.html">
+            
+                
+                    <a href="../refguide/transaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.12.</b>
+                        
+                        transaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.13" data-path="refguide/untracked.html">
+            
+                
+                    <a href="../refguide/untracked.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.13.</b>
+                        
+                        untracked
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.14" data-path="refguide/when.html">
+            
+                
+                    <a href="../refguide/when.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.14.</b>
+                        
+                        when
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="donating.html">
+            
+                
+                    <a href="../donating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        捐赠
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >MobX 中文文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <a id="edit-link" href="https://github.com/suprise/mobx-cn/tree/master/best/react.md" class="btn fa fa-edit pull-left">&#xA0;&#xA0;&#x5F00;&#x59CB;&#x7EA0;&#x9519;</a><h1 id="%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8Bmobx%E6%89%8D%E4%BC%9A%E5%93%8D%E5%BA%94%EF%BC%88react%EF%BC%89%EF%BC%9F">&#x4EC0;&#x4E48;&#x60C5;&#x51B5;&#x4E0B;MobX&#x624D;&#x4F1A;&#x54CD;&#x5E94;&#xFF08;react&#xFF09;&#xFF1F;</h1>
+<p>MobX&#x901A;&#x5E38;&#x4F1A;&#x50CF;&#x4F60;&#x6240;&#x60F3;&#x7684;&#x90A3;&#x6837;&#x54CD;&#x5E94;&#xFF0C;&#x53EF;&#x4EE5;&#x8BF4;90%&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F60;&#x6240;&#x4F7F;&#x7528;&#x7684;MobX&#x90FD;&#x53EF;&#x4EE5;&#x987A;&#x5229;&#x5DE5;&#x4F5C;&#x3002;
+&#x7136;&#x800C;&#xFF0C;&#x5728;&#x67D0;&#x4E9B;&#x65F6;&#x5019;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x4E0D;&#x7B26;&#x5408;&#x4F60;&#x671F;&#x671B;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5728;&#x8FD9;&#x4E00;&#x70B9;&#x4E0A;&#xFF0C;&#x7406;&#x89E3;MobX&#x662F;&#x5982;&#x4F55;&#x786E;&#x5B9A;&#x5B83;&#x9700;&#x8981;&#x5982;&#x4F55;&#x54CD;&#x5E94;&#x662F;&#x975E;&#x5E38;&#x5B9D;&#x8D35;&#x7684;&#x3002;</p>
+<blockquote>
+<p>&#x5728;&#x53EF;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4EFB;&#x4E00; <strong>&#x5DF2;&#x88AB;&#x89C2;&#x5BDF;</strong> &#x7684; <em>&#x5C5E;&#x6027;&#xFF08;property&#xFF09;</em> &#x88AB; <strong>&#x4F7F;&#x7528;&#xFF08;read&#xFF09;</strong> &#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x88AB;&#x89C2;&#x5BDF;&#x7684;&#x5C5E;&#x6027;&#x4F1A;&#x89E6;&#x53D1;&#x54CD;&#x5E94;</p>
+<p>&#x539F;&#x6587;&#xFF1A;MobX reacts to any <em>existing</em> <strong>observable</strong> <em>property</em> that is read during the execution of a tracked function.</p>
+</blockquote>
+<ul>
+<li><em>&quot;&#x4F7F;&#x7528;&quot;</em> &#x662F;&#x5BF9;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x89E3;&#x5F15;&#x7528;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x70B9;&#x5F15;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF08;&#x5982; <code>user<span class="token punctuation">.</span>name</code>&#xFF09;&#x6216;&#x8005;&#x4E2D;&#x62EC;&#x53F7;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF08;&#x5982; <code>user<span class="token punctuation">[</span><span class="token string">&apos;name&apos;</span><span class="token punctuation">]</span></code>&#xFF09;</li>
+<li><em>&quot;&#x53EF;&#x8FFD;&#x8E2A;&#x7684;&#x51FD;&#x6570;&quot;</em> &#x662F;&#x5BF9;&#x4E00;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x8868;&#x8FF0;&#xFF1A;&#x5982; <code>computed</code> &#xFF1B;&#x5982;&#x4E00;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#x7EC4;&#x4EF6;&#x7684;render&#x65B9;&#x6CD5;&#xFF1B;&#x6216;&#x8005;&#x662F;&#x4F20;&#x7ED9; <code>when</code> ,  <code>reaction</code> &#x548C; <code>autorun</code> &#x4E09;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;</li>
+<li><em>&quot;&#x5728;XX&#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&quot;</em> &#x610F;&#x5473;&#x7740;&#x88AB;&#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x53EA;&#x6709;&#x5728;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x88AB;&#x4F7F;&#x7528;&#x3002;&#x81F3;&#x4E8E;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x6216;&#x662F;&#x95F4;&#x63A5;&#x4F7F;&#x7528;&#xFF0C;&#x90FD;&#x4E0D;&#x662F;&#x95EE;&#x9898;&#x3002;</li>
+</ul>
+<p>&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x4EE5;&#x4E0B;&#x60C5;&#x51B5;MobX&#x4E0D;&#x4F1A;&#x54CD;&#x5E94;&#xFF1A;</p>
+<ul>
+<li>&#x503C;&#x867D;&#x7136;&#x662F;&#x901A;&#x8FC7;&#x88AB;&#x89C2;&#x5BDF;&#x8005;&#x83B7;&#x53D6;&#x7684;&#xFF0C;&#x8FD9;&#x4E00;&#x8FC7;&#x7A0B;&#x5374;&#x4E0D;&#x5728;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x4E2D;&#x3002;</li>
+<li>&#x88AB;&#x89C2;&#x5BDF;&#x8005;&#x5728;&#x4E00;&#x4E2A;&#x5F02;&#x6B65;&#x7684;&#x4EE3;&#x7801;&#x6BB5;&#x4E2D;&#x88AB;&#x4F7F;&#x7528;</li>
+</ul>
+<h2 id="mobx%E8%BF%BD%E8%B8%AA%E7%9A%84%E6%98%AF%E5%B1%9E%E6%80%A7%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%B1%9E%E6%80%A7%E5%AF%B9%E5%BA%94%E7%9A%84%E5%80%BC">MobX&#x8FFD;&#x8E2A;&#x7684;&#x662F;&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5C5E;&#x6027;&#x5BF9;&#x5E94;&#x7684;&#x503C;</h2>
+<p>&#x4E3A;&#x4E86;&#x66F4;&#x52A0;&#x6E05;&#x6670;&#x5730;&#x7528;&#x4F8B;&#x5B50;&#x9610;&#x660E;&#x4E0A;&#x8FF0;&#x89C4;&#x5219;&#xFF0C;&#x5047;&#x8BBE;&#x4F60;&#x6709;&#x5982;&#x4E0B;&#x4E00;&#x4E2A;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF08;&#x53EF;&#x89C2;&#x5BDF;&#x4F5C;&#x7528;&#x4E8E;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x65F6;&#x9ED8;&#x8BA4;&#x662F;&#x9012;&#x5F52;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x90FD;&#x662F;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#xFF09;</p>
+<pre><code class="lang-javascript"><span class="token keyword">let</span> message <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    title<span class="token punctuation">:</span> <span class="token string">&quot;Foo&quot;</span><span class="token punctuation">,</span>
+    author<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> <span class="token string">&quot;Michel&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    likes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token string">&quot;John&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;Sara&quot;</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x770B;&#x8D77;&#x6765;&#x5982;&#x4E0B;&#x56FE;&#xFF0C;&#x7EFF;&#x65B9;&#x5757;&#x4EE3;&#x8868;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x5C5E;&#x6027;&#x3002;&#x6CE8;&#x610F;&#x503C;&#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x53EF;&#x89C2;&#x5BDF;&#x7684;</p>
+<p><img src="../images/observed-refs.png" alt="MobX reacts to changing references"></p>
+<h2 id="%E4%BE%8B%E5%AD%90">&#x4F8B;&#x5B50;</h2>
+<p>&#x8BA9;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x770B;&#x4E00;&#x4E9B;&#x4F8B;&#x5B50;&#xFF08;&#x57FA;&#x4E8E;&#x4E0A;&#x8FF0;&#x5B9A;&#x4E49;&#x7684; <code>message</code> &#x53D8;&#x91CF;&#xFF09;</p>
+<h4 id="%E6%AD%A3%E7%A1%AE-%E5%9C%A8%E8%A2%AB%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E4%B8%AD%E8%A7%A3%E5%BC%95%E7%94%A8">&#x6B63;&#x786E;: &#x5728;&#x88AB;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x4E2D;&#x89E3;&#x5F15;&#x7528;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>title<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">&quot;Bar&quot;</span>
+</code></pre>
+<p>&#x8FD9;&#x4F1A;&#x50CF;&#x9884;&#x671F;&#x7684;&#x90A3;&#x6837;&#x8FDB;&#x884C;&#x54CD;&#x5E94;&#xFF0C;<code><span class="token punctuation">.</span>title</code> &#x5728;autorun&#x4E2D;&#x88AB;&#x89E3;&#x5F15;&#x7528;&#x3002;&#x7136;&#x540E;&#x5728;&#x540E;&#x7EED;&#x88AB;&#x6539;&#x53D8;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x6539;&#x53D8;&#x662F;&#x53EF;&#x4EE5;&#x88AB;&#x68C0;&#x6D4B;&#x5230;&#x7684;&#x3002;
+This will react as expected, the <code><span class="token punctuation">.</span>title</code> property was dereferenced by the autorun, and changed afterwards, so this change is detected.</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x8DDF;&#x8E2A;&#x51FD;&#x6570;&#x5185;&#x8C03;&#x7528;&#x7684; <code><span class="token function">whyRun</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code> &#x6765;&#x9A8C;&#x8BC1;MobX&#x5C06;&#x8DDF;&#x8E2A;&#x54EA;&#x4E9B;&#x5185;&#x5BB9;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x5B83;&#x5C06;&#x8F93;&#x51FA;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>title<span class="token punctuation">)</span>
+    <span class="token function">whyRun</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// Outputs:</span>
+WhyRun<span class="token operator">?</span> reaction <span class="token string">&apos;Autorun@1&apos;</span><span class="token punctuation">:</span>
+ <span class="token operator">*</span> Status<span class="token punctuation">:</span> <span class="token punctuation">[</span>running<span class="token punctuation">]</span>
+ <span class="token operator">*</span> This reaction will re<span class="token operator">-</span>run <span class="token keyword">if</span> any of the following observables changes<span class="token punctuation">:</span>
+    ObservableObject@<span class="token number">1</span><span class="token punctuation">.</span>title
+</code></pre>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%8F%AF%E8%A7%82%E5%AF%9F%E7%9A%84%E5%BC%95%E7%94%A8">&#x4E0D;&#x6B63;&#x786E;: &#x6539;&#x53D8;&#x4E00;&#x4E2A;&#x4E0D;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x5F15;&#x7528;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>title<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">&quot;Bar&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>&#x8FD9;<strong>&#x4E0D;&#x4F1A;</strong>&#x54CD;&#x5E94;&#xFF0C;<code>message</code> &#x6539;&#x53D8;&#x4E86;&#xFF0C;&#x4F46; <code>message</code> &#x5E76;&#x4E0D;&#x662F;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#xFF0C;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#xFF0C;&#x6307;&#x5411;&#x4E00;&#x4E2A;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x5F15;&#x7528;&#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x3002;</p>
+<p>&#xFF08;&#x8BD1;&#x8005;&#x6309;&#xFF1A;&#x8FD9;&#x662F;&#x8BF4;&#xFF0C;&#x6539;&#x53D8;message&#x4E2D;&#x5982;title&#x4E4B;&#x7C7B;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x662F;&#x4F1A;&#x54CD;&#x5E94;&#x7684;&#xFF0C;&#x4F46;&#x91CD;&#x65B0;&#x7ED9;message&#x8D4B;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x4E0D;&#x4F1A;&#x8FDB;&#x884C;&#x54CD;&#x5E94;&#xFF09;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE%EF%BC%9A%E5%9C%A8%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E5%A4%96%E8%A2%AB%E8%A7%A3%E5%BC%95%E7%94%A8">&#x4E0D;&#x6B63;&#x786E;&#xFF1A;&#x5728;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x5916;&#x88AB;&#x89E3;&#x5F15;&#x7528;</h4>
+<pre><code class="lang-javascript"><span class="token keyword">var</span> title <span class="token operator">=</span> message<span class="token punctuation">.</span>title<span class="token punctuation">;</span>
+<span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">&quot;Bar&quot;</span>
+</code></pre>
+<p>&#x8FD9;<strong>&#x4E0D;&#x4F1A;</strong>&#x54CD;&#x5E94;&#xFF0C;<code>message<span class="token punctuation">.</span>title</code> &#x5728; <code>autorun</code> &#x4E4B;&#x5916;&#x88AB;&#x89E3;&#x5F15;&#x7528;&#x4E86;&#xFF0C;&#x800C;&#x88AB;&#x4F20;&#x8FDB;&#x6765;&#x7684;&#x53EA;&#x662F; <code>message<span class="token punctuation">.</span>title</code> &#x7684;&#x503C;&#xFF0C;<code>title</code> &#x672C;&#x8EAB;&#x4E0D;&#x662F;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#xFF0C;&#x6240;&#x4EE5; <code>autorun</code> &#x4E0D;&#x4F1A;&#x54CD;&#x5E94;</p>
+<h4 id="%E6%AD%A3%E7%A1%AE-%E5%9C%A8%E8%A2%AB%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E5%86%85%E8%A7%A3%E5%BC%95%E7%94%A8">&#x6B63;&#x786E;: &#x5728;&#x88AB;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x5185;&#x89E3;&#x5F15;&#x7528;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Sara&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>author <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&quot;John&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x4E24;&#x6B21;&#x6539;&#x53D8;&#x90FD;&#x4F1A;&#x6B63;&#x5E38;&#x54CD;&#x5E94;&#x3002;<code>author</code> &#x548C; <code>author<span class="token punctuation">.</span>name</code> &#x90FD;&#x7528;&#x7684;&#x662F;&#x70B9;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5141;&#x8BB8;MobX&#x53BB;&#x8FFD;&#x8E2A;&#x5B83;&#x4EEC;&#x7684;&#x5F15;&#x7528;&#x3002;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E5%B0%86%E5%8F%AF%E8%A7%82%E5%AF%9F%E7%9A%84%E5%AF%B9%E8%B1%A1%E9%80%9A%E8%BF%87%E6%96%B0%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E8%BF%9B%E8%A1%8C%E5%BC%95%E7%94%A8%EF%BC%8C%E5%B0%86%E4%B8%8D%E4%BC%9A%E6%9C%89%E8%BF%BD%E8%B8%AA">&#x4E0D;&#x6B63;&#x786E;: &#x5C06;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x5BF9;&#x8C61;&#x901A;&#x8FC7;&#x65B0;&#x58F0;&#x660E;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x5F15;&#x7528;&#xFF0C;&#x5C06;&#x4E0D;&#x4F1A;&#x6709;&#x8FFD;&#x8E2A;</h4>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> author <span class="token operator">=</span> message<span class="token punctuation">.</span>author<span class="token punctuation">;</span>
+<span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>author<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Sara&quot;</span><span class="token punctuation">;</span>
+message<span class="token punctuation">.</span>author <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&quot;John&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x6539;&#x53D8;&#x4F1A;&#x53D1;&#x751F;&#xFF0C;<code>message<span class="token punctuation">.</span>author</code> &#x548C; <code>author</code> &#x6307;&#x5411;&#x540C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14; <code><span class="token punctuation">.</span>name</code> &#x662F;&#x5728;autorun&#x4E2D;&#x89E3;&#x5F15;&#x7528;
+&#x4F46;&#x7B2C;&#x4E8C;&#x4E2A;&#x6539;&#x53D8;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#xFF0C;<code>message<span class="token punctuation">.</span>author</code> &#x8FD9;&#x4E2A;&#x5173;&#x7CFB;&#x5728; <code>autorun</code> &#x6CA1;&#x88AB;&#x8FFD;&#x8E2A;&#xFF0C;Autorun&#x59CB;&#x7EC8;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x300E;&#x65E7;&#x300F;&#x7684; <code>author</code></p>
+<h4 id="%E6%AD%A3%E7%A1%AE-%E5%9C%A8%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E4%B8%AD%E8%B0%83%E7%94%A8%E6%95%B0%E7%BB%84%E7%9A%84%E5%B1%9E%E6%80%A7">&#x6B63;&#x786E;: &#x5728;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x6570;&#x7EC4;&#x7684;&#x5C5E;&#x6027;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8FD9;&#x4F1A;&#x5982;&#x9884;&#x671F;&#x4E00;&#x6837;&#x54CD;&#x5E94;&#x3002;<code><span class="token punctuation">.</span>length</code> &#x8BA1;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x6CE8;&#x610F;&#x4F1A;&#x5BF9;array&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x53D8;&#x5316;&#x8FDB;&#x884C;&#x54CD;&#x5E94;&#x3002;Array&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x6216;&#x5C5E;&#x6027;&#x8FDB;&#x884C;&#x8FFD;&#x8E2A;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x4F53;&#x8FFD;&#x8E2A;&#x3002;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E5%9C%A8%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E4%B8%AD%E8%B0%83%E7%94%A8%E8%B6%8A%E7%95%8C%E7%B4%A2%E5%BC%95">&#x4E0D;&#x6B63;&#x786E;: &#x5728;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x8D8A;&#x754C;&#x7D22;&#x5F15;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>likes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x5982;&#x679C;&#x7528;&#x7684;&#x662F;&#x4E4B;&#x524D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4E0A;&#x8FF0;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4F1A;&#x54CD;&#x5E94;&#xFF0C;&#x6570;&#x7EC4;&#x7D22;&#x5F15;&#xFF08;index&#xFF09;&#x88AB;&#x4F5C;&#x4E3A;&#x5C5E;&#x6027;&#x4E00;&#x6837;&#x8C03;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x5728; <code>index <span class="token operator">&lt;</span> length</code> &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x624D;&#x4F1A;&#x751F;&#x6548;&#x3002;
+MobX &#x4E0D;&#x4F1A;&#x8FFD;&#x8E2A;&#x4E00;&#x4E2A;&#x8FD8;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5C5E;&#x6027;&#xFF08;&#x9664;&#x975E;&#x4F7F;&#x7528;maps&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x786E;&#x4FDD;&#x4F60;&#x4F7F;&#x7528;&#x7684;&#x6570;&#x7EC4;&#x5F15;&#x7528;&#x5C0F;&#x4E8E;&#x8BE5;&#x6570;&#x7EC4;&#x7684;&#x957F;&#x5EA6;&#x3002; </p>
+<h4 id="%E6%AD%A3%E7%A1%AE-%E5%9C%A8%E8%BF%BD%E8%B8%AA%E5%87%BD%E6%95%B0%E4%B8%AD%E8%B0%83%E7%94%A8%E6%95%B0%E7%BB%84%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0">&#x6B63;&#x786E;: &#x5728;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x6570;&#x7EC4;&#x76F8;&#x5173;&#x51FD;&#x6570;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8FD9;&#x4F1A;&#x5982;&#x9884;&#x671F;&#x4E00;&#x6837;&#x54CD;&#x5E94;&#x3002;&#x6240;&#x6709;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x6570;&#x7EC4;&#x7684;&#x6570;&#x7EC4;&#x76F8;&#x5173;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x8FFD;&#x8E2A;</p>
+<hr>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8FD9;&#x4F1A;&#x5982;&#x9884;&#x671F;&#x4E00;&#x6837;&#x54CD;&#x5E94;&#x3002;&#x6240;&#x6709;&#x7684;&#x6570;&#x7EC4;&#x7D22;&#x5F15;&#x90FD;&#x4F1A;&#x88AB;&#x68C0;&#x6D4B;&#xFF0C;&#x4F46;&#x53EA;&#x5728; <code>index <span class="token operator">&lt;</span> length</code>&#x7684;&#x60C5;&#x51B5;&#x4E0B;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E4%BD%BF%E7%94%A8-%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%EF%BC%8C%E4%BD%86%E5%B9%B6%E4%B8%8D%E8%B0%83%E7%94%A8%E4%BB%BB%E4%BD%95%E5%AE%83%E7%9A%84%E5%B1%9E%E6%80%A7">&#x4E0D;&#x6B63;&#x786E;: &quot;&#x4F7F;&#x7528;&quot; &#x4E00;&#x4E2A;&#x53EF;&#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x8C03;&#x7528;&#x4EFB;&#x4F55;&#x5B83;&#x7684;&#x5C5E;&#x6027;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    message<span class="token punctuation">.</span>likes<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8FD9;&#x4E0D;&#x4F1A;&#x54CD;&#x5E94;&#x3002;&#x56E0;&#x4E3A; <code>likes</code> &#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x672C;&#x8EAB;&#x5E76;&#x6CA1;&#x6709;&#x88AB; <code>autorun</code> &#x4F7F;&#x7528;&#xFF0C;&#x53EA;&#x662F;&#x653E;&#x4E86;&#x4E2A;&#x5F15;&#x7528;&#x5728;&#x8FD9;&#x91CC;&#x3002;
+&#x5BF9;&#x7167;&#x6765;&#x770B;&#xFF0C;&#x5199;&#x6210; <code>messages<span class="token punctuation">.</span>likes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">]</span></code> &#x8FD9;&#x6837;&#x5C31;&#x4F1A;&#x54CD;&#x5E94;&#xFF0C;&#x56E0;&#x4E3A;&#x6539;&#x53D8;&#x7684;&#x4E0D;&#x662F;&#x6570;&#x7EC4;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x800C;&#x662F; <code>likes</code> &#x5C5E;&#x6027;&#x672C;&#x8EAB;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E4%BD%BF%E7%94%A8%E6%9C%AA%E8%A2%AB%E8%A7%82%E5%AF%9F%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7">&#x4E0D;&#x6B63;&#x786E;: &#x4F7F;&#x7528;&#x672A;&#x88AB;&#x89C2;&#x5BDF;&#x7684;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>postDate<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>postDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>&#x8FD9;&#x4E0D;&#x4F1A;&#x54CD;&#x5E94;&#x3002;MobX&#x53EA;&#x8FFD;&#x8E2A;&#x53EF;&#x89C2;&#x5BDF;&#x5C5E;&#x6027;</p>
+<h4 id="%E4%B8%8D%E6%AD%A3%E7%A1%AE-%E4%BD%BF%E7%94%A8%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%B1%9E%E6%80%A7">&#x4E0D;&#x6B63;&#x786E;: &#x4F7F;&#x7528;&#x53EF;&#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5C5E;&#x6027;</h4>
+<h4 id="incorrect-using-not-yet-existing-observable-object-properties">Incorrect: using not yet existing observable object properties</h4>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>postDate<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">extendObservable</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    postDate<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>&#x8FD9;&#x4E5F;&#x4E0D;&#x4F1A;&#x54CD;&#x5E94;&#x3002;&#x56E0;&#x4E3A;&#x5F53;&#x8FFD;&#x8E2A;&#x5F00;&#x59CB;&#x65F6;&#xFF0C;&#x88AB;&#x8FFD;&#x8E2A;&#x7684;&#x5C5E;&#x6027;&#x8FD8;&#x4E0D;&#x5B58;&#x5728;&#x3002;
+&#x4F46;&#x5982;&#x679C;&#x662F;&#x5176;&#x4ED6;&#x53EF;&#x89C2;&#x5BDF;&#x5BF9;&#x8C61;&#x89E6;&#x53D1;&#x8FD9;&#x4E2A; <code>autorun</code> &#x91CD;&#x65B0;&#x6267;&#x884C;&#xFF08;re-run&#xFF09;&#xFF0C;&#x5219; <code>autorun</code> &#x4F1A;&#x91CD;&#x65B0;&#x5F00;&#x59CB;&#x5F88;&#x597D;&#x5730;&#x8FFD;&#x8E2A; <code>postDate</code> &#x5C5E;&#x6027;&#x3002;</p>
+<h4 id="%E6%AD%A3%E7%A1%AE-%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84map%E5%AD%97%E6%AE%B5%EF%BC%88entry%EF%BC%89">&#x6B63;&#x786E;: &#x4F7F;&#x7528;&#x4E0D;&#x5B58;&#x5728;&#x7684;Map&#x5B57;&#x6BB5;&#xFF08;entry&#xFF09;</h4>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> twitterUrls <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token function">asMap</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">&quot;John&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;twitter.com/johnny&quot;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>twitterUrls<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">&quot;Sara&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+twitterUrls<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">&quot;Sara&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;twitter.com/horsejs&quot;</span><span class="token punctuation">)</span>
+</code></pre>
+<p>&#x8FD9; <strong>&#x4F1A;</strong> &#x54CD;&#x5E94;&#xFF0C;&#x56E0;&#x4E3A;&#x53EF;&#x89C2;&#x5BDF;Map&#x652F;&#x6301;&#x89C2;&#x5BDF;&#x4E0D;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#x3002;
+&#x6CE8;&#x610F;&#x4E00;&#x5F00;&#x59CB;&#x4F1A;&#x6253;&#x5370;&#x51FA; <code>undefined</code>&#x3002;
+&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>twitterUrls<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">&quot;Sara&quot;</span><span class="token punctuation">)</span></code> &#x5148;&#x786E;&#x8BA4;&#x5B57;&#x6BB5;&#x7684;&#x5B58;&#x5728;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x7684;&#x5B57;&#x6BB5;&#x96C6;&#x5408;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x53EF;&#x89C2;&#x5BDF;Map&#x3002;</p>
+<h2 id="mobx-%E5%8F%AA%E8%BF%BD%E8%B8%AA%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE">MobX &#x53EA;&#x8FFD;&#x8E2A;&#x540C;&#x6B65;&#x8C03;&#x7528;&#x7684;&#x6570;&#x636E;</h2>
+<pre><code class="lang-javascript"><span class="token keyword">function</span> <span class="token function">upperCaseAuthorName</span><span class="token punctuation">(</span>author<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> baseName <span class="token operator">=</span> author<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> baseName<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">upperCaseAuthorName</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>author<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Chesterton&quot;</span>
+</code></pre>
+<p>&#x8FD9;&#x4F1A;&#x5982;&#x9884;&#x671F;&#x4E00;&#x6837;&#x54CD;&#x5E94;&#x3002;&#x5373;&#x4F7F; <code>author<span class="token punctuation">.</span>name</code> &#x5E76;&#x6CA1;&#x6709;&#x5728; <code>autorun</code> &#x4E2D;&#x89E3;&#x5F15;&#x7528;&#x3002;
+MobX&#x59CB;&#x7EC8;&#x4F1A;&#x8FFD;&#x8E2A; <code>upperCaseAuthorName</code> &#x4E2D;&#x53D1;&#x751F;&#x7684;&#x4E00;&#x5207;&#x89E3;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E00;&#x5207;&#x90FD;&#x662F;&#x5728;autorun&#x7684; <strong>&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;</strong> &#x53D1;&#x751F;&#x3002;</p>
+<hr>
+<pre><code class="lang-javascript"><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token number">10</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+message<span class="token punctuation">.</span>likes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">&quot;Jennifer&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x8FD9;&#x4E0D;&#x4F1A;&#x54CD;&#x5E94;&#x3002;&#x56E0;&#x4E3A;&#x5728; <code>autorun</code> &#x7684;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x6CA1;&#x6709;&#x53EF;&#x89C2;&#x5BDF;&#x8005;&#x88AB;&#x4F7F;&#x7528;&#xFF0C;&#x800C;&#x662F;&#x5728; <code>setTimeout</code> &#x4E2D;&#x4F7F;&#x7528;&#x3002;
+&#x503C;&#x5F97;&#x8B66;&#x544A;&#x7684;&#x662F;&#xFF0C;&#x4F20;&#x9012;&#x4E00;&#x4E2A;&#x6E32;&#x67D3;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7ED9;React&#x7EC4;&#x4EF6;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>SomeContainer
+        title <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token punctuation">{</span>message<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token punctuation">}</span>
+    <span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+message<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">&quot;Bar&quot;</span>
+</code></pre>
+<p>&#x521D;&#x6B65;&#x770B;&#x8D77;&#x6765;&#x597D;&#x50CF;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x9664;&#x4E86; <code><span class="token operator">&lt;</span>div<span class="token operator">&gt;</span></code> &#x6CA1;&#x6709;&#x901A;&#x8FC7; <code>MyComponent</code> &#x5B9E;&#x9645;&#x6E32;&#x67D3;&#x51FA;&#x6765;&#xFF08; <code>MyComponent</code> &#x7684;&#x6E32;&#x67D3;&#x8FC7;&#x7A0B;&#x662F;&#x5DF2;&#x7ECF;&#x88AB;&#x8FFD;&#x8E2A;&#x7684;&#xFF09;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7; <code>SomeContainer</code> &#x6765;&#x6E32;&#x67D3; &#x3002;&#x6240;&#x4EE5;&#x786E;&#x4FDD; <code>SomeContainer</code> &#x7684;title&#x6B63;&#x786E;&#x5730;&#x54CD;&#x5E94;&#x4E86;&#x4E00;&#x4E2A; <code>message<span class="token punctuation">.</span>title</code> &#x7684;&#x65B0;&#x503C;&#xFF0C; <code>SomeContainer</code> &#x4E5F;&#x88AB;&#x5F53;&#x505A;&#x4E86;&#x4E00;&#x4E2A; <code>observer</code> &#x3002;&#x5982;&#x679C; <code>SomeContainer</code> &#x6765;&#x6E90;&#x4E8E;&#x4E00;&#x4E2A;&#x5916;&#x90E8;&#x5E93;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x65E0;&#x72B6;&#x6001; <code>observer</code> &#x7EC4;&#x4EF6;&#x5185;&#x5305;&#x88F9;&#x4E00;&#x5C42; <code>div</code> &#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x56DE;&#x8C03;&#x4E2D;&#x5B9E;&#x4F8B;&#x5316;&#x6765;&#x4FEE;&#x6B63;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x5982;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> MyComponent <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>SomeContainer
+        title <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>TitleRenderer message<span class="token operator">=</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">}</span>
+    <span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> TitleRenderer <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token punctuation">{</span>message<span class="token punctuation">.</span>title<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span><span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+
+message<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">&quot;Bar&quot;</span>
+</code></pre>
+<h2 id="%E9%81%BF%E5%85%8D%E5%B0%86%E5%8F%AF%E8%A7%82%E5%AF%9F%E8%80%85%E7%BC%93%E5%AD%98%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%8F%98%E9%87%8F%E4%B8%AD">&#x907F;&#x514D;&#x5C06;&#x53EF;&#x89C2;&#x5BDF;&#x8005;&#x7F13;&#x5B58;&#x5728;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x4E2D;</h2>
+<p>&#x4E00;&#x4E2A;&#x5E38;&#x89C1;&#x7684;&#x9519;&#x8BEF;&#x662F;&#x5C06;&#x5F15;&#x7528;&#x7684;&#x53EF;&#x89C2;&#x5BDF;&#x8005;&#x7F13;&#x5B58;&#x5728;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code class="lang-javascript">@observer <span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>component</span> <span class="token punctuation">{</span>
+    author<span class="token punctuation">;</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>author <span class="token operator">=</span> props<span class="token punctuation">.</span>message<span class="token punctuation">.</span>author<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token punctuation">{</span>author<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x5F53;&#x6539;&#x53D8; <code>author</code> &#x7684; <code>name</code> &#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x786E;&#x4F1A;&#x6B63;&#x786E;&#x5730;&#x54CD;&#x5E94;&#xFF0C;&#x4F46;&#x6539;&#x53D8; <code>author</code> &#x81EA;&#x8EAB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5219;&#x4E0D;&#x4F1A;&#x6B63;&#x786E;&#x5730;&#x54CD;&#x5E94;&#x3002;&#x56E0;&#x4E3A;&#x89E3;&#x5F15;&#x7528;&#x53D1;&#x751F;&#x5728; <code><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code> &#x8FD9;&#x4E2A; <code>observer</code> &#x7EC4;&#x4EF6;&#x552F;&#x4E00;&#x7684;&#x8FFD;&#x8E2A;&#x65B9;&#x6CD5;&#x4E4B;&#x5916;&#x3002;
+&#x6CE8;&#x610F;&#x5373;&#x4F7F;&#x4F60;&#x5C06;&#x7EC4;&#x4EF6;&#x81EA;&#x8EAB;&#x7684; <code>author</code> &#x8BBE;&#x7F6E;&#x4E3A; <code>@observable</code> &#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x53EA;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x4E86;&#x4E00;&#x6B21;&#x3002;
+&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7B80;&#x5355;&#x5730;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x5C06;&#x89E3;&#x5F15;&#x7528;&#x653E;&#x5728; <code><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code> &#x5185;&#xFF1B;&#x6216;&#x8005;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x8BA1;&#x7B97;&#x503C;</p>
+<pre><code class="lang-javascript">@observer <span class="token keyword">class</span> <span class="token class-name">MyComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>component</span> <span class="token punctuation">{</span>
+    @computed <span class="token keyword">get</span> <span class="token function">author</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>message<span class="token punctuation">.</span>author
+    <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="%E5%BD%93%E5%A4%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93">&#x5F53;&#x591A;&#x7EC4;&#x4EF6;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F1A;&#x5982;&#x4F55;&#x6E32;&#x67D3;</h2>
+<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x7EC4;&#x4EF6;&#xFF0C;&#x4EE5;&#x6E32;&#x67D3;&#x6211;&#x4EEC;&#x7684; <code>message</code>&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-javascript"><span class="token keyword">const</span> Message <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+        <span class="token punctuation">{</span>message<span class="token punctuation">.</span>title<span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span>Author author<span class="token operator">=</span><span class="token punctuation">{</span> message<span class="token punctuation">.</span>author <span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>Likes likes<span class="token operator">=</span><span class="token punctuation">{</span> message<span class="token punctuation">.</span>likes <span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> Author <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> author <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{</span>author<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> Likes <span class="token operator">=</span> <span class="token function">observer</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> likes <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>ul<span class="token operator">&gt;</span>
+        <span class="token punctuation">{</span>likes<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>like <span class="token operator">=</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>li<span class="token operator">&gt;</span><span class="token punctuation">{</span>like<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>li<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>ul<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>&#x53D8;&#x5316;</th>
+<th>&#x91CD;&#x6E32;&#x67D3;&#x7684;&#x7EC4;&#x4EF6;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message<span class="token punctuation">.</span>title <span class="token operator">=</span> <span class="token string">&quot;Bar&quot;</span></code></td>
+<td><code>Message</code></td>
+</tr>
+<tr>
+<td><code>message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">&quot;Susan&quot;</span></code></td>
+<td><code>Author</code> (<code><span class="token punctuation">.</span>author</code> is dereferenced in <code>Message</code>, but didn&apos;t change)*</td>
+</tr>
+<tr>
+<td><code>message<span class="token punctuation">.</span>author <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">&quot;Susan&quot;</span><span class="token punctuation">}</span></code></td>
+<td><code>Message</code>, <code>Author</code></td>
+</tr>
+<tr>
+<td><code>message<span class="token punctuation">.</span>likes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Michel&quot;</span></code></td>
+<td><code>Likes</code></td>
+</tr>
+</tbody>
+</table>
+<p>&#x6CE8;&#x610F;&#xFF1A;</p>
+<ol>
+<li>* &#x5982;&#x679C;<code>Author</code>&#x7EC4;&#x4EF6;&#x88AB;&#x5524;&#x8D77;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x662F;<code><span class="token operator">&lt;</span>Author author<span class="token operator">=</span><span class="token punctuation">{</span> message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span></code> &#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x5219;<code>Message</code>&#x4F1A;&#x6210;&#x4E3A;&#x89E3;&#x5F15;&#x7528;&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x54CD;&#x5E94;<code>message<span class="token punctuation">.</span>author<span class="token punctuation">.</span>name</code>&#x7684;&#x53D8;&#x5316;&#x3002;
+&#x5C3D;&#x7BA1;&#x5982;&#x6B64;&#xFF0C;<code><span class="token operator">&lt;</span>Author<span class="token operator">&gt;</span></code> &#x4ECD;&#x7136;&#x4F1A;&#x6B63;&#x5E38;&#x5730;&#x6E32;&#x67D3;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x63A5;&#x53D7;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x503C;&#x3002;&#x4F46;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x7684;&#x8003;&#x8651;&#xFF0C;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x5C3D;&#x53EF;&#x80FD;&#x665A;&#x5730;&#x89E3;&#x5F15;&#x7528;&#x3002;
+2&#x3001; ** &#x5982;&#x679C; likes&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x800C;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4ED6;&#x4EEC;&#x88AB;&#x81EA;&#x5DF1;&#x7684;<code>Like</code>&#x7EC4;&#x4EF6;&#x6240;&#x6E32;&#x67D3;&#xFF0C;&#x5219;&#x5176;&#x4E2D;&#x5177;&#x4F53;&#x7684;&#x67D0;&#x4E2A;like&#x53D1;&#x751F;&#x6539;&#x53D8;&#x65F6;&#xFF0C;<code>Likes</code>&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x91CD;&#x6E32;&#x67D3;&#x3002;</li>
+</ol>
+<h2 id="%E6%80%BB%E8%80%8C%E8%A8%80%E4%B9%8B%EF%BC%88tl-dr%EF%BC%89">&#x603B;&#x800C;&#x8A00;&#x4E4B;&#xFF08;TL;DR&#xFF09;</h2>
+<blockquote>
+<p>&#x5728;&#x53EF;&#x8FFD;&#x8E2A;&#x51FD;&#x6570;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x4EFB;&#x4E00; <strong>*&#x5DF2;&#x88AB;&#x89C2;&#x5BDF;</strong> &#x7684;<em>&#x5C5E;&#x6027;&#xFF08;property&#xFF09;</em><em> &#x88AB; <strong>&#x4F7F;&#x7528;&#xFF08;read&#xFF09;</strong> &#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x88AB;&#x89C2;&#x5BDF;&#x7684;&#x5C5E;&#x6027;&#x4F1A;&#x89E6;&#x53D1;&#x54CD;&#x5E94;<em>
+MobX reacts to any an _existing</em> <em>*observable</em></em> <em>property</em> that is read during the execution of a tracked function.</p>
+</blockquote>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../refguide/boxed.html" class="navigation navigation-prev " aria-label="Previous page: boxed values"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../best/decorators.html" class="navigation navigation-next " aria-label="Next page: 如何使用装饰器"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"edit-link":{"base":"https://github.com/suprise/mobx-cn/tree/master","label":"开始纠错"},"ga":{"token":"UA-65632006-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-65632006-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>

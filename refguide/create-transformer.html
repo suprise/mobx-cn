@@ -1,0 +1,1063 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>createTransformer | MobX 中文文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.3.3">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-edit-link/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../refguide/expr.html" />
+    
+    
+    <link rel="prev" href="../refguide/extending.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="8.3" data-basepath=".." data-revision="Mon May 01 2017 23:45:37 GMT+0800 (CST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="fp.html">
+            
+                
+                    <a href="../fp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        MobX 简介
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="intro/overview.html">
+            
+                
+                    <a href="../intro/overview.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        MobX 的要领
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="intro/concepts.html">
+            
+                
+                    <a href="../intro/concepts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        概念 &amp; 原则
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="refguide/api.html">
+            
+                
+                    <a href="../refguide/api.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API 概述
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="refguide/observable.html">
+            
+                
+                    <a href="../refguide/observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="refguide/observable-decorator.html">
+            
+                
+                    <a href="../refguide/observable-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        @observable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="refguide/computed-decorator.html">
+            
+                
+                    <a href="../refguide/computed-decorator.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        (@)computed
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="refguide/autorun.html">
+            
+                
+                    <a href="../refguide/autorun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        autorun
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="refguide/observer-component.html">
+            
+                
+                    <a href="../refguide/observer-component.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        (@)observer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="refguide/action.html">
+            
+                
+                    <a href="../refguide/action.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        action
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> 可观察类型</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="refguide/object.html">
+            
+                
+                    <a href="../refguide/object.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="refguide/array.html">
+            
+                
+                    <a href="../refguide/array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        arrays
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="refguide/map.html">
+            
+                
+                    <a href="../refguide/map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        maps
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="refguide/boxed.html">
+            
+                
+                    <a href="../refguide/boxed.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        boxed values
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="best/react.html">
+            
+                
+                    <a href="../best/react.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        理解如何响应
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="best/decorators.html">
+            
+                
+                    <a href="../best/decorators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        如何使用装饰器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> 相关资源</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="faq/blogs.html">
+            
+                
+                    <a href="../faq/blogs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        教程, 视频和博客
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="faq/related.html">
+            
+                
+                    <a href="../faq/related.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        相关项目
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="faq/examples.html">
+            
+                
+                    <a href="../faq/examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        项目Demo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="faq/boilerplates.html">
+            
+                
+                    <a href="../faq/boilerplates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        与其他工具组合（Boilerplates）
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="faq/faq.html">
+            
+                
+                    <a href="../faq/faq.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        常见问题
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> 提示 &amp; 技巧</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="best/pitfalls.html">
+            
+                
+                    <a href="../best/pitfalls.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        常见的坑 &amp; 最佳实践
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="best/store.html">
+            
+                
+                    <a href="../best/store.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        定义数据Store
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="best/actions.html">
+            
+                
+                    <a href="../best/actions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        编写 (async) actions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="best/react-performance.html">
+            
+                
+                    <a href="../best/react-performance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        优化 React 组件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="best/devtools.html">
+            
+                
+                    <a href="../best/devtools.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        DevTools
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="best/syntax.html">
+            
+                
+                    <a href="../best/syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        ES5 / ES6 / ES.next 语法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="best/stateless-HMR.html">
+            
+                
+                    <a href="../best/stateless-HMR.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        无状态组件和热更新
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> 工具方法</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="refguide/autorun-async.html">
+            
+                
+                    <a href="../refguide/autorun-async.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        autorunAsync
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="refguide/extending.html">
+            
+                
+                    <a href="../refguide/extending.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Atom &amp; Reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="8.3" data-path="refguide/create-transformer.html">
+            
+                
+                    <a href="../refguide/create-transformer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        createTransformer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="refguide/expr.html">
+            
+                
+                    <a href="../refguide/expr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        expr
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="refguide/extend-observable.html">
+            
+                
+                    <a href="../refguide/extend-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        extendObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="refguide/is-observable.html">
+            
+                
+                    <a href="../refguide/is-observable.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        isObservable
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="refguide/modifiers.html">
+            
+                
+                    <a href="../refguide/modifiers.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        modifiers
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.8" data-path="refguide/observe.html">
+            
+                
+                    <a href="../refguide/observe.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.8.</b>
+                        
+                        intercept &amp; observe
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="refguide/reaction.html">
+            
+                
+                    <a href="../refguide/reaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.9.</b>
+                        
+                        reaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.10" data-path="refguide/spy.html">
+            
+                
+                    <a href="../refguide/spy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.10.</b>
+                        
+                        spy
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.11" data-path="refguide/tojson.html">
+            
+                
+                    <a href="../refguide/tojson.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.11.</b>
+                        
+                        toJS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.12" data-path="refguide/transaction.html">
+            
+                
+                    <a href="../refguide/transaction.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.12.</b>
+                        
+                        transaction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.13" data-path="refguide/untracked.html">
+            
+                
+                    <a href="../refguide/untracked.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.13.</b>
+                        
+                        untracked
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.14" data-path="refguide/when.html">
+            
+                
+                    <a href="../refguide/when.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.14.</b>
+                        
+                        when
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="donating.html">
+            
+                
+                    <a href="../donating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        捐赠
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >MobX 中文文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <a id="edit-link" href="https://github.com/suprise/mobx-cn/tree/master/refguide/create-transformer.md" class="btn fa fa-edit pull-left">&#xA0;&#xA0;&#x5F00;&#x59CB;&#x7EA0;&#x9519;</a><h1 id="createtransformer">createTransformer</h1>
+<p><code>createTransformer<span class="token operator">&lt;</span>A<span class="token punctuation">,</span> B<span class="token operator">&gt;</span><span class="token punctuation">(</span>transformation<span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> A<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> B<span class="token punctuation">,</span> onCleanup<span class="token operator">?</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>result<span class="token punctuation">:</span> B<span class="token punctuation">,</span> value<span class="token operator">?</span><span class="token punctuation">:</span> A<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token keyword">void</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> A<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> B</code></p>
+<p><code>createTransformer</code> &#x5C06;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF08;&#x5E94;&#x8BE5;&#x5C06;&#x4E00;&#x4E2A;&#x503C;&#x8F6C;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x503C;&#xFF09;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x7684;&#x8BB0;&#x5FC6;&#x51FD;&#x6570;&#x3002;
+&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x7ED9;&#x4E88; <code>transformation</code> &#x51FD;&#x6570;&#x4E00;&#x4E2A;&#x660E;&#x786E;&#x7684; A &#x503C;&#x6765;&#x8BA1;&#x7B97; B&#xFF0C;&#x5BF9;&#x4E8E;&#x76F8;&#x540C;&#x7684; A&#xFF0C;&#x672A;&#x6765;&#x4EFB;&#x4F55;&#x5BF9;&#x4E8E;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x5C06;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684; B &#x503C;&#x3002;
+&#x76F8;&#x53CD;&#xFF0C;&#x5982;&#x679C; A &#x6539;&#x53D8;&#x4E86;&#xFF0C;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x5C06;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x5BFC;&#x81F4; B &#x7684;&#x66F4;&#x65B0;&#x3002;
+&#x6700;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4EBA;&#x4F7F;&#x7528;&#x5BF9;&#x4E8E;&#x660E;&#x786E; A &#x7684;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x7684;&#x8BB0;&#x5F55;&#x5C06;&#x4F1A;&#x4ECE;&#x8BB0;&#x5FC6;&#x8868;&#x4E2D;&#x5220;&#x53BB;&#x3002;</p>
+<p>&#x901A;&#x8FC7; <code>createTransformer</code> &#x662F;&#x53EF;&#x4EE5;&#x5341;&#x5206;&#x5BB9;&#x6613;&#x5730;&#x5C06;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x6570;&#x636E;&#x56FE;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x56FE;&#x7684;&#x3002;
+&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x88AB;&#x7EC4;&#x5408;&#xFF0C;&#x6240;&#x4EE5;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8BB8;&#x591A;&#x5C0F;&#x7684;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x9897;&#x6811;&#x3002;
+&#x751F;&#x6210;&#x7684;&#x6570;&#x636E;&#x56FE;&#x4F1A;&#x59CB;&#x7EC8;&#x4FDD;&#x6301;&#x66F4;&#x65B0;&#xFF0C;&#x5B83;&#x5C06;&#x901A;&#x8FC7;&#x5BF9;&#x7ED3;&#x679C;&#x56FE;&#x5E94;&#x7528;&#x5C0F;&#x66F4;&#x65B0;&#x6765;&#x4FDD;&#x6301;&#x4E0E;&#x6E90;&#x7684;&#x540C;&#x6B65;&#x3002;
+&#x8FD9;&#x4F7F;&#x5F97;&#x5341;&#x5206;&#x5BB9;&#x6613;&#x53BB;&#x5B9E;&#x73B0;&#x5F3A;&#x5927;&#x7684;&#x6A21;&#x5F0F;&#x7C7B;&#x4F3C;&#x4E8E; <code>sideways data loading</code>&#xFF08;&#x5C06;&#x6570;&#x636E;&#x76F4;&#x63A5;&#x63A8;&#x9001;&#x7ED9;&#x67D0;&#x4E9B;&#x5177;&#x4F53;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x800C;&#x975E;&#x4ECE;&#x7236;&#x7EA7;&#x5C42;&#x5C42;&#x4F20;&#x9012;&#xFF09;&#xFF0C;<code>map<span class="token operator">-</span>reduce</code>&#xFF0C;&#x4F7F;&#x7528;&#x4E0D;&#x53EF;&#x53D8;&#x6570;&#x636E;&#x8FFD;&#x8E2A;&#x72B6;&#x6001;&#x5386;&#x53F2;&#x7B49;&#x7B49;&#x3002;</p>
+<p>&#x53EF;&#x9009;&#x7684; <code>onCleanup</code> &#x51FD;&#x6570;&#x88AB;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x901A;&#x77E5;&#x5F53;&#x4E00;&#x4E2A;&#x8F6C;&#x6362;&#x5BF9;&#x8C61;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x3002;
+&#x5982;&#x679C;&#x9700;&#x8981;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x9644;&#x52A0;&#x5230;&#x7ED3;&#x679C;&#x5BF9;&#x8C61;&#x7684;&#x8D44;&#x6E90;&#x3002;</p>
+<p>&#x603B;&#x662F;&#x8981;&#x5728;&#x7C7B;&#x4F3C;&#x4E8E; <code>@observer</code> &#x6216; <code>autorun</code> &#x7684; reaction &#x5185;&#x4F7F;&#x7528;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x3002;
+&#x5982;&#x679C;&#x6CA1;&#x6709;&#x89C2;&#x5BDF;&#x4EFB;&#x4F55;&#x503C;&#xFF0C;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x4F1A;&#x50CF;&#x5176;&#x4ED6; computed &#x503C;&#x4E00;&#x6837;&#xFF0C;&#x56DE;&#x9000;&#x5230;&#x60F0;&#x6027;&#x6C42;&#x503C;&#xFF0C;&#x5F53;&#x7136;&#x8FD9;&#x662F;&#x8FDD;&#x80CC;&#x5B83;&#x4EEC;&#x76EE;&#x7684;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x4E00;&#x5207;&#x53EF;&#x80FD;&#x662F;&#x6709;&#x4E9B;&#x6A21;&#x7CCA;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x901A;&#x8FC7;&#x5C0F;&#x800C;&#x54CD;&#x5E94;&#x7684;&#x51FD;&#x6570;&#x5C06;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x6765;&#x89E3;&#x91CA;&#x6574;&#x4E2A;&#x60F3;&#x6CD5;&#xFF1A;</p>
+<h2 id="%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%8F%98%E7%9A%84%E3%80%81%E5%8F%AF%E5%88%86%E4%BA%AB%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%BF%BD%E8%B8%AA%E5%8F%AF%E5%8F%98%E7%9A%84-state">&#x4F7F;&#x7528;&#x4E0D;&#x53D8;&#x7684;&#x3001;&#x53EF;&#x5206;&#x4EAB;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x8FFD;&#x8E2A;&#x53EF;&#x53D8;&#x7684; state</h2>
+<p>&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x6E90;&#x4E8E; <a href="https://github.com/MobXjs/mobx-reactive2015-demo" target="_blank">Reactive2015 conference demo</a>:</p>
+<pre><code class="lang-javascript"><span class="token comment" spellcheck="true">/*
+    &#x8FD9;&#x4E2A; store &#x4FDD;&#x5B58;&#x4E86;&#x6211;&#x4EEC;&#x7684;&#x57DF;: boxes and arrows
+*/</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    boxes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    arrows<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    selection<span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">/**
+    &#x6BCF;&#x6B21;&#x66F4;&#x6539;&#x90FD;&#x4F1A;&#x5C06; store &#x5E8F;&#x5217;&#x5316;&#x4E3A; json&#xFF0C;&#x5C06;&#x5B83; push &#x8FDB;&#x5165; states
+*/</span>
+<span class="token keyword">const</span> states <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token function">autorun</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    states<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">serializeState</span><span class="token punctuation">(</span>store<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> serializeState <span class="token operator">=</span> <span class="token function">createTransformer</span><span class="token punctuation">(</span>store <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    boxes<span class="token punctuation">:</span> store<span class="token punctuation">.</span>boxes<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>serializeBox<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    arrows<span class="token punctuation">:</span> store<span class="token punctuation">.</span>arrows<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>serializeArrow<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    selection<span class="token punctuation">:</span> store<span class="token punctuation">.</span>selection <span class="token operator">?</span> store<span class="token punctuation">.</span>selection<span class="token punctuation">.</span>id <span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> serializeBox <span class="token operator">=</span> <span class="token function">createTransformer</span><span class="token punctuation">(</span>box <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>box<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> serializeArrow <span class="token operator">=</span> <span class="token function">createTransformer</span><span class="token punctuation">(</span>arrow <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> arrow<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+    to<span class="token punctuation">:</span> arrow<span class="token punctuation">.</span>to<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+    from<span class="token punctuation">:</span> arrow<span class="token punctuation">.</span>from<span class="token punctuation">.</span>id
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;state &#x901A;&#x8FC7;&#x4E09;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x6765;&#x5E8F;&#x5217;&#x5316;&#x3002;
+autorunner &#x89E6;&#x53D1; <code>store</code> &#x5BF9;&#x8C61;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x4F9D;&#x6B64;&#x5C06;&#x6240;&#x6709;&#x7684; boxes &#x548C; arrows &#x5E8F;&#x5217;&#x5316;&#x3002;
+&#x8BA9;&#x6211;&#x4EEC;&#x4ED4;&#x7EC6;&#x770B;&#x770B;&#x865A;&#x6784;&#x793A;&#x4F8B; box#3 &#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x3002;</p>
+<ol>
+<li>&#x9996;&#x5148; box#3 &#x662F;&#x901A;&#x8FC7; <code>map</code> &#x4F20;&#x9012;&#x7ED9; <code>serializeBox</code> &#x7684;&#xFF0C;
+&#x6267;&#x884C; serializeBox &#x7684;&#x8F6C;&#x6362;&#xFF0C;&#x5305;&#x542B; box#3 &#x4E0E;&#x5B83;&#x7684;&#x5E8F;&#x5217;&#x5316;&#x8868;&#x8FBE;&#x88AB;&#x6DFB;&#x52A0;&#x5230; <code>serializeBox</code> &#x5185;&#x90E8;&#x8BB0;&#x5FC6;&#x8868;&#x4E2D;&#x3002;</li>
+<li>&#x5047;&#x8BBE;&#x53E6;&#x4E00;&#x4E2A; box &#x88AB;&#x6DFB;&#x52A0;&#x5230; <code>store<span class="token punctuation">.</span>boxes</code> &#x5217;&#x8868;&#x3002;
+&#x5C06;&#x4F1A;&#x4F7F; <code>serializeState</code> &#x51FD;&#x6570;&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#xFF0C;&#x5BFC;&#x81F4;&#x6240;&#x6709; box &#x5B8C;&#x5168;&#x91CD;&#x65B0;&#x6620;&#x5C04;&#x3002;
+&#x7136;&#x800C;&#xFF0C;&#x6240;&#x6709; <code>serializeBox</code> &#x7684;&#x8C03;&#x7528;&#x5C06;&#x4F1A;&#x4ECE;&#x8BB0;&#x5FC6;&#x8868;&#x4E2D;&#x8FD4;&#x56DE;&#x5B83;&#x4EEC;&#x7684;&#x65E7;&#x503C;&#xFF0C;&#x56E0;&#x4E3A;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x4E0D;&#xFF08;&#x9700;&#x8981;&#xFF09;&#x518D;&#x6B21;&#x8FD0;&#x884C;&#x3002;</li>
+<li>&#x7B2C;&#x4E8C;&#x6B65;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x4EBA;&#x6539;&#x53D8;&#x4E86; box#3 &#x5C5E;&#x6027;&#x5C06;&#x4F1A;&#x9020;&#x6210; <code>serializeBox</code> &#x5BF9;&#x4E8E; box#3 &#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#xFF0C;&#x5C31;&#x50CF;&#x5728; MobX &#x4E2D;&#x7684;&#x5176;&#x4ED6; reactive &#x51FD;&#x6570;&#x3002;
+&#x7531;&#x4E8E;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x4F1A;&#x751F;&#x6210; box#3 &#x7684;&#x65B0; Json &#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x5BF9;&#x5E94;&#x7684;&#x6240;&#x6709;&#x89C2;&#x5BDF;&#x8005;&#x5C06;&#x4F1A;&#x88AB;&#x5F3A;&#x5236;&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x3002;
+&#x5728;&#x4E0A;&#x8FF0;&#x793A;&#x4F8B;&#x4E2D;&#x662F; <code>serializeState</code> &#x7684;&#x8F6C;&#x6362;&#x3002;
+<code>serializeState</code> &#x4F9D;&#x6B21;&#x4EA7;&#x751F;&#x65B0;&#x7684;&#x503C;&#x518D;&#x6B21;&#x6620;&#x5C04;&#x6240;&#x6709;&#x7684; box&#x3002;&#x4F46;&#x662F;&#x9664;&#x4E86; box#3&#xFF0C;&#x5176;&#x4ED6; box &#x5C06;&#x5747;&#x4ECE;&#x8BB0;&#x5FC6;&#x8868;&#x4E2D;&#x8FD4;&#x56DE;&#x3002;</li>
+<li>&#x6700;&#x540E;&#xFF0C;&#x5982;&#x679C; box#3 &#x4ECE; <code>store<span class="token punctuation">.</span>boxes</code> &#x4E2D;&#x79FB;&#x9664;&#xFF0C;<code>serializeState</code> &#x5C06;&#x4F1A;&#x91CD;&#x65B0;&#x8BA1;&#x7B97;&#x3002;
+&#x4F46;&#x662F; <code>serializeBox</code> &#x4E0D;&#x518D;&#x5E94;&#x7528;&#x4E8E; box#3, &#x54CD;&#x5E94;&#x5F0F;&#x51FD;&#x6570;&#x5C06;&#x4F1A;&#x56DE;&#x9000;&#x5230;&#x975E;&#x54CD;&#x5E94;&#x6A21;&#x5F0F;&#x3002;
+&#x7136;&#x540E;&#x901A;&#x77E5;&#x8BB0;&#x5FC6;&#x8868;&#xFF0C;&#x80FD;&#x88AB;&#x5220;&#x9664;&#xFF0C;&#x4EE5;&#x4FBF;&#x51C6;&#x5907;&#x597D; GC&#x3002;</li>
+</ol>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x6709;&#x6548;&#x5730;&#x4F7F;&#x7528;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#xFF0C;&#x53EF;&#x5206;&#x4EAB;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6765;&#x5B9E;&#x73B0;&#x72B6;&#x6001;&#x7684;&#x8FFD;&#x8E2A;&#x3002;
+&#x6240;&#x6709;&#x7684; box &#x4E0E; arrow &#x5747;&#x88AB;&#x6620;&#x5C04;&#x548C;&#x7B80;&#x5316;&#x5230;&#x4E00;&#x9897; state &#x6811;&#x4E2D;&#x3002;
+&#x6BCF;&#x6B21;&#x53D8;&#x5316;&#x90FD;&#x4F1A;&#x4F7F; <code>states</code> &#x6570;&#x7EC4;&#x4E2D;&#x65B0;&#x589E;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x8BB0;&#x5F55;&#x5C06;&#x5206;&#x4EAB;&#x5B83;&#x4EEC;&#x6240;&#x6709;&#x7684; box &#x4E0E; arrow &#x8868;&#x73B0;&#x3002;</p>
+<h2 id="%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%9B%BE%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%9B%BE">&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x56FE;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x6570;&#x636E;&#x56FE;</h2>
+<p>&#x8F6C;&#x6362;&#x51FD;&#x6570;&#x4E0D;&#x4EC5;&#x80FD;&#x8FD4;&#x56DE;&#x666E;&#x901A;&#x503C;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x8FD4;&#x56DE; observable &#x5BF9;&#x8C61;&#x3002;
+&#x5B83;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x628A;&#x4E00;&#x4E2A; observable &#x6570;&#x636E;&#x56FE;&#x8F6C;&#x6362;&#x4E3A;&#x53E6;&#x4E00;&#x4E2A; observable &#x6570;&#x636E;&#x56FE;&#xFF0C;&#x53C8;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x8F6C;&#x6362;...&#x4F60;&#x61C2;&#x7684;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6709;&#x4E2A;&#x5C0F;&#x793A;&#x4F8B;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;&#x6BCF;&#x6B21;&#x6539;&#x53D8;&#x90FD;&#x4F1A;&#x66F4;&#x65B0;&#x7684;&#x54CD;&#x5E94;&#x5F0F;&#x6587;&#x4EF6;&#x63A2;&#x6D4B;&#x5668;&#x8FDB;&#x884C;&#x7F16;&#x7801;&#x3002;
+&#x8FD9;&#x6837;&#x6784;&#x5EFA;&#x6570;&#x636E;&#x56FE;&#x901A;&#x5E38;&#x4F1A;&#x53CD;&#x5E94;&#x66F4;&#x5FEB;&#xFF0C;&#x4E0E;&#x4F60;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x4EE3;&#x7801;&#x6765;&#x9A71;&#x52A8;&#x6570;&#x636E;&#x56FE;&#x76F8;&#x6BD4;&#xFF0C;&#x5C06;&#x5305;&#x542B;&#x66F4;&#x4E3A;&#x76F4;&#x63A5;&#x7684;&#x4EE3;&#x7801;&#x3002;
+&#x67E5;&#x770B; <a href="https://github.com/mobxjs/mobx/blob/3ea1f4af20a51a1cb30be3e4a55ec8f964a8c495/test/perf/transform-perf.js#L4" target="_blank">&#x6027;&#x80FD;&#x6D4B;&#x8BD5;</a> 
+&#x7684;&#x76F8;&#x5173;&#x793A;&#x4F8B;</p>
+<p>&#x4E0D;&#x540C;&#x4E0E;&#x5148;&#x524D;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;<code>transformFolder</code> &#x5728;&#x6587;&#x4EF6;&#x5939;&#x4FDD;&#x6301;&#x53EF;&#x89C1;&#x65F6;&#x4EC5;&#x4F1A;&#x8FD0;&#x884C;&#x4E00;&#x6B21;&#xFF1B;
+<code>DisplayFolder</code> &#x5BF9;&#x8C61;&#x8FFD;&#x8E2A;&#x4E0E; <code>Folder</code> &#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#x76F8;&#x5173;&#x8054;&#x7684;&#x4E1C;&#x897F;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x5747;&#x662F;&#x6240;&#x6709;&#x5BF9;&#x4E8E; <code>state</code> &#x56FE;&#x7684;&#x53D8;&#x5316;&#x90FD;&#x4F1A;&#x88AB;&#x81EA;&#x52A8;&#x5904;&#x7406;&#x3002;
+&#x4E00;&#x4E9B;&#x793A;&#x4F8B;&#xFF1A;</p>
+<ol>
+<li>&#x6539;&#x53D8;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x7684;&#x540D;&#x79F0;&#x5C06;&#x4F1A;&#x66F4;&#x65B0;&#x5B83;&#x81EA;&#x5DF1;&#x7684; <code>path</code> &#x5C5E;&#x6027;&#x548C;&#x6240;&#x6709;&#x540E;&#x4EE3;&#x7684; <code>path</code> &#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x6298;&#x53E0;&#xFF08;collapse&#xFF09;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5C06;&#x4F1A;&#x4ECE;&#x6811;&#x4E0A;&#x79FB;&#x9664;&#x6240;&#x6709;&#x540E;&#x4EE3; <code>DisplayFolders</code>&#x3002;</li>
+<li>&#x5C55;&#x5F00;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x5C06;&#x4F1A;&#x518D;&#x6B21;&#x6062;&#x590D;&#x3002;</li>
+<li>&#x8BBE;&#x7F6E;&#x641C;&#x7D22;&#x8FC7;&#x6EE4;&#xFF08;filter&#xFF09;&#x5C06;&#x4F1A;&#x79FB;&#x9664;&#x6240;&#x6709;&#x4E0E;&#x8FC7;&#x6EE4;&#x4E0D;&#x5339;&#x914D;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x9664;&#x975E;&#x5B83;&#x4EEC;&#x7684;&#x540E;&#x4EE3;&#x4E0E;&#x8FC7;&#x6EE4;&#x76F8;&#x5339;&#x914D;&#x3002;</li>
+<li>&#x7B49;&#x7B49;</li>
+</ol>
+<pre><code class="lang-javascript"><span class="token keyword">function</span> <span class="token function">Folder</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>parent <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+    m<span class="token punctuation">.</span><span class="token function">extendObservable</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span> name<span class="token punctuation">,</span>
+        children<span class="token punctuation">:</span> m<span class="token punctuation">.</span><span class="token function">asFlat</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">DisplayFolder</span><span class="token punctuation">(</span>folder<span class="token punctuation">,</span> state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> state<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>folder <span class="token operator">=</span> folder<span class="token punctuation">;</span>
+    m<span class="token punctuation">.</span><span class="token function">extendObservable</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        collapsed<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+        name<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>folder<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        isVisible<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>filter <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>filter<span class="token punctuation">)</span> <span class="token operator">!</span><span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span>child <span class="token operator">=</span><span class="token operator">&gt;</span> child<span class="token punctuation">.</span>isVisible<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        children<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>collapsed<span class="token punctuation">)</span>
+                <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>folder<span class="token punctuation">.</span>children<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>transformFolder<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> child<span class="token punctuation">.</span>isVisible<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        path<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>folder<span class="token punctuation">.</span>parent <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token punctuation">:</span> <span class="token function">transformFolder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>folder<span class="token punctuation">.</span>parent<span class="token punctuation">)</span><span class="token punctuation">.</span>path <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> state <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">observable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    root<span class="token punctuation">:</span> <span class="token keyword">new</span> <span class="token class-name">Folder</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token string">&quot;root&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    filter<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    displayRoot<span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> transformFolder <span class="token operator">=</span> m<span class="token punctuation">.</span><span class="token function">createTransformer</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>folder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DisplayFolder</span><span class="token punctuation">(</span>folder<span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+m<span class="token punctuation">.</span><span class="token function">autorun</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    state<span class="token punctuation">.</span>displayRoot <span class="token operator">=</span> <span class="token function">transformFolder</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../refguide/extending.html" class="navigation navigation-prev " aria-label="Previous page: Atom &amp; Reaction"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../refguide/expr.html" class="navigation navigation-next " aria-label="Next page: expr"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-edit-link/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"edit-link":{"base":"https://github.com/suprise/mobx-cn/tree/master","label":"开始纠错"},"ga":{"token":"UA-65632006-1","configuration":"auto"}};
+    gitbook.start(config);
+});
+</script>
+
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-65632006-1', 'auto');ga('send', 'pageview');</script>
+    </body>
+    
+</html>
