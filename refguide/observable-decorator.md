@@ -5,7 +5,7 @@
 这为你的普通对象转变为可观察对象提供了细粒度的方法
 
 ```javascript
-import {observable} from "MobX";
+import {observable, computed } from "MobX";
 
 class OrderLine {
     @observable price = 0;
